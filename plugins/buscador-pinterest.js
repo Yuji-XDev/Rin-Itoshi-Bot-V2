@@ -1,24 +1,26 @@
 import axios from 'axios'
-import baileys from '@whiskeysockets/baileys'
 
 let handler = async (m, { conn, text }) => {
-  if (!text) return m.reply(`❀ Por favor, ingresa lo que deseas buscar por Pinterest.`)
+  if (!text) return m.reply('💥 Por favor, ingresa lo que deseas buscar por Pinterest.')
 
   try {
-    m.react('🕒')
+    await m.react('🕒')
     let results = await pins(text)
 
     if (!results.length) return conn.reply(m.chat, `✧ No se encontraron resultados para "${text}".`, m)
 
-    const medias = results.slice(0, 10).map(img => ({ type: 'image', data: { url: img.hd } }))
+    const medias = results.slice(0, 5) // máximo 5 imágenes para evitar límite
 
-    await conn.sendSylphy(m.chat, medias, {
-      caption: `❀  Pinterest  -  Search  ❀\n\n✧ Búsqueda » "${text}"\n✐ Resultados » ${medias.length}\n\n${dev}`,
-      quoted: m
-    })
+    for (const img of medias) {
+      await conn.sendMessage(m.chat, {
+        image: { url: img.hd },
+        caption: `❀  Pinterest  -  Search  ❀\n\n✧ Búsqueda » "${text}"\n✐ Imagen HD`,
+      }, { quoted: m })
+    }
 
     await conn.sendMessage(m.chat, { react: { text: '✅', key: m.key } })
   } catch (error) {
+    console.error(error)
     conn.reply(m.chat, `⚠︎ Error:\n\n${error.message}`, m)
   }
 }
@@ -31,7 +33,7 @@ export default handler
 
 const pins = async (query) => {
   try {
-    const { data } = await axios.get(`https://api.stellarwa.xyz/search/pinterest?query=${query}`)
+    const { data } = await axios.get(`https://api.stellarwa.xyz/search/pinterest?query=${encodeURIComponent(query)}`)
 
     if (data?.status && data?.data?.length) {
       return data.data.map(item => ({

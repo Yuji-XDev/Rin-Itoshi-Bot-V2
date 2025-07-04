@@ -13,13 +13,62 @@ let chat = global.db.data.chats[m.chat]
 let usuario = `@${m.sender.split`@`[0]}`
 let pp = await conn.profilePictureUrl(m.chat, 'image').catch(_ => null) || 'https://files.catbox.moe/xr2m6u.jpg'
 let nombre, foto, edit, newlink, status, admingp, noadmingp
-nombre = `❀ ${usuario} Ha cambiado el nombre del grupo.\n\n> ✦ Ahora el grupo se llama:\n> *${m.messageStubParameters[0]}*.`
-foto = `❀ Se ha cambiado la imagen del grupo.\n\n> ✦ Acción hecha por:\n> » ${usuario}`
-edit = `❀ ${usuario} Ha permitido que ${m.messageStubParameters[0] == 'on' ? 'solo admins' : 'todos'} puedan configurar el grupo.`
-newlink = `❀ El enlace del grupo ha sido restablecido.\n\n> ✦ Acción hecha por:\n> » ${usuario}`
-status = `❀ El grupo ha sido ${m.messageStubParameters[0] == 'on' ? '*cerrado*' : '*abierto*'} Por ${usuario}\n\n> ✦ Ahora ${m.messageStubParameters[0] == 'on' ? '*solo admins*' : '*todos*'} pueden enviar mensaje.`
-admingp = `❀ @${m.messageStubParameters[0].split`@`[0]} Ahora es admin del grupo.\n\n> ✦ Acción hecha por:\n> » ${usuario}`
-noadmingp = `❀ @${m.messageStubParameters[0].split`@`[0]} Deja de ser admin del grupo.\n\n> ✦ Acción hecha por:\n> » ${usuario}`
+nombre = `╔═════════════════════════╗
+║ 💥 *Actualización estratégica*
+║ 🧭 Usuario: *${usuario}*
+║ ✏️ Modificó el nombre del grupo.
+║
+║ 🧱 Nuevo identificador:
+║ *✎ ${m.messageStubParameters[0]}*
+╚═════════════════════════╝`
+
+
+foto = `╔═════════════════════════╗
+║ 🖼️ *Se ha actualizado la imagen del grupo*
+║
+║ 🎯 Acción ejecutada por: *${usuario}*
+╚═════════════════════════╝`
+
+
+edit = `╔═════════════════════════╗
+║ ⚙️ *Configuración del grupo*
+║
+║ 🧠 El usuario ${usuario} ha determinado que
+║ ${m.messageStubParameters[0] == 'on' ? '║\n 🧱 *solo admins*' : '║\n 🔓 *todos*'} pueden gestionar configuraciones.
+╚═════════════════════════╝`
+
+
+newlink = `╔═════════════════════════╗
+║ 🔗 *Enlace regenerado*
+║ 👤 Usuario: *${usuario}*
+║ 🌐 Acceso del grupo ha sido restablecido.
+╚═════════════════════════╝`
+
+
+status = `╔═════════════════════════╗
+║ 📢 *Modo del grupo actualizado*
+║
+║ 🧭 Acción tomada por: *${usuario}*
+║ 🎮 Estado actual: ${m.messageStubParameters[0] == 'on' ? '🔒 Grupo *cerrado*' : '🔓 Grupo *abierto*'}
+║ 💥 Ahora ${m.messageStubParameters[0] == 'on' ? '*solo admins*' : '*todos*'} pueden enviar mensaje.
+╚═════════════════════════╝`
+
+
+admingp = `╔═════════════════════════╗
+║ 🎖️ *ASCENSO OTORGADO*
+║ 🧬 *@${m.messageStubParameters[0].split`@`[0]}*
+║    Ahora forma parte del control.
+║
+║ 🧠 Decisión de: *${usuario}*
+╚═════════════════════════╝`
+
+
+noadmingp =  `╔═════════════════════════╗
+║ ⚡ *@${m.messageStubParameters[0].split`@`[0]}*
+║    Ha perdido permisos de autoridad.
+║
+║ ⛓️ Acción ejecutada por: *${usuario}*
+╚═════════════════════════╝`
 
 if (chat.detect && m.messageStubType == 2) {
 const uniqid = (m.isGroup ? m.chat : m.sender)

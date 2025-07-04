@@ -6,7 +6,7 @@ const youtubeRegexID = /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([a-z
 const handler = async (m, { conn, text, usedPrefix, command }) => {
   try {
     if (!text.trim()) {
-      return conn.reply(m.chat, `❀ Por favor, ingresa el nombre de la música a descargar.`, m)
+      return conn.reply(m.chat, `*🌴 Por favor, ingresa el nombre de la música a descargar.*`, m, rcanal);
     }
   
 let videoIdToFind = text.match(youtubeRegexID) || null
@@ -30,12 +30,22 @@ url = url || 'no encontrado'
 author = author || 'no encontrado'
     const vistas = formatViews(views)
     const canal = author.name ? author.name : 'Desconocido'
-    const infoMessage = `「✦」Descargando *<${title || 'Desconocido'}>*\n\n> ✧ Canal » *${canal}*\n> ✰ Vistas » *${vistas || 'Desconocido'}*\n> ⴵ Duración » *${timestamp || 'Desconocido'}*\n> ✐ Publicado » *${ago || 'Desconocido'}*\n> 🜸 Link » ${url}`
+    const infoMessage = `╭─〕「⚡  *RIN ITOSHI V2☃️*  ⭐」
+├̟̇˚₊🌴 𝑻𝒊𝒕𝒖𝒍𝒐: ${title || 'Desconocido'}
+├̟̇˚₊🥥 𝑪𝒂𝒏𝒂𝒍: ${canal}
+├̟̇˚₊⚡ 𝑽𝒊𝒔𝒕𝒂𝒔: ${vistas || 'Desconocido'}
+├̟̇˚₊🌲 𝑫𝒖𝒓𝒂𝒄𝒊𝒐𝒏: ${timestamp || 'Desconocido'}
+├̟̇˚₊🥞 𝑷𝒖𝒃𝒍𝒊𝒄𝒂𝒅𝒐: ${ago || 'Desconocido'}
+├̟̇˚₊💖 𝑳𝒊𝒏𝒌: ${url}
+╰─〕𝙀𝙣𝙫𝙞𝙖𝙣𝙙𝙤 ▰▰▱▱ 
+╰─────────────────────⬣
+    
+    `
     const thumb = (await conn.getFile(thumbnail))?.data
     const JT = {
       contextInfo: {
         externalAdReply: {
-          title: botname,
+          title: `${title || 'Desconocido'} `,
           body: dev,
           mediaType: 1,
           previewType: 0,
@@ -47,7 +57,7 @@ author = author || 'no encontrado'
       },
     }
     await conn.reply(m.chat, infoMessage, m, JT)    
-    if (command === 'play' || command === 'yta' || command === 'ytmp3' || command === 'playaudio') {
+    if (command === 'play' || command === 'playaudio') {
       try {
         const api = await (await fetch(`https://api.stellarwa.xyz/dow/ytmp3?url=${url}`)).json()
         const resulta = api.data
@@ -57,7 +67,7 @@ author = author || 'no encontrado'
       } catch (e) {
         return conn.reply(m.chat, '⚠︎ No se pudo enviar el audio. Esto puede deberse a que el archivo es demasiado pesado o a un error en la generación de la URL. Por favor, intenta nuevamente más tarde.', m)
       }
-    } else if (command === 'play2' || command === 'ytv' || command === 'ytmp4' || command === 'mp4') {
+    } else if (command === 'play2' || command === 'playvideo') {
       try {
         const response = await fetch(`https://api.stellarwa.xyz/dow/ytmp4?url=${url}`)
         const json = await response.json()
@@ -72,7 +82,7 @@ author = author || 'no encontrado'
     return m.reply(`⚠︎ Ocurrió un error: ${error}`)
   }
 }
-handler.command = handler.help = ['play', 'yta', 'ytmp3', 'play2', 'ytv', 'ytmp4', 'playaudio', 'mp4']
+handler.command = handler.help = ['play', 'playaudio', 'play2', 'playvideo']
 handler.tags = ['descargas']
 handler.group = true
 

@@ -51,6 +51,7 @@ break
 }
 
 }
+handler.help = ['fantasmas', 'kickfantasmas']
 handler.tags = ['grupo']
 handler.command = ['fantasmas', 'kickfantasmas']
 handler.group = true

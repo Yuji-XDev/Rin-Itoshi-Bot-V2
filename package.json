@@ -1,6 +1,6 @@
 {
-"name": "YukiBot-MD",
-"version": "2.2.5",
+"name": "RIN ITOSHI-V2 X BLACK-OFC",
+"version": "2.2.0",
 "description": "WhatsApp Bot Multi Device",
 "main": "index.js",
 "type": "module",
@@ -18,22 +18,22 @@
 "eslint": "eslint .",
 "eslintfix": "eslint --fix ."
 },
-"homepage": "https://github.com/The-King-Destroy/Yuki_Suou-Bot",
+"homepage": "https://github.com/Rin-Itoshi-Bot-V2",
 "author": {
-"name": "The-King-Destroy"
+"name": "the-27"
 },
 "repository": {
 "type": "git",
-"url": "git+https://github.com/The-King-Destroy/Yuki_Suou-Bot.git"
+"url": "git+https://github.com/Rin-Itoshi-Bot-V2.git"
 },
 "bugs": {
-"url": "https://github.com/The-King-Destroy/Yuki_Suou-Bot/issues"
+"url": "https://github.com/Rin-Itoshi-Bot-V2/issues"
 },
 "license": "MIT-License",
 "dependencies": {
 "@bochilteam/scraper": "^4.2.4",
 "@vitalets/google-translate-api": "^8.0.0",
-"@whiskeysockets/baileys": "github:nstar-y/bail",
+"@whiskeysockets/baileys": "npm:@izumi-xyz/meta",
 "acrcloud": "^1.4.0",
 "api-dylux": "^1.7.2",
 "aptoide-scraper": "github:DIEGO-OFC/dv-aptoide-scraper",

@@ -61,7 +61,7 @@ termux-setup-storage
 ```
 
 ```bash
-git clone https://github.com/the-27/Luffy-Bot-MD && cd Luffy-Bot-MD
+git clone https://github.com/the-27/Rin-Itoshi-Bot-V2 && cd Rin-Itoshi-Bot-V2
 ```
 
 ```bash
@@ -81,7 +81,7 @@ npm start
 ❒ Abre Termux y navega al directorio del bot:
    
 ```bash
-cd Luffy-Bot-MD
+cd Rin-Itoshi-Bot-V2
 ```
 
 ❒ Inicia el bot nuevamente:
@@ -97,7 +97,7 @@ Si después de instalar el bot en Termux y iniciar la session del bot (el numero
 1. Abre Termux y navega al directorio del bot:
 
 ```bash
-cd Luffy-Bot-MD
+cd Rin-Itoshi-Bot-V2
 ```
 
 2. Elimina la carpeta MiniSession:
@@ -117,7 +117,7 @@ npm start
 > Si después de instalar el bot en Termux y iniciar la session del bot (deseas poner tu número es la lista de owner pon este comando:
 
 ```bash
-cd Luffy-Bot-MD && nano config.js
+cd Rin-Itoshi-Bot-V2 && nano config.js
 ```
 
 </details>
@@ -136,7 +136,7 @@ apt update && apt upgrade
 ```
 
 ```bash
-git clone https://github.com/the-27/Luffy-Bot-MD && cd Luffy-Bot-MD
+git clone https://github.com/the-27/Rin-Itoshi-Bot-V2 && cd Rin-Itoshi-Bot-V2
 ```
 
 ```bash
