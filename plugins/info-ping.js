@@ -1,42 +1,39 @@
-import speed from 'performance-now'
 import { exec } from 'child_process'
+import speed from 'performance-now'
 
 let handler = async (m, { conn }) => {
-  let timestamp = speed()
-  let latensi = speed() - timestamp
+  let inicio = speed()
+  let final = speed()
+  let latencia = (final - inicio).toFixed(3)
 
-  exec(`neofetch --stdout`, (error, stdout) => {
-    if (!stdout) return
+  exec('neofetch --stdout', (_, stdout) => {
+    let datos = stdout?.toString('utf-8').replace(/Memory:/g, 'Ram:') || ''
+    let lineas = datos.split('\n').map(l => `┃ ${l}`).join('\n')
 
-    let sysinfo = stdout.toString('utf-8').replace(/Memory:/g, 'Ram:')
-    let infoLines = sysinfo.split('\n').map(line => '┃ ' + line).join('\n')
+    let texto = `
+╭━━━〔 💙 𝗥𝗜𝗡 𝗜𝗧𝗢𝗦𝗛𝗜 ⚽ 〕━━⬣
+┃ 🧠 *Sistema operativo activo*
+┃ ⚡ *Velocidad:* ${latencia} ms
+┃ 🛠️ *Detalles técnicos:*
+${lineas}
+╰━━━━━━━━━━━━━━━━━━━━⬣`.trim()
 
-    const ping = `╭━━〔 🧬 𝗥𝗜𝗡 𝗜𝗧𝗢𝗦𝗛𝗜 🧠 〕━━⬣
-┃
-┃ 🧩 *Estado:* Sistema operativo funcional.
-┃ 🧠 *Análisis:* ${latensi.toFixed(4)} ms
-┃ 🧪 *Datos técnicos:*
-${infoLines}
-╰━━━━━━━━━━━━━━━━⬣`
-
-    conn.reply(m.chat, ping.trim(), fkontak, rcanal)
+    conn.reply(m.chat, texto, fkontak, infoExtra)
   })
 }
 
-const rcanal = {
-  contextInfo: { 
+const fkontak = {}
+
+const infoExtra = {
+  contextInfo: {
     isForwarded: true,
-    serverMessageId: 100,
+    forwardingScore: 999,
     externalAdReply: {
-      showAdAttribution: true,
-      title: packname, 
-      body: dev, 
-      mediaUrl: null, 
-      description: null, 
-      previewType: "PHOTO", 
-      thumbnailUrl: logo, 
-      sourceUrl: redes, 
-      mediaType: 1, 
+      title: '⚽ Blue Lock Bot',
+      body: 'Rin Itoshi Engine 💙',
+      thumbnailUrl: 'https://telegra.ph/file/0b7ed6a0ea29f7398552e.jpg',
+      sourceUrl: 'https://github.com/TuRepositorio',
+      mediaType: 1,
       renderLargerThumbnail: true
     }
   }
@@ -45,6 +42,5 @@ const rcanal = {
 handler.help = ['ping']
 handler.tags = ['info']
 handler.command = ['ping', 'p']
-handler.register = true
 
 export default handler
