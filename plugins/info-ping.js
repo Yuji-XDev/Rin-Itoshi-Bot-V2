@@ -1,7 +1,7 @@
 import { exec } from 'child_process'
 import speed from 'performance-now'
 
-let handler = async (m, { conn }) => {
+let handler = async (m, { conn, participants }) => {
   let inicio = speed()
   let final = speed()
   let latencia = (final - inicio).toFixed(3)
@@ -18,25 +18,23 @@ let handler = async (m, { conn }) => {
 ${lineas}
 ╰━━━━━━━━━━━━━━━━━━━━⬣`.trim()
 
-    conn.reply(m.chat, texto, fkontak, infoExtra)
+    conn.sendMessage(m.chat, {
+      text: texto,
+      mentions: participants?.map(p => p.id) || [],
+      contextInfo: {
+        mentionedJid: participants?.map(p => p.id) || [],
+        externalAdReply: {
+          title: '✧ Velocidad de Rin ✧',
+          body: 'Latencia y sistema',
+          thumbnailUrl: logo,
+          mediaType: 1,
+          showAdAttribution: true,
+          renderLargerThumbnail: true,
+          sourceUrl: 'https://github.com/the-27/Rin-Itoshi-Bot-V2',
+        }
+      }
+    }, { quoted: m })
   })
-}
-
-const fkontak = {}
-
-const infoExtra = {
-  contextInfo: {
-    isForwarded: true,
-    forwardingScore: 999,
-    externalAdReply: {
-      title: '⚽ Blue Lock Bot',
-      body: 'Rin Itoshi Engine 💙',
-      thumbnailUrl: 'https://telegra.ph/file/0b7ed6a0ea29f7398552e.jpg',
-      sourceUrl: 'https://github.com/TuRepositorio',
-      mediaType: 1,
-      renderLargerThumbnail: true
-    }
-  }
 }
 
 handler.help = ['ping']
