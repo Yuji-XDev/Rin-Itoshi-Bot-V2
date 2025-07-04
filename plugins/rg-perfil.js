@@ -43,7 +43,7 @@ let handler = async (m, { conn, args }) => {
 ╭─〔 ⚙️ 𝐑𝐄𝐍𝐃𝐈𝐌𝐈𝐄𝐍𝐓𝐎 𝐄𝐒𝐓𝐑𝐀𝐓𝐄́𝐆𝐈𝐂𝐎 〕─╮
 ┃ 📈 𝐄𝐗𝐏 𝐀𝐜𝐮𝐦𝐮𝐥𝐚𝐝𝐚: *${exp.toLocaleString()} puntos*
 ┃ 🧪 𝐍𝐢𝐯𝐞𝐥 𝐀𝐜𝐭𝐮𝐚𝐥: *${nivel}*
-┃ 🏅 𝐑𝐚𝐧𝐠𝐨 𝐄𝐬𝐭𝐫𝐚𝐭𝐞𝐠𝐢𝐜𝐨: *${role}*
+┃ 🏅 𝐑𝐚𝐧𝐠𝐨 𝐄𝐬𝐭𝐫𝐚𝐭𝐞𝐠𝐢𝐜𝐨: ${role}
 ┃
 ┃ 💰 𝐌𝐨𝐧𝐞𝐝𝐞𝐫𝐨: *${coins.toLocaleString()} ${moneda}*
 ┃ 🏦 𝐁𝐚𝐧𝐜𝐨: *${bankCoins.toLocaleString()} ${moneda}*
