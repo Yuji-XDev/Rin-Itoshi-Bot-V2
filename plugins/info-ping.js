@@ -2,27 +2,30 @@ import speed from 'performance-now'
 import { exec } from 'child_process'
 
 let handler = async (m, { conn }) => {
-  let timestamp = speed();
-  let latensi = speed() - timestamp;
+  let timestamp = speed()
+  let latensi = speed() - timestamp
 
-  exec(`neofetch --stdout`, (error, stdout, stderr) => {
-    let sysinfo = stdout?.toString("utf-8").replace(/Memory:/, "Ram:");
+  exec(`neofetch --stdout`, (error, stdout) => {
+    if (!stdout) return
+
+    let sysinfo = stdout.toString('utf-8').replace(/Memory:/g, 'Ram:')
+    let infoLines = sysinfo.split('\n').map(line => '┃ ' + line).join('\n')
 
     const ping = `╭━━〔 🧬 𝗥𝗜𝗡 𝗜𝗧𝗢𝗦𝗛𝗜 🧠 〕━━⬣
 ┃
 ┃ 🧩 *Estado:* Sistema operativo funcional.
 ┃ 🧠 *Análisis:* ${latensi.toFixed(4)} ms
 ┃ 🧪 *Datos técnicos:*
-┃ ${infoLines}    
-╰━━━━━━━━━━━━━━━━⬣`;
+${infoLines}
+╰━━━━━━━━━━━━━━━━⬣`
 
-    conn.reply(m.chat, ping.trim(), fkontak, rcanal);
-  });
+    conn.reply(m.chat, ping.trim(), fkontak, rcanal)
+  })
 }
 
 const rcanal = {
   contextInfo: { 
-    isForwarded: true, 
+    isForwarded: true,
     serverMessageId: 100,
     externalAdReply: {
       showAdAttribution: true,
@@ -31,7 +34,7 @@ const rcanal = {
       mediaUrl: null, 
       description: null, 
       previewType: "PHOTO", 
-      thumbnailUrl: icono, 
+      thumbnailUrl: logo, 
       sourceUrl: redes, 
       mediaType: 1, 
       renderLargerThumbnail: true

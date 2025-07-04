@@ -46,11 +46,11 @@ export async function before(m, { conn }) {
 │  
 │ No hay éxito sin disciplina.  
 ╰──────────────────────────╯`,
-      footer: '⚡ Rin Itoshi ┇ BOT MD ┇ 「𝘍𝘰𝘤𝘶𝘴. 𝘋𝘪𝘴𝘤𝘪𝘱𝘭𝘪𝘯𝘦. 𝘞𝘪𝘯.」',
+      footer: '⚡ Rin Itoshi ┇ BOT V² ┇ 「𝘍𝘰𝘤𝘶𝘴. 𝘋𝘪𝘴𝘤𝘪𝘱𝘭𝘪𝘯𝘦. 𝘞𝘪𝘯.」',
       buttons: [
         {
           buttonId: '.menu',
-          buttonText: { displayText: '📜 Ver menu de comandos 📜' },
+          buttonText: { displayText: '📜 Ver Menu 📜' },
           type: 1
         }
       ],
