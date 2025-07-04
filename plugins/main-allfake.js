@@ -36,8 +36,10 @@ global.namecomu = '=͟͟͞𝐑𝐈𝐍 𝐈𝐓𝐎𝐒𝐇𝐈 𝐁𝐎𝐓 �
 global.listo = '*🌴 ＡＱＵＩ - ＴＩＥＮＥＳ ＭＥＮ*'
 global.fotoperfil = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https://files.catbox.moe/dr3r2f.jpg')
 
+
 global.canalIdM = ["120363401008003732@newsletter", "120363401008003732@newsletter"]
 global.canalNombreM = ["  ꙰⃟☃️ ʀɪɴ ɪᴛᴏsʜɪ ʙᴏᴛ ᴠ² x ʙʟᴀᴄᴋ ★꙰⃟⸙", "🐉꙰⃟ 𖠺 𝐑𝐈𝐍 𝐈𝐓𝐎𝐒𝐇𝐈 𝐁𝐎𝐓 𝐕2 𖠺🌴⃟ᰳᰬᰶ"]
+global.channelRD = await getRandomChannel()
 
 global.d = new Date(new Date + 3600000)
 global.locale = 'es'
