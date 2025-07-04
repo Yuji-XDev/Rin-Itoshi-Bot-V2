@@ -39,7 +39,7 @@ global.prems = []
 
 global.libreria = 'Baileys'
 global.baileys = 'V 6.7.17' 
-global.vs = '2.2.5'
+global.vs = '2.2.0'
 global.nameqr = 'Itoshi V2'
 global.namebot = 'rin itoshi V2 🎄'
 global.sessions = 'Sessions'
@@ -49,7 +49,7 @@ global.blackJadibts = true
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
 global.packname = '🎄  𝒓𝒊𝒏 𝒊𝒕𝒐𝒔𝒉𝒊 𝒃𝒐𝒕 𝑴𝑫  🎋'
-global.botname = '✦⃟⛧ _𝑨𝑹𝑰𝑵 𝑰𝑻𝑶𝑺𝑯𝑰⛧ 𝑩𝑶𝑻 𝑽²_ 🤖┋⃟✧'
+global.botname = '✦⃟⛧ _𝑨𝑹𝑰𝑵 𝑰𝑻𝑶𝑺𝑯𝑰⛧ 𝑩𝑶𝑻 𝑽²_ 🎄┋⃟✧'
 global.wm = '◟RIN ITOSHI Ｖ2◞'
 global.author = 'mᥲძᥱ ᑲᥡ : 🌈ᵀ͢ᴴᴱ𝄟⏤͟͟͞͞⃝Black'
 global.dev = '୧ㅤミ★ 》 Tʜᴇ Bʟᴀᴄᴋ 𝘰𝘧𝘤《★彡 🎋'

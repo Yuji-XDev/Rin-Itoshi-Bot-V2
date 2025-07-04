@@ -2,35 +2,34 @@ import { exec } from 'child_process'
 import speed from 'performance-now'
 
 let handler = async (m, { conn, participants }) => {
-  let inicio = speed()
-  let final = speed()
-  let latencia = (final - inicio).toFixed(3)
+  let start = speed()
+  let latency = (speed() - start).toFixed(3)
 
   exec('neofetch --stdout', (_, stdout) => {
-    let datos = stdout?.toString('utf-8').replace(/Memory:/g, 'Ram:') || ''
-    let lineas = datos.split('\n').map(l => `┃ ${l}`).join('\n')
+    let sys = stdout?.toString('utf-8').replace(/Memory:/g, 'Ram:') || ''
+    let info = sys.split('\n').map(line => `┃ ${line}`).join('\n')
 
-    let texto = `
-╭━━━〔 💙 𝗥𝗜𝗡 𝗜𝗧𝗢𝗦𝗛𝗜 ⚽ 〕━━⬣
-┃ 🧠 *Sistema operativo activo*
-┃ ⚡ *Velocidad:* ${latencia} ms
+    let text = `
+╭─⭑⚽︎・*𝑅𝐼𝒩 𝐼𝒯𝒪𝒮𝐻𝐼 𝑀𝒪𝒟𝐸*・⚽︎⭑─╮
+┃ 🧬 *Sistema activo:*  
+┃ ⚡ *Latencia:* ${latency} ms
 ┃ 🛠️ *Detalles técnicos:*
-${lineas}
+${info}
 ╰━━━━━━━━━━━━━━━━━━━━⬣`.trim()
 
     conn.sendMessage(m.chat, {
-      text: texto,
+      text,
       mentions: participants?.map(p => p.id) || [],
       contextInfo: {
         mentionedJid: participants?.map(p => p.id) || [],
         externalAdReply: {
-          title: '✧ Velocidad de Rin ✧',
-          body: 'Latencia y sistema',
+          title: packname,
+          body: dev,
           thumbnailUrl: logo,
           mediaType: 1,
           showAdAttribution: true,
           renderLargerThumbnail: true,
-          sourceUrl: 'https://github.com/the-27/Rin-Itoshi-Bot-V2',
+          sourceUrl: 'https://github.com/the-27/Rin-Itoshi-Bot-V2'
         }
       }
     }, { quoted: m })
