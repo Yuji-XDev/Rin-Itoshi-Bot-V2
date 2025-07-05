@@ -11,7 +11,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
       return conn.reply(m.chat, '❌ No se pudo obtener el LID. Asegúrate de que el número sea correcto y esté registrado en WhatsApp.', m);
     }
 
-    conn.reply(m.chat, `🤖 ✅ *LID:* ${user.lid}`, m);
+    conn.reply(m.chat, `✅ *LID:*\n ${user.lid}`, m);
   } catch (e) {
     console.error(e);
     conn.reply(m.chat, '❌ Ocurrió un error al obtener el LID.', m);
