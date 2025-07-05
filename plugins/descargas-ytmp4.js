@@ -184,7 +184,6 @@ const ddownr = {
 
     try {
       const response = await axios.request(config);
-
       if (response.data && response.data.success) {
         const { id, title, info } = response.data;
         const { image } = info;
@@ -216,7 +215,6 @@ const ddownr = {
     try {
       while (true) {
         const response = await axios.request(config);
-
         if (response.data && response.data.success && response.data.progress === 1000) {
           return response.data.download_url;
         }
@@ -232,7 +230,7 @@ const ddownr = {
 const handler = async (m, { conn, text, usedPrefix, command }) => {
   try {
     if (!text.trim()) {
-      return conn.reply(m.chat, `*[❗𝐈𝐍𝐅𝐎❗] 𝙸𝙽𝚂𝙴𝚁𝚃𝙴 𝙴𝙻 𝙲𝙾𝙼𝙰𝙽𝙳𝙾 𝙼𝙰𝚂 𝙴𝙻 𝙴𝙽𝙻𝙰𝙲𝙴 / 𝙻𝙸𝙽𝙺 𝙳𝙴 𝚄𝙽 𝚅𝙸𝙳𝙴𝙾 𝙳𝙴 𝚈𝙾𝚄𝚃𝚄𝙱𝙴*`, m, rcanal);
+      return conn.reply(m.chat, `*[❗𝐈𝐍𝐅𝐎❗] 𝙸𝙽𝚂𝙴𝚁𝚃𝙴 𝙴𝙻 𝙲𝙾𝙼𝙰𝙽𝙳𝙾 𝙼𝙰𝚂 𝙴𝙻 𝙴𝙽𝙻𝙰𝙲𝙴 / 𝙻𝙸𝙽𝙺 𝙳𝙴 𝚄𝙽 𝚅𝙸𝙳𝙴𝙾 𝙳𝙴 𝚈𝙾𝚄𝚃𝚄𝙱𝙴 🎄*`, m, rcanal);
     }
 
     const search = await yts(text);
@@ -241,44 +239,32 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
     }
 
     const videoInfo = search.all[0];
-    const { title, thumbnail, timestamp, views, ago, url } = videoInfo;
-    const vistas = formatViews(views);
-    const infoMessage = `▢ 𝚃𝙸𝚃𝚄𝙻𝙾: ${title}\n`;
+    const { title, thumbnail, views, url } = videoInfo;
     const thumb = (await conn.getFile(thumbnail))?.data;
 
-    const JT = { contextInfo: { isForwarded: true, forwardedNewsletterMessageInfo: { newsletterJid: channelid, serverMessageId: 100, newsletterName: channelname, }, externalAdReply: { showAdAttribution: true, title: title, body: `${videoInfo.author.name || 'Desconocido'}`, mediaUrl: url, description: null, previewType: "PHOTO", thumbnailUrl: thumb, sourceUrl: url, mediaType: 1, renderLargerThumbnail: true }, }, }
-    const nombre = await conn.getName(m.sender)
-    const HT = {
-      contextInfo: {
-        externalAdReply: {
-          title: title,
-          body: `${videoInfo.author.name || 'Desconocido'}`,
-          mediaType: 1,
-          previewType: 0,
-          mediaUrl: url,
-          sourceUrl: url,
-          thumbnail: thumb,
-          renderLargerThumbnail: true,
-        },
-      },
-    };
-
-    await conn.reply(m.chat, infoMessage, m, JT);
+    const infoMessage = `▢ 𝚃𝙸𝚃𝚄𝙻𝙾: ${title}\n▢ 𝚅𝙸𝚂𝚃𝙰𝚂: ${formatViews(views)}\n▢ 𝙴𝙽𝙻𝙰𝙲𝙴: ${url}`;
+    await conn.reply(m.chat, infoMessage, m);
 
     if (command === 'ytmp3') {
-        const api = await ddownr.download(url, 'mp3');
-        const result = api.downloadUrl;
-        await conn.sendMessage(m.chat, { audio: { url: result }, mimetype: "audio/mpeg", contextInfo: { externalAdReply: HT },}, { quoted: m });
-          await conn.sendMessage(channelid, { text: `╭─────────────⦁\n│╭➟ ≡ El Usuario ${nombre}\n││➟ ▢ A Usado El Comando ${usedPrefix + command}\n│╰➟ ⌬ Ꭱꭼꮇ Ꮯꮋꭺɴ Ꮃꮋꭺ - Ᏼꮻꭲ\n╰─────────────⦁`, contextInfo: {
-externalAdReply: {
-title: "【 🔔 𝗡𝗢𝗧𝗜𝗙𝗜𝗖𝗔𝗖𝗜𝗢́𝗡 🔔 】",
-body: '🤖 Uso De Un Comando 📥',
-thumbnailUrl: 'https://files.catbox.moe/qtdb1u.jpg',
-sourceUrl: 'https://dash.host-cuervo.shop',
-mediaType: 1,
-showAdAttribution: false,
-renderLargerThumbnail: false
-}}}, { quoted: null })
+      const api = await ddownr.download(url, 'mp3');
+      const result = api.downloadUrl;
+
+      await conn.sendMessage(m.chat, {
+        audio: { url: result },
+        mimetype: "audio/mpeg",
+        ptt: false,
+        contextInfo: {
+          externalAdReply: {
+            title: title,
+            body: videoInfo.author.name || 'YouTube',
+            mediaUrl: url,
+            sourceUrl: url,
+            thumbnail: thumb,
+            mediaType: 1,
+            renderLargerThumbnail: true
+          }
+        }
+      }, { quoted: m });
 
     } else if (command === 'ytmp4') {
       let sources = [
@@ -301,20 +287,20 @@ renderLargerThumbnail: false
               video: { url: downloadUrl },
               fileName: `${title}.mp4`,
               mimetype: 'video/mp4',
-              contextInfo: { externalAdReply: HT },
-              caption: `▢ 𝚃𝙸𝚃𝚄𝙻𝙾: ${title}\n`,
-              thumbnail: thumb
+              caption: `▢ 𝚃𝙸𝚃𝚄𝙻𝙾: ${title}`,
+              thumbnail: thumb,
+              contextInfo: {
+                externalAdReply: {
+                  title: title,
+                  body: videoInfo.author.name || 'YouTube',
+                  mediaUrl: url,
+                  sourceUrl: url,
+                  thumbnail: thumb,
+                  mediaType: 1,
+                  renderLargerThumbnail: true
+                }
+              }
             }, { quoted: m });
-              await conn.sendMessage(channelid, { text: `╭─────────────⦁\n│╭➟ ≡ El Usuario ${nombre}\n││➟ ▢ A Usado El Comando ${usedPrefix + command}\n│╰➟ ⌬ Ꭱꭼꮇ Ꮯꮋꭺɴ Ꮃꮋꭺ - Ᏼꮻꭲ\n╰─────────────⦁`, contextInfo: {
-externalAdReply: {
-title: "【 🔔 𝗡𝗢𝗧𝗜𝗙𝗜𝗖𝗔𝗖𝗜𝗢́𝗡 🔔 】",
-body: '🤖 Uso De Un Comando 📥',
-thumbnailUrl: 'https://files.catbox.moe/qtdb1u.jpg',
-sourceUrl: 'https://dash.host-cuervo.shop',
-mediaType: 1,
-showAdAttribution: false,
-renderLargerThumbnail: false
-}}}, { quoted: null })
             break;
           }
         } catch (e) {
@@ -328,6 +314,7 @@ renderLargerThumbnail: false
     } else {
       throw "Comando no reconocido.";
     }
+
   } catch (error) {
     return m.reply(`*Error:* ${error.message}`);
   }
