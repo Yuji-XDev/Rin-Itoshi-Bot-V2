@@ -128,7 +128,7 @@ export async function before(m, { conn }) {
 
     await conn.sendMessage(m.chat, {
       text: mensaje,
-      footer: '🌟 Rin Itoshi BOT V²',
+      footer: '🧸 ʀɪɴ ɪᴛᴏsʜɪ ʙᴏᴛ 🧸',
       buttons: [
         {
           buttonId: '.menu',
