@@ -14,23 +14,28 @@ let handler = async (m, { conn, usedPrefix }) => {
 
     let premium = user.premium ? '✅' : '❌';
 
-    let text = `╭━〔 Inventario de ${name} 〕⬣\n` +
-               `┋ 💸 *${moneda} en Cartera:* ${user.coin || 0}\n` +  
-               `┋ 🏦 *${moneda} en Banco:* ${user.bank || 0}\n` + 
-               `┋ ♦️ *Esmeraldas:* ${user.emerald || 0}\n` + 
-               `┋ 🔩 *Hierro:* ${user.iron || 0}\n` +  
-               `┋ 🏅 *Oro:* ${user.gold || 0}\n` + 
-               `┋ 🕋 *Carbón:* ${user.coal || 0}\n` +  
-               `┋ 🪨 *Piedra:* ${user.stone || 0}\n` +  
-               `┋ ✨ *Experiencia:* ${user.exp || 0}\n` + 
-               `┋ ❤️ *Salud:* ${user.health || 100}\n` + 
-               `┋ 💎 *Diamantes:* ${user.diamond || 0}\n` +   
-               `┋ 🍬 *Dulces:* ${user.candies || 0}\n` + 
-               `┋ 🎁 *Regalos:* ${user.gifts || 0}\n` + 
-               `┋ 🎟️ *Tokens:* ${user.joincount || 0}\n` +  
-               `┋ ⚜️ *Premium:* ${premium}\n` + 
-               `┋ ⏳ *Última Aventura:* ${user.lastAdventure ? moment(user.lastAdventure).fromNow() : 'Nunca'}\n` + 
-               `┋ 📅 *Fecha:* ${new Date().toLocaleString('id-ID')}\n` +
+    let text =  `╭━⭑『 🧰 𝐈𝐍𝐕𝐄𝐍𝐓𝐀𝐑𝐈𝐎 』⭑━╮\n` +
+               `┃ 🧑‍💼 𝐃𝐞: *${name}*\n` +
+               `┃\n` +
+               `┃ 💸 𝗖𝗮𝗿𝘁𝗲𝗿𝗮: *${user.coin || 0}* ${moneda}\n` +
+               `┃ 🏦 𝗕𝗮𝗻𝗰𝗼: *${user.bank || 0}* ${moneda}\n` +
+               `┃\n` +
+               `┃ 💎 𝗗𝗶𝗮𝗺𝗮𝗻𝘁𝗲𝘀: *${user.diamond || 0}*\n` +
+               `┃ ♦️ 𝗘𝘀𝗺𝗲𝗿𝗮𝗹𝗱𝗮𝘀: *${user.emerald || 0}*\n` +
+               `┃ 🏅 𝗢𝗿𝗼: *${user.gold || 0}*\n` +
+               `┃ 🔩 𝗛𝗶𝗲𝗿𝗿𝗼: *${user.iron || 0}*\n` +
+               `┃ 🕋 𝗖𝗮𝗿𝗯𝗼́𝗻: *${user.coal || 0}*\n` +
+               `┃ 🪨 𝗣𝗶𝗲𝗱𝗿𝗮: *${user.stone || 0}*\n` +
+               `┃\n` +
+               `┃ ✨ 𝗘𝘅𝗽: *${user.exp || 0}*\n` +
+               `┃ ❤️ 𝗩𝗶𝗱𝗮: *${user.health || 100}*\n` +
+               `┃ 🍬 𝗗𝘂𝗹𝗰𝗲𝘀: *${user.candies || 0}*\n` +
+               `┃ 🎁 𝗥𝗲𝗴𝗮𝗹𝗼𝘀: *${user.gifts || 0}*\n` +
+               `┃ 🎟️ 𝗧𝗼𝗸𝗲𝗻𝘀: *${user.joincount || 0}*\n` +
+               `┃ ⚜️ 𝗣𝗿𝗲𝗺𝗶𝘂𝗺: *${premium}*\n` +
+               `┃\n` +
+               `┃ ⏳ 𝗔𝘃𝗲𝗻𝘁𝘂𝗿𝗮: *${user.lastAdventure ? moment(user.lastAdventure).fromNow() : 'Nunca'}*\n` +
+               `┃ 📆 𝗙𝗲𝗰𝗵𝗮: *${new Date().toLocaleString('id-ID')}*\n` +
                `╰━━━━━━━━━━━━⬣`;
 
     await conn.sendFile(m.chat, img, 'yuki.jpg', text, fkontak);
