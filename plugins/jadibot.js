@@ -1,4 +1,4 @@
-import { readdirSync, statSync, unlinkSync, existsSync, readFileSync, watch, rmSync, promises as fsPromises } from "fs";
+/*import { readdirSync, statSync, unlinkSync, existsSync, readFileSync, watch, rmSync, promises as fsPromises } from "fs";
 const fs = { ...fsPromises, existsSync };
 import path, { join } from 'path';
 import ws from 'ws';
@@ -115,5 +115,61 @@ ${replyMessage.trim()}`;
 handler.tags = ['serbot'];
 handler.help = ['sockets', 'deletesesion', 'pausarai'];
 handler.command = ['deletesesion', 'deletebot', 'deletesession', 'deletesesaion', 'stop', 'pausarai', 'pausarbot', 'bots', 'sockets', 'socket'];
+
+export default handler;*/
+
+
+import ws from 'ws';
+
+let handler = async (m, { conn: _envio }) => {
+  const users = [...new Set([...global.conns.filter((conn) =>
+    conn.user && conn.ws.socket && conn.ws.socket.readyState !== ws.CLOSED)])];
+
+  function convertirMsADiasHorasMinutosSegundos(ms) {
+    let segundos = Math.floor(ms / 1000);
+    let minutos = Math.floor(segundos / 60);
+    let horas = Math.floor(minutos / 60);
+    let dias = Math.floor(horas / 24);
+    segundos %= 60;
+    minutos %= 60;
+    horas %= 24;
+
+    let resultado = "";
+    if (dias) resultado += `${dias}D, `;
+    if (horas) resultado += `${horas}H, `;
+    if (minutos) resultado += `${minutos}M, `;
+    if (segundos) resultado += `${segundos}S`;
+    return resultado.trim();
+  }
+
+  const totalSubs = users.length;
+  const lista = users.map((bot, i) => {
+    return `╭─ ⌜ 🧩 𝑩𝑶𝑻 #${i + 1} ⌟ ─╮
+┃ 🧸 𝙉𝙤𝙢𝙗𝙧𝙚: ${bot.user?.name || '𝑺𝒖𝒃 𝑩𝒐𝒕'}
+┃ 📲 𝙉𝙪́𝙢𝙚𝙧𝙤: wa.me/${(bot.user?.jid || '').replace(/[^0-9]/g, '')}
+┃ ⏳ 𝙀𝙣 𝙡𝙞́𝙣𝙚𝙖: ${bot.uptime ? convertirMsADiasHorasMinutosSegundos(Date.now() - bot.uptime) : '𝘿𝙚𝙨𝙘𝙤𝙣𝙤𝙘𝙞𝙙𝙤'}
+╰──────────────────╯`;
+  }).join('\n\n');
+
+  const textoFinal = totalSubs === 0
+    ? '🍃 𝙉𝙤 𝙝𝙖𝙮 𝙎𝙪𝙗-𝘽𝙤𝙩𝙨 𝙖𝙘𝙩𝙞𝙫𝙤𝙨 𝙥𝙤𝙧 𝙖𝙝𝙤𝙧𝙖. 🌙'
+    : `╭─ ❍ ⚽ 𝑹𝒊𝒏 𝑰𝒕𝒐𝒔𝒉𝒊 - 𝑱𝒂𝒅𝒊𝑩𝒐𝒕𝒔 ❍ ─╮
+┃ ✨ 𝙏𝙤𝙩𝙖𝙡 𝙖𝙘𝙩𝙞𝙫𝙤𝙨: 『 ${totalSubs} 』
+╰────────────────────────────╯
+
+${lista}
+
+🖋️ 𝙎𝙞𝙨𝙩𝙚𝙢𝙖 𝙙𝙚 𝙅𝙖𝙙𝙞𝙗𝙤𝙩𝙨 - 𝙍𝙞𝙣 𝙄𝙩𝙤𝙨𝙝𝙞 ⚡`;
+
+  await _envio.sendMessage(m.chat, {
+    image: { url: 'https://files.catbox.moe/8u4f6p.png' },
+    caption: textoFinal,
+    mentions: _envio.parseMention(textoFinal)
+  }, { quoted: m });
+};
+
+handler.command = ['sockets', 'bots', 'socket'];
+handler.tags = ['serbot'];
+handler.help = ['sockets'];
 
 export default handler;
