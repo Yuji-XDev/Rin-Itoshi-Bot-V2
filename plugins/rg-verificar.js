@@ -35,16 +35,13 @@ let handler = async function (m, { conn, text, usedPrefix, command }) {
 
   if (user.registered) {
     return conn.sendMessage(m.chat, {
-      text: `╔═❖•ೋ🌸『 𝙍𝙀𝙂𝙄𝙎𝙏𝙍𝙊 𝘿𝙀𝙏𝙀𝘾𝙏𝘼𝘿𝙊 』🌸ೋ•❖═╗
-
+      text: `ೋ🌸『 𝙍𝙀𝙂𝙄𝙎𝙏𝙍𝙊 𝘿𝙀𝙏𝙀𝘾𝙏𝘼𝘿𝙊 』🌸ೋ
 『✦』✨ 𝚈𝚊 𝚎𝚜𝚝𝚊́𝚜 𝚛𝚎𝚐𝚒𝚜𝚝𝚛𝚊𝚍𝚘/a en mi sistema 💾
 
 📝 ¿𝙌𝙪𝙞𝙚𝙧𝙚𝙨 𝙚𝙢𝙥𝙚𝙯𝙖𝙧 𝙙𝙚 𝙘𝙚𝙧𝙤?
 
-🗑️ Usa el comando especial para *eliminar tu registro* y volver a registrarte 🧙‍♂️
-
-╚════════════════════════════╝`,
-      footer: "ʀɪɴ ɪᴛᴏsʜɪ ʙᴏᴛ ᴠ2",
+🗑️ Usa el comando especial para *eliminar tu registro* y volver a registrarte 🧙‍♂️`,
+      footer: "ʀɪɴ ɪᴛᴏsʜɪ ʙᴏᴛ ᴠ²",
       buttons: [{ buttonId: `${usedPrefix}unreg`, buttonText: { displayText: '🌿 𝐔𝐍𝐑𝐄𝐆' }, type: 1 }],
       headerType: 1
     }, { quoted: m });
@@ -52,8 +49,7 @@ let handler = async function (m, { conn, text, usedPrefix, command }) {
 
   if (!Reg.test(text)) {
     return conn.sendMessage(m.chat, {
-      text: `
-╔═『📚✦ 𝙁𝙊𝙍𝙈𝘼𝙏𝙊 𝙄𝙉𝘾𝙊𝙍𝙍𝙀𝘾𝙏𝙊 ✦📚』═╗
+      text: `╔═『📚✦ 𝙁𝙊𝙍𝙈𝘼𝙏𝙊 𝙄𝙉𝘾𝙊𝙍𝙍𝙀𝘾𝙏𝙊 ✦📚』═╗
 
 🚫 ¡Ups! Parece que escribiste mal el comando...
 
@@ -63,8 +59,7 @@ let handler = async function (m, { conn, text, usedPrefix, command }) {
 🧁 𝙀𝙅𝙀𝙈𝙋𝙇𝙊:
 *${usedPrefix + command} ${name2}.18*
 
-🔹 Usa un punto (.) para separar tu nombre y tu edad.
-
+🥀 Usa un punto (.) para separar tu nombre y tu edad.
 ╚══════⊹🌷⊹═══════⊹🌷⊹══════╝`,
       footer: "ʀɪɴ ɪᴛᴏsʜɪ ʙᴏᴛ ᴠ2",
       buttons: [{ buttonId: `#register ${name2}.18`, buttonText: { displayText: '⋆🍓 𝐕𝐄𝐑𝐈𝐅𝐈𝐂𝐀𝐑' }, type: 1 }],
@@ -89,7 +84,7 @@ let handler = async function (m, { conn, text, usedPrefix, command }) {
 
   let sn = createHash('md5').update(m.sender).digest('hex').slice(0, 20)
 
-  let regbot = `╭─╼⃝🦋⃟⃟𓂃 ִֶָ 𖥔﹏﹏﹏﹏﹏﹏﹏﹏𖥔 𖧧 🦋⃟⃝╾─╮  
+  let regbot = `╭─╼⃝🦋⃟⃟𓂃 ִֶָ 𖥔﹏﹏﹏﹏﹏﹏𖥔 𖧧 🦋⃟⃝╾─╮  
 🌟✨ 𝓤𝓷 𝓷𝓾𝓮𝓿𝓸 𝓮𝓼𝓽𝓮𝓵𝓪𝓻 𝓼𝓮 𝓾𝓷𝓮... ✨🌟  
    𓏲⋆🌸 ¡𝙍𝙀𝙂𝙄𝙎𝙏𝙍𝙊 𝙀𝙓𝙄𝙏𝙊𝙎𝙊! 🌸⋆𓏲  
 ╰─╼⃝🦋⃟⃟𖥔﹏﹏﹏﹏﹏﹏﹏﹏𖥔⃟🦋⃟⃝╾─╯  
