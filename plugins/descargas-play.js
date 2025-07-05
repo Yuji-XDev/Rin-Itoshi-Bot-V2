@@ -104,215 +104,160 @@ function formatViews(views) {
 }
 */
 
-import yts from "yt-search"
-import { ytv, yta } from "@soymaycol/maytube"
+import yts from 'yt-search'
+import { yta, ytv } from '@soymaycol/maytube'
 
-const limit = 100
+const MAX_SIZE_MB = 100
 
 const handler = async (m, { conn, text, command }) => {
-  if (!text) return m.reply("*🌴 Por favor, ingresa el nombre de la música a descargar.*")
+  if (!text) return m.reply('🔍 *Por favor, ingresa el nombre o link del video.*')
 
-  await m.react("🕛")
-
-  console.log("🔍 Buscando en YouTube...")
+  await m.react('🔎')
 
   try {
+    const isLink = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\//i.test(text)
     let video
 
-    const isUrl = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+$/.test(text)
+    if (isLink) {
+      const videoId = extractID(text)
+      const res = await yts({ videoId })
+      if (!res?.video) return m.reply('❌ *No se pudo encontrar el video.*')
 
-    if (isUrl) {
+      const v = res.video
       video = {
-        url: text
-      }
-
-      const searchResult = await yts({ videoId: getYouTubeID(text) })
-      if (searchResult && searchResult.video) {
-        const v = searchResult.video
-        video.title = v.title || "Sin título"
-        video.author = { name: v.author.name || "Desconocido" }
-        video.views = v.views || "Desconocidas"
-        video.duration = {
-          seconds: v.seconds || 0,
-          timestamp: v.timestamp || "Desconocida"
-        }
-        video.thumbnail = v.thumbnail
-      } else {
-        return m.reply("❌ No se pudo obtener información del video desde el link proporcionado.")
+        title: v.title,
+        url: text,
+        author: v.author.name,
+        views: v.views,
+        duration: v.timestamp,
+        seconds: v.seconds,
+        thumbnail: v.thumbnail,
       }
     } else {
       const res = await yts(text)
-      if (!res || !res.all || !Array.isArray(res.all) || res.all.length === 0) {
-        return m.reply("❌ No se encontraron resultados para tu búsqueda.")
+      if (!res?.all?.length) return m.reply('❌ *No se encontraron resultados.*')
+      const v = res.all[0]
+      video = {
+        title: v.title,
+        url: v.url,
+        author: v.author.name,
+        views: v.views,
+        duration: v.timestamp,
+        seconds: v.seconds,
+        thumbnail: v.thumbnail,
       }
-      video = res.all[0]
     }
 
-    const durationSeconds = Number(video.duration?.seconds) || 0
-    const durationTimestamp = video.duration?.timestamp || "Desconocida"
-    const authorName = video.author?.name || "Desconocido"
-    const title = video.title || "Sin título"
-    const views = video.views || "Desconocidas"
-    const url = video.url || ""
-    const thumbnail = video.thumbnail || ""
+    const info = `
+╭─〔🌀 *RIN ITOSHI PLAYER* 〕─⬣
+│🎵 *Titulo:* ${video.title}
+│📺 *Canal:* ${video.author}
+│⏱️ *Duración:* ${video.duration}
+│👁️ *Vistas:* ${video.views}
+╰────────────────────────⬣`.trim()
 
-    const processingMessage = `╭─〕「⚡  *RIN ITOSHI V2☃️*  ⭐」
-├̟̇˚₊🔥 *Titulo* ${title}*
-├̟̇˚₊🎄 *Canal:* ${authorName}
-├̟̇˚₊💥 *Duración:* ${durationTimestamp}
-├̟̇˚₊💛 *Vistas:* ${views}
-╰─〕𝙀𝙣𝙫𝙞𝙖𝙣𝙙𝙤 ▰▰▱▱ 
-╰─────────────────────⬣`
-
-    let sentMessage
-    if (thumbnail) {
-      try {
-        sentMessage = await conn.sendFile(m.chat, thumbnail, "thumb.jpg", processingMessage, m)
-      } catch (thumbError) {
-        console.log("⚠️ No se pudo enviar la miniatura:", thumbError.message)
-        sentMessage = await m.reply(processingMessage)
-      }
+    if (video.thumbnail) {
+      await conn.sendFile(m.chat, video.thumbnail, 'thumb.jpg', info, m)
     } else {
-      sentMessage = await m.reply(processingMessage)
+      await m.reply(info)
     }
 
-    if (["play", "playaudio", "ytmp3"].includes(command)) {
-      await downloadAudio(conn, m, video, title)
-    } else if (["play2", "playvid", "ytv", "ytmp4"].includes(command)) {
-      await downloadVideo(conn, m, video, title)
+    if (['play', 'playaudio', 'ytmp3'].includes(command)) {
+      await sendAudio(conn, m, video)
     }
 
-  } catch (error) {
-    console.error("❌ Error general:", error)
-    await m.reply(`❌ Hubo un error al procesar tu solicitud:\n\n${error.message}`)
-    await m.react("❌")
+    if (['play2', 'playvid', 'ytv', 'ytmp4'].includes(command)) {
+      await sendVideo(conn, m, video)
+    }
+
+  } catch (err) {
+    console.error('❌ Error general:', err)
+    await m.reply(`❌ *Ocurrió un error:* ${err.message}`)
+    await m.react('❌')
   }
 }
 
-const downloadAudio = async (conn, m, video, title) => {
+const sendAudio = async (conn, m, video) => {
   try {
-    console.log("🎧 Solicitando audio...")
+    await m.react('🎶')
 
-    const api = await yta(video.url)
+    const data = await yta(video.url)
+    const link = data?.result?.download
+    if (!link || link.includes('googlevideo')) throw new Error('Link de descarga inválido')
 
-    if (!api || !api.status || !api.result || !api.result.download) {
-      throw new Error("No se pudo obtener el enlace de descarga del audio")
-    }
-
-    // Validación adicional del enlace antes de enviar
-    if (api.result.download.includes('googlevideo.com')) {
-      throw new Error("Enlace de descarga no válido (Google Video)")
-    }
-
-    console.log("🎶 Enviando audio...")
-    console.log("📁 URL de descarga:", api.result.download)
-    
     await conn.sendFile(
       m.chat,
-      api.result.download,
-      `${(api.result.title || title).replace(/[^\w\s]/gi, '')}.mp3`,
-      `🎵 *${api.result.title || title}*
-      
-> *✧ Calidad:* ${api.result.quality || 'Desconocida'}
-> *✧ Tamaño:* ${api.result.size || 'Desconocido'}
-> *✧ Formato:* ${api.result.format || 'mp3'}`,
+      link,
+      `${sanitize(video.title)}.mp3`,
+      `🎧 *${data.result.title || video.title}*
+> 🎼 *Calidad:* ${data.result.quality}
+> 📦 *Tamaño:* ${data.result.size}
+> 📁 *Formato:* mp3`,
       m
     )
 
-    await m.react("✅")
-    console.log("✅ Audio enviado exitosamente")
-
-  } catch (error) {
-    console.error("❌ Error descargando audio:", error)
-    await m.reply(`❌ Error al descargar el audio:\n\n${error.message}`)
-    await m.react("❌")
+    await m.react('✅')
+  } catch (err) {
+    console.error('🎧 Error en audio:', err)
+    await m.reply(`❌ *Error al descargar el audio:* ${err.message}`)
+    await m.react('❌')
   }
 }
 
-const downloadVideo = async (conn, m, video, title) => {
+const sendVideo = async (conn, m, video) => {
   try {
-    console.log("📹 Solicitando video...")
+    await m.react('📹')
 
-    const api = await ytv(video.url)
+    const data = await ytv(video.url)
+    const link = data?.result?.download || data?.url
+    if (!link || link.includes('googlevideo')) throw new Error('Link de descarga inválido')
 
-    // Manejar ambos formatos de respuesta (nuevo y viejo)
-    let downloadUrl, videoTitle, videoSize, videoQuality
-    
-    if (api.status && api.result) {
-      // Formato nuevo
-      downloadUrl = api.result.download
-      videoTitle = api.result.title
-      videoSize = api.result.size
-      videoQuality = api.result.quality
-    } else if (api.url) {
-      // Formato viejo
-      downloadUrl = api.url
-      videoTitle = api.title || title
-      videoSize = 'Unknown'
-      videoQuality = 'Unknown'
-    } else {
-      throw new Error("No se pudo obtener el enlace de descarga del video")
+    const sizeMB = await getFileSizeMB(link)
+    if (sizeMB > MAX_SIZE_MB) {
+      return m.reply(`🚫 *Archivo muy grande (${sizeMB.toFixed(2)} MB). Límite: ${MAX_SIZE_MB} MB.*`)
     }
 
-    // Validación adicional del enlace antes de enviar
-    if (downloadUrl.includes('googlevideo.com')) {
-      throw new Error("Enlace de descarga no válido (Google Video)")
-    }
-
-    let sizemb = 0
-    try {
-      const res = await fetch(downloadUrl, { method: 'HEAD' })
-      const cont = res.headers.get('content-length')
-      if (cont) {
-        const bytes = parseInt(cont, 10)
-        sizemb = bytes / (1024 * 1024)
-      }
-    } catch (sizeError) {
-      console.log("⚠️ No se pudo obtener el tamaño del archivo:", sizeError.message)
-    }
-
-    if (sizemb > limit && sizemb > 0) {
-      return m.reply(`🚫 El archivo es muy pesado (${sizemb.toFixed(2)} MB). El límite es ${limit} MB. Intenta con un video más corto 🥲`)
-    }
-
-    const doc = sizemb >= limit && sizemb > 0
-
-    console.log("🎥 Enviando video...")
-    console.log("📁 URL de descarga:", downloadUrl)
-    
+    const doc = sizeMB > 50
     await conn.sendFile(
       m.chat,
-      downloadUrl,
-      `${(videoTitle || title).replace(/[^\w\s]/gi, '')}.mp4`,
-      `📹 *${videoTitle || title}*
-      
-> *✧ Calidad:* ${videoQuality || 'Desconocida'}
-> *✧ Tamaño:* ${videoSize || (sizemb > 0 ? `${sizemb.toFixed(2)} MB` : 'Desconocido')}
-> *✧ Formato:* mp4`,
+      link,
+      `${sanitize(video.title)}.mp4`,
+      `🎬 *${data.result?.title || video.title}*
+> 🎞️ *Calidad:* ${data.result?.quality || 'Desconocida'}
+> 📦 *Tamaño:* ${data.result?.size || `${sizeMB.toFixed(2)} MB`}
+> 📁 *Formato:* mp4`,
       m,
       null,
-      {
-        asDocument: doc,
-        mimetype: "video/mp4"
-      }
+      { asDocument: doc, mimetype: 'video/mp4' }
     )
 
-    await m.react("✅")
-    console.log("✅ Video enviado exitosamente")
-
-  } catch (error) {
-    console.error("❌ Error descargando video:", error)
-    await m.reply(`❌ Error al descargar el video:\n\n${error.message}`)
-    await m.react("❌")
+    await m.react('✅')
+  } catch (err) {
+    console.error('📹 Error en video:', err)
+    await m.reply(`❌ *Error al descargar el video:* ${err.message}`)
+    await m.react('❌')
   }
 }
 
-const getYouTubeID = (url) => {
+const extractID = (url) => {
   const match = url.match(/(?:v=|\/)([0-9A-Za-z_-]{11})(?:\?|&|$)/)
   return match ? match[1] : null
 }
 
-handler.command = handler.help = ['play', 'playaudio', 'ytmp3', 'play2', 'ytv', 'ytmp4']
+const getFileSizeMB = async (url) => {
+  try {
+    const res = await fetch(url, { method: 'HEAD' })
+    const len = res.headers.get('content-length')
+    return len ? parseInt(len) / (1024 * 1024) : 0
+  } catch {
+    return 0
+  }
+}
+
+const sanitize = (str = '') => str.replace(/[^\w\s]/gi, '').substring(0, 50)
+
+handler.command = ['play', 'playaudio', 'ytmp3', 'play2', 'playvid', 'ytv', 'ytmp4']
 handler.tags = ['descargas']
+handler.help = ['play <nombre o link>', 'play2 <nombre o link>']
 
 export default handler
