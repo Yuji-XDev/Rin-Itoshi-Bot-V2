@@ -11,7 +11,7 @@
 
 ---
 
-## 🧩 ғᴜɴᴄɪᴏɴᴇs ᴅᴇ ʟᴜғғʏ
+## 🧩 ғᴜɴᴄɪᴏɴᴇs ᴅᴇ ʀɪɴ ɪᴛᴏsʜɪ
 
 <details>
  <summary><b> ☄️ INFO - BOT</b></summary>
@@ -169,5 +169,5 @@ npm start
 
 <a href="https://github.com/the-27"><img src="https://github.com/the-27.png" width="300" height="300" alt="the-27"/></a>
 
-`Luffy Bot_ By Black `
+`RIN ITOSHI BOT X BY BLACK `
   ### `Black.OFC`
