@@ -38,37 +38,35 @@ const handler = async (m, { conn }) => {
     const nodeUsage = process.memoryUsage();
     const diskSpace = getDiskSpace();
 
-    const message = `
-𓄼.....︵ ͜ ۬︵࣪᷼⏜݊᷼ 𔕪𖤵𔕪݊᷼⏜࣪᷼︵۬ ͜ ︵.....𓄹
-𓆩꯭  ꯭ 𓏲꯭֟፝੭ ꯭⌑(꯭𝑺).𝑰꯭.𝑺.꯭𝑻.꯭𝑬.꯭𝑴.꯭𝑨⌑꯭ 𓏲꯭֟፝੭ ꯭  ꯭𓆪 
-  ╭━⋆⋅.⋅⋆━⋆⋅.⋅⋆━⋆⋅.⋅⋆━⋆⋅.⋅⋆━⋆⋅.⋅⋆━┄╮
-    \`${done} 𝑬𝒔𝒕𝒂𝒅𝒐 𝑫𝒆𝒍 𝑺𝒊𝒔𝒕𝒆𝒎𝒂\`
-  ╰━⋆⋅.⋅⋆━⋆⋅.⋅⋆━⋆⋅.⋅⋆━⋆⋅.⋅⋆━⋆⋅.⋅⋆━┄╯
-❐ 🏜️ *Host ➤* ${hostname}
-❐ 🏆 *Plataforma ➤* ${platform}
-❐ ⚡ *Arquitectura ➤* ${arch}
-❐ 🍭 *RAM Total ➤* ${formatBytes(totalMem)}
-❐ 📚 *RAM Libre ➤* ${formatBytes(freeMem)}
-❐ 🍫 *RAM Usada ➤* ${formatBytes(usedMem)}
-❐ 🔥 *Tiempo Activo ➤* ${muptime}
+    const message = `𓆩 𖤐 𓈒 𓂃 𝑺.𝑰.𝑺.𝑻.𝑬.𝑴.𝑨 𝑫𝑨𝑺𝑯𝑩𝑶𝑨𝑹𝑫 𓂃 𓈒 𖤐 𓆪
+╭══• ༻✦༺•═══•༻✦༺•══╮
+   ${done} *🧩 Estado del Sistema*
+╰══• ༻✦༺•═══•༻✦༺•══╯
 
-  ╭━⋆⋅.⋅⋆━⋆⋅.⋅⋆━⋆⋅.⋅⋆━⋆⋅.⋅⋆━⋆⋅.⋅⋆━┄╮
-    💻 *Uso de Memoria Nodejs:* 
-  ╰━⋆⋅.⋅⋆━⋆⋅.⋅⋆━⋆⋅.⋅⋆━⋆⋅.⋅⋆━⋆⋅.⋅⋆━┄╯
-❐ 👑→ RSS: ${formatBytes(nodeUsage.rss)}
-❐ ⚔️→ Heap Total: ${formatBytes(nodeUsage.heapTotal)}
-❐ 🐉→ Heap Usado: ${formatBytes(nodeUsage.heapUsed)}
-❐ 🍭→ Externa: ${formatBytes(nodeUsage.external)}
-❐ ⭐→ Arreglos: ${formatBytes(nodeUsage.arrayBuffers)}
+🛰️ *Host:* ${hostname}  
+🧬 *Plataforma:* ${platform}  
+🔧 *Arquitectura:* ${arch}  
+🔋 *RAM Total:* ${formatBytes(totalMem)}  
+🪄 *RAM Libre:* ${formatBytes(freeMem)}  
+🧁 *RAM Usada:* ${formatBytes(usedMem)}  
+⏳ *Tiempo Activo:* ${muptime}
+
+╭── ⌬ 𝘜𝘴𝘰 𝘥𝘦 𝘔𝘦𝘮𝘰𝘳𝘪𝘢 𝘕𝘰𝘥𝘦.js ⌬ ──╮
+✶ 📦 *RSS:* ${formatBytes(nodeUsage.rss)}  
+✶ 🧠 *Heap Total:* ${formatBytes(nodeUsage.heapTotal)}  
+✶ 🧃 *Heap Usado:* ${formatBytes(nodeUsage.heapUsed)}  
+✶ 📂 *Externa:* ${formatBytes(nodeUsage.external)}  
+✶ 🎯 *Buffers:* ${formatBytes(nodeUsage.arrayBuffers)}  
+╰────────────────────────────╯
+
 ${diskSpace ? `
-
-  ╭━⋆⋅.⋅⋆━⋆⋅.⋅⋆━⋆⋅.⋅⋆━⋆⋅.⋅⋆━⋆⋅.⋅⋆━┄╮
-    ☁️ *Espacio en Disco:*
-  ╰━⋆⋅.⋅⋆━⋆⋅.⋅⋆━⋆⋅.⋅⋆━⋆⋅.⋅⋆━⋆⋅.⋅⋆━┄╯
-❐ 💦→ Tamaño Total: ${diskSpace.size}
-❐ 📚→ Usado: ${diskSpace.used}
-❐ 🌸→ Disponible: ${diskSpace.available}
-❐ ☃️→ Porcentaje de Uso: ${diskSpace.usePercent}` : 'Error.'}`;
+╭── ❄️ 𝘌𝘴𝘱𝘢𝘤𝘪𝘰 𝘦𝘯 𝘋𝘪𝘴𝘤𝘰 ─────────╮
+✧ 💽 *Total:* ${diskSpace.size}  
+✧ 📀 *Usado:* ${diskSpace.used}  
+✧ 🪐 *Libre:* ${diskSpace.available}  
+✧ 🔮 *Uso:* ${diskSpace.usePercent}  
+╰────────────────────────────╯
+` : '🚫 *No se pudo obtener el espacio en disco.*'}`;
 
     await conn.reply(m.chat, message.trim(), m, rcanal, );
 };
