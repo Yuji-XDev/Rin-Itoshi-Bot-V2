@@ -493,6 +493,7 @@ let handler = async (m, { conn, args }) => {
 ┆ ${rinST} .gpname
 ┆ ${rinST} .hidetag
 ┆ ${rinST} .infogrupo
+┆ ${rinST} .kickall
 ┆ ${rinST} .kick <@user>
 ┆ ${rinST} .kicknum
 ┆ ${rinST} .listonline
