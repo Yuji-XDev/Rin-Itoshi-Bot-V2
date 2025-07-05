@@ -1,6 +1,6 @@
 let handler = async (m, { conn, args, usedPrefix, command }) => {
   if (!args[0]) {
-    return conn.reply(m.chat, `⚠️ Ingresa un número.\n\n*Ejemplo:* ${usedPrefix + command} +51969214380`, m);
+    return conn.reply(m.chat, `🔥 Ingresa un número.\n\n*Ejemplo:* ${usedPrefix + command} @user`, m, rcanal);
   }
 
   let numero = args[0].replace(/[^0-9]/g, '') + '@s.whatsapp.net';
@@ -18,5 +18,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
   }
 };
 
-handler.command = /^get(-)?lid$/i;
+handler.command = ['lid2']
+handler.help = ['lid2']
+handler.tags = ['lid2'];
 export default handler;
