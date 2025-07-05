@@ -15,7 +15,17 @@ const handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, i
     isEnable = false
 } else {
     const estado = isEnable ? '✓ Activado' : '✗ Desactivado'
-    return conn.reply(m.chat, `━━━━━━━━━━━━━━━━━━━━\n📜 Un administrador puede activar o desactivar el *${command}* utilizando:\n\n> ✐ *${usedPrefix}${command} on* - para activar.\n> ✐ *${usedPrefix}${command} off* - para desactivar.\n\n👾 Estado actual » *${estado}*\n━━━━━━━━━━━━━━━━━━━━`, m, rcanal);
+    return conn.reply(m.chat, `╭━━━〔 ⚙️ 𝐂𝐎𝐍𝐅𝐈𝐆𝐔𝐑𝐀𝐂𝐈𝐎𝐍 〕━━━╮
+┃ 📜 𝐄𝐬𝐭𝐞 𝐜𝐨𝐦𝐚𝐧𝐝𝐨: *${command}*
+┃ 🛡️ 𝐬𝐨𝐥𝐨 𝐩𝐮𝐞𝐝𝐞 𝐬𝐞𝐫 𝐠𝐞𝐬𝐭𝐢𝐨𝐧𝐚𝐝𝐨 𝐩𝐨𝐫 𝐚𝐝𝐦𝐢𝐧𝐬.
+┃
+┃ 🔧 𝐏𝐚𝐫𝐚 𝐚𝐜𝐭𝐢𝐯𝐚𝐫:
+┃ ┗ ❯ *${usedPrefix}${command} on*
+┃ 📴 𝐏𝐚𝐫𝐚 𝐝𝐞𝐬𝐚𝐜𝐭𝐢𝐯𝐚𝐫:
+┃ ┗ ❯ *${usedPrefix}${command} off*
+┃
+┃ 👾 𝐄𝐬𝐭𝐚𝐝𝐨 𝐚𝐜𝐭𝐮𝐚𝐥: *${estado}*
+╰━━━━━━━━━━━━━━━━━━━━━━━━╯`, m, rcanal);
   }
 
   switch (type) {
@@ -243,7 +253,11 @@ const handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, i
   
   chat[type] = isEnable;
   
-  conn.reply(m.chat, `『✦』𝗟𝗔 𝗙𝗨𝗡𝗖𝗜𝗢𝗡「 *${type}* 」𝗦𝗘 *${isEnable ? '𝗔𝗖𝗧𝗜𝗩𝗢' : '𝗗𝗘𝗦𝗔𝗖𝗧𝗜𝗩𝗢'}* ${isAll ? '𝗣𝗔𝗥𝗔 𝗘𝗦𝗧𝗘 𝗕𝗢𝗧' : isUser ? '' : '𝗣𝗔𝗥𝗔 𝗘𝗦𝗧𝗘 𝗖𝗛𝗔𝗧'}`, m, rcanal);
+  conn.reply(m.chat, `╭━〔 ✦ 𝐅𝐔𝐍𝐂𝐈𝐎𝐍 𝐃𝐄 𝐒𝐈𝐒𝐓𝐄𝐌𝐀 ✦ 〕━╮
+┃ 🧩 𝐅𝐮𝐧𝐜𝐢𝐨𝐧: *${type}*
+┃ ⚙️ 𝐄𝐬𝐭𝐚𝐝𝐨: *${isEnable ? '✅ 𝐀𝐂𝐓𝐈𝐕𝐀𝐃𝐎' : '❌ 𝐃𝐄𝐒𝐀𝐂𝐓𝐈𝐕𝐀𝐃𝐎'}*
+┃ 🌍 𝐀𝐩𝐥𝐢𝐜𝐚: ${isAll ? '🌐 *𝐏𝐀𝐑𝐀 𝐓𝐎𝐃𝐎 𝐄𝐋 𝐁𝐎𝐓*' : isUser ? '👤 *𝐔𝐒𝐔𝐀𝐑𝐈𝐎 𝐄𝐒𝐏𝐄𝐂𝐈𝐅𝐈𝐂𝐎*' : '💬 *𝐏𝐀𝐑𝐀 𝐄𝐒𝐓𝐄 𝐂𝐇𝐀𝐓*'}
+╰━━━━━━━━━━━━━━━━━━━━━━━━╯`, m, rcanal);
 };
 
 handler.help = ['welcome', 'bienvenida', 'antiprivado', 'antiprivate', 'restrict', 'restringir', 'antibot', 'antibots', 'autoaceptar', 'aceptarauto', 'autorechazar', 'rechazarauto', 'autoresponder', 'autorespond', 'antisubbots', 'antibot2', 'modoadmin', 'soloadmin', 'reaction', 'reaccion', 'nsfw', 'modohorny', 'antispam', 'jadibotmd', 'modejadibot', 'subbots', 'detect', 'avisos', 'antilink', 'audios', 'antiver', 'antiocultar', 'antilink2', 'antiarabe']
