@@ -13,13 +13,13 @@ const handler = async (m, { conn, text, usedPrefix, command}) => {
       return conn.reply(m.chat, '⚠︎ Ocurrió un error al buscar el video. Inténtalo de nuevo más tarde.', m);
   }
 
-    const body = `> ✦┉┉❲ 🌹 \`Y\` \`T\` - \`P\` \`L\` \`A\` \`Y\` 🌸 ❳
-> ┋ 🍓 *Título:* ${videoInfo.title}
-> ┋ ⚡ *Duración:* ${videoInfo.timestamp}
-> ┋ 📚 *Vistas:* ${videoInfo.views.toLocaleString()}
-> ┋ 🎨 *Autor:* ${videoInfo.author.name}
-> ┋ 🐉 *Publicado:* ${videoInfo.ago}
-> ┋ 🔩 *Enlace:* ${videoInfo.url}
+    const body = `> ⌜🌹 𖥔  Y T - P L A Y 𖥔 🌸⌟
+> ╭───⊹ 🍓 *ᎢᎥ́ᏆᏞᎾ:* ${videoInfo.title}
+> ├───⊹ ⚡ *ᎠᏌᎡᎪᏟᎥᎾ́Ꮑ:* ${videoInfo.timestamp}
+> ├───⊹ 📚 *ᏉᎥᎳᏚ:* ${videoInfo.views.toLocaleString()}
+> ├───⊹ 🎨 *ᎪᏌᏆᎻᎾᎡ:* ${videoInfo.author.name}
+> ├───⊹ 🐉 *ᏢᏌᏴᏞᎥᏟᎪᎠᎾ:* ${videoInfo.ago}
+> ╰───⊹ 🔩 *ᎬᏁᏞᎪᏟᎬ:* ${videoInfo.url}
         🌴 ʀɪɴ ɪᴛᴏsʜɪ ʙᴏᴛ ᴍᴅ by ⚡
                       🌹 ᴛʜᴇ ʙʟᴀᴄᴋ.ᴏғᴄ 🌱`;
 
