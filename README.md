@@ -1,6 +1,6 @@
-<h1 align="center"> ⚽ RIN ITOSHI ＢＯＴ V²</h1>
+<h1 align="center"> ⚽ RIN ITOSHI BOT V²</h1>
 <p align="center">
-  <img src="https://files.catbox.moe/1ips7f.jpg" width="300">
+  <img src="https://files.catbox.moe/7d1l2i.jpg" width="300">
 </p>
 
 <p align="center">
