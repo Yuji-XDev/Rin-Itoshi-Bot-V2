@@ -6,7 +6,7 @@ return conn.reply(m.chat, `✧ ¡Este chat no está registrado!.`, m)
 if (command === 'bot') {
 if (args.length === 0) {
 const estado = chat.isBanned ? '✗ Desactivado' : '✓ Activado'
-const info = `╭━━━━━━━━━━━━━━━━━━━━━━━━━╮
+const info = `╭━━━━━━━━━━━━━━━━━━━━━━━╮
 ┃     ⚙️ 𝗣𝗔𝗡𝗘𝗟 𝗗𝗘 𝗖𝗢𝗡𝗧𝗥𝗢𝗟
 ┃
 ┃ 🧩 *Solo los administradores pueden ejecutar estos comandos:*
@@ -18,7 +18,7 @@ const info = `╭━━━━━━━━━━━━━━━━━━━━━
 ┣━━✦ *Estado Actual* ✦━━
 ┃ 📡 ${estado}
 ┃
-╰━━━━━━━━━━━━━━━━━━━━━━━━━╯`
+╰━━━━━━━━━━━━━━━━━━━━━━━╯`
 return conn.reply(m.chat, info, fkontak, rcanal);
   }
 if (args[0] === 'off') {
