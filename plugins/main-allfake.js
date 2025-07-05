@@ -27,15 +27,14 @@ return res.data
 console.log(`Error : ${e}`)
 }}
   
-global.creador = 'Wa.me/51969214380'
+global.creador = 'wa.me/5212202410659'
 global.ofcbot = `${conn.user.jid.split('@')[0]}`
-global.namechannel = '=͟͟͞𝐑𝐈𝐍 𝐈𝐓𝐎𝐒𝐇𝐈 𝐁𝐎𝐓 𝐕2 • 𝒖𝒑𝒅𝒂𝒕𝒆𝒔 ⌺'
-global.namechannel2 = '=͟͟͞𝐑𝐈𝐍 𝐈𝐓𝐎𝐒𝐇𝐈 𝐁𝐎𝐓 𝐕2 • 𝒂𝒗𝒊𝒔𝒐𝒔 ⌺'
+global.namechannel = '=͟͟͞𝐑𝐈𝐍 𝐈𝐓𝐎𝐒𝐇𝐈 𝐁𝐎𝐓 𝐕2 • 𝐂𝐡𝐚𝐧𝐧𝐞𝐥 ⌺'
+global.namechannel2 = '=͟͟͞𝐑𝐈𝐍 𝐈𝐓𝐎𝐒𝐇𝐈 𝐁𝐎𝐓 𝐕2 • 𝐂𝐡𝐚𝐧𝐧𝐞𝐥 ⌺'
 global.namegrupo = '=͟͟͞𝐑𝐈𝐍 𝐈𝐓𝐎𝐒𝐇𝐈 𝐁𝐎𝐓 𝐕2 • 𝒐𝒇𝒊𝒄𝒊𝒂𝒍 ⌺'
 global.namecomu = '=͟͟͞𝐑𝐈𝐍 𝐈𝐓𝐎𝐒𝐇𝐈 𝐁𝐎𝐓 𝐕2 • 𝑪𝒐𝒎𝒖𝒏𝒊𝒕𝒚 ˟꘏꙳'
 global.listo = '*🌴 ＡＱＵＩ - ＴＩＥＮＥＳ ＭＥＮ*'
-global.fotoperfil = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https://files.catbox.moe/dr3r2f.jpg')
-
+global.fotoperfil = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https://files.catbox.moe/35wxsf.jpg')
 
 global.canalIdM = ["120363401008003732@newsletter", "120363401008003732@newsletter"]
 global.canalNombreM = ["  ꙰⃟☃️ ʀɪɴ ɪᴛᴏsʜɪ ʙᴏᴛ ᴠ² x ʙʟᴀᴄᴋ ★꙰⃟⸙", "🐉꙰⃟ 𖠺 𝐑𝐈𝐍 𝐈𝐓𝐎𝐒𝐇𝐈 𝐁𝐎𝐓 𝐕2 𖠺🌴⃟ᰳᰬᰶ"]
@@ -62,9 +61,9 @@ global.emoji5 = '(◕‿◕✦'
 global.emojis = [emoji, emoji2, emoji3, emoji4, emoji5].getRandom()
 
 global.wait = '⚘𖠵⃕ＣＡＲＧＡＮＤＯ...ꪾ❍̵̤̂\n=͟͟͞⚡ 𝐴𝑔𝑢𝑎𝑟𝑑𝑒 𝑢𝑛 𝑚𝑜𝑚𝑒𝑛𝑡𝑜...';
-global.waitt = global.wait
-global.waittt = global.wait
-global.waitttt = global.wait
+global.waitt = '⚘𖠵⃕ＣＡＲＧＡＮＤＯ...ꪾ❍̵̤̂\n=͟͟͞⚡ 𝐴𝑔𝑢𝑎𝑟𝑑𝑒 𝑢𝑛 𝑚𝑜𝑚𝑒𝑛𝑡𝑜...';
+global.waittt = '⚘𖠵⃕ＣＡＲＧＡＮＤＯ...ꪾ❍̵̤̂\n=͟͟͞⚡ 𝐴𝑔𝑢𝑎𝑟𝑑𝑒 𝑢𝑛 𝑚𝑜𝑚𝑒𝑛𝑡𝑜...';
+global.waitttt = '⚘𖠵⃕ＣＡＲＧＡＮＤＯ...ꪾ❍̵̤̂\n=͟͟͞⚡ 𝐴𝑔𝑢𝑎𝑟𝑑𝑒 𝑢𝑛 𝑚𝑜𝑚𝑒𝑛𝑡𝑜...';
 
 var canal = 'https://whatsapp.com/channel/0029VbAtbPA84OmJSLiHis2U'  
 var comunidad = 'https://whatsapp.com/channel/0029VbAtbPA84OmJSLiHis2U'
@@ -95,14 +94,13 @@ global.packsticker2 = `\n 𑁯ᰰᘘ᷒ᰰ ༝⃟ꪆ 𝙂𝘼𝙔 𝙎𝙄 𝙇�
   
 global.fkontak = { key: {participant: `0@s.whatsapp.net`, ...(m.chat ? { remoteJid: `6285600793871-1614953337@g.us` } : {}) }, message: { 'contactMessage': { 'displayName': `${nombre}`, 'vcard': `BEGIN:VCARD\nVERSION:3.0\nN:XL;${nombre},;;;\nFN:${nombre},\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`, 'jpegThumbnail': null, thumbnail: null,sendEphemeral: true}}}
 
-
 global.fake = { contextInfo: { isForwarded: true, forwardedNewsletterMessageInfo: { newsletterJid: channelRD.id, newsletterName: channelRD.name, serverMessageId: -1 }
 }}, { quoted: m }
 
 global.icono = [
 'https://files.catbox.moe/n14r3u.png',
 'https://files.catbox.moe/m9qhia.jpg',
-'https://files.catbox.moe/hjyeok.png,
+'https://files.catbox.moe/hjyeok.png',
 'https://files.catbox.moe/zvoasx.png',
 'https://files.catbox.moe/zvoasx.png'
 ].getRandom()
