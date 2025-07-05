@@ -103,7 +103,7 @@ export async function before(m, { conn }) {
 │ 🌸 El comando *"${command}"* no existe.
 │ 
 │ 🧁 Usa *${usedPrefix}menu* para ver todos los comandos.
-╰────────────🌷────────────╯`,
+╰────────────────────────╯`,
 
       `╭─⭑❨ 💫 𝐂𝐨𝐦𝐚𝐧𝐝𝐨 𝐍𝐨 𝐄𝐧𝐜𝐨𝐧𝐭𝐫𝐚𝐝𝐨 ❩⭑─╮
 │ 🪷 *"${command}"* no está disponible en el sistema.
@@ -115,13 +115,13 @@ export async function before(m, { conn }) {
 │ 🐚 El comando *"${command}"* no forma parte del bot.
 │ 
 │ 🍡 Usa *${usedPrefix}menu* para orientarte mejor.
-╰────────────🍥────────────╯`,
+╰────────────────────────╯`,
 
       `╭─⭑❨ 🌙 𝐂𝐨𝐦𝐚𝐧𝐝𝐨 𝐃𝐞𝐬𝐜𝐨𝐧𝐨𝐜𝐢𝐝𝐨 ❩⭑─╮
 │ 🧸 No se encontró *"${command}"* en la lista de comandos.
 │ 
 │ 🦢 Consulta el menú con *${usedPrefix}menu*.
-╰────────────💮────────────╯`
+╰────────────────────────╯`
     ];
 
     const mensaje = mensajesNoEncontrado[Math.floor(Math.random() * mensajesNoEncontrado.length)];
