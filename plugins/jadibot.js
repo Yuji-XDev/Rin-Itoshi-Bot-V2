@@ -56,7 +56,7 @@ let handler = async (m, { conn: _envio, command, usedPrefix, args, text, isOwner
       if (global.conn.user.jid == _envio.user.jid) {
         await _envio.reply(m.chat, `🦠 Si no es *Sub-Bot* comuníquese al número principal del *Bot* para ser *Sub-Bot*.`, m);
       } else {
-        await _envio.reply(m.chat, `💛 Luffy bot desactivado temporalmente.`, m);
+        await _envio.reply(m.chat, `💛 Rin Itoshi desactivado temporalmente.`, m);
         _envio.ws.close();
       }
       break;
@@ -95,14 +95,14 @@ let handler = async (m, { conn: _envio, command, usedPrefix, args, text, isOwner
 
       const totalUsers = users.length;
 
-      const responseMessage = `*LUFFY - JADIBOT LIST*
+      const responseMessage = `*RIN ITOSHI - JADIBOT LIST*
 > *Total de Subs:* *\`${totalUsers || '0'}\`*
 
 
 ${replyMessage.trim()}`;
 
       await _envio.sendMessage(m.chat, {
-        image: { url: 'https://files.catbox.moe/bzwvsg.jpg' },
+        image: { url: 'https://files.catbox.moe/8u4f6p.png' },
         caption: responseMessage,
         mentions: _envio.parseMention(responseMessage)
       }, { quoted: fkontak });

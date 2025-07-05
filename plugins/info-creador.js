@@ -1,12 +1,12 @@
-let handler = async (m, { conn, usedPrefix }) => {
-  let creatorNumber = '51969214380';
-  let creatorName = '⚡ THE BLACK 🍁';
-  let github = 'https://github.com/the-27';
-  let imageUrl = 'https://files.catbox.moe/embijg.jpg';
+let handler = async (m, { conn }) => {
+  const creatorNumber = '51969214380';
+  const creatorName = '⚡ THE BLACK 🍁';
+  const github = 'https://github.com/the-27';
+  const imageUrl = 'https://files.catbox.moe/embijg.jpg';
+  const userId = m.sender;
 
-  let userId = m.sender;
-
-  let vcard = `
+  // 💼 Tarjeta de contacto vCard
+  const vcard = `
 BEGIN:VCARD
 VERSION:3.0
 N:;${creatorName};;;
@@ -22,19 +22,20 @@ END:VCARD`.trim();
     }
   }, { quoted: m });
 
- 
-  let text = `┏━━━━━━━━━━━━━━━━━━━┓
-┃ 🌹 *C R E A D O R - 💎 - B O T*
-┣━━━━━━━━━━━━━━━━━━━┫
-┃ 🌱 *NOMBRE:* ${creatorName}
-┃ ⚡ *NÚMERO:* +${creatorNumber}
-┃ 💖 *LINK:* wa.me/${creatorNumber}
-┃ 👻 *GITHUB:* ${github}
-┗━━━━━━━━━━━━━━━━━━━┛
-                    ᵉⁿˡᵃᶜᵉˢ ᵘᵗⁱˡᵉˢ`;
+  
+  const text = `
+┏━━『 👑 𝐂𝐑𝐄𝐀𝐃𝐎𝐑 - 𝐁𝐎𝐓 』━━┓
+┃
+┃ 💎 *Nombre:* ${creatorName}
+┃ 📞 *Número:* wa.me/${creatorNumber}
+┃ 🌐 *GitHub:* ${github}
+┃
+┗━━━━━━━━━━━━━━━━━━━━┛
+✨ ᴇɴʟᴀᴄᴇs ᴜ́ᴛɪʟᴇs • ɪɴꜰᴏʀᴍᴀᴄɪᴏ́ɴ`;
 
-  await conn.sendMessage(m.chat, { 
-    text: text,
+  
+  await conn.sendMessage(m.chat, {
+    text,
     contextInfo: {
       mentionedJid: [userId],
       externalAdReply: {
@@ -43,14 +44,15 @@ END:VCARD`.trim();
         thumbnailUrl: imageUrl,
         mediaType: 1,
         showAdAttribution: true,
-        renderLargerThumbnail: true
+        renderLargerThumbnail: true,
+        sourceUrl: `https://wa.me/${creatorNumber}`
       }
     }
   }, { quoted: m });
 };
 
-handler.help = ["creador", "owner"];
-handler.tags = ["info"];
+handler.help = ['creador', 'owner'];
+handler.tags = ['info'];
 handler.command = ['owner', 'creator', 'creador', 'dueño'];
 
 export default handler;
