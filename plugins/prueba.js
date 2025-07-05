@@ -1,43 +1,44 @@
-import fs from 'fs'
-import fetch from 'node-fetch'
-import path from 'path'
-import { tmpdir } from 'os'
+import yts from 'yt-search'
 
-const handler = async (m, { conn, text, usedPrefix, command }) => {
-  if (!text) return m.reply(`📽️ *Ingresa el enlace de YouTube:*\n> Ejemplo:\n${usedPrefix + command} https://youtu.be/dQw4w9WgXcQ`)
+const MAX_SIZE_MB = 100
 
-  const videoUrl = text.trim()
-  const q = "480p"
-  const api = `https://api.neoxr.eu/api/youtube?url=${encodeURIComponent(videoUrl)}&type=video&quality=${q}&apikey=russellxz`
+const handler = async (m, { conn, text, command }) => {
+  if (!text) return m.reply('🔍 *Por favor, ingresa el nombre o link del video.*')
 
-  m.reply('📥 Descargando el video, espera un momento...')
+  await m.react('🔎')
 
   try {
-    const res = await fetch(api)
-    const json = await res.json()
+    const isLink = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\//i.test(text)
+    const search = isLink ? { url: text } : (await yts(text)).all[0]
 
-    if (!json.data?.url) return m.reply('❌ No se encontró un video válido.')
+    if (!search) return m.reply('❌ *No se encontraron resultados.*')
 
-    const download = await fetch(json.data.url)
-    const filepath = path.join(tmpdir(), `video_${Date.now()}.mp4`)
-    const fileStream = fs.createWriteStream(filepath)
+    const info = await ytMp4(search.url)
 
-    await new Promise((resolve, reject) => {
-      download.body.pipe(fileStream)
-      download.body.on("error", reject)
-      fileStream.on("finish", resolve)
-    })
+    if (info.size > MAX_SIZE_MB) {
+      return m.reply(`❌ *El video es demasiado pesado (${info.size} MB). Máximo permitido: ${MAX_SIZE_MB} MB.*`)
+    }
 
-    const stats = fs.statSync(filepath)
-    if (stats.size < 1000) return m.reply('⚠️ El archivo es muy pequeño o está dañado.')
-
-    await conn.sendFile(m.chat, filepath, 'video.mp4', '✅ Aquí está tu video.', m)
-    fs.unlinkSync(filepath)
+    await conn.sendMessage(m.chat, {
+      video: { url: info.dl_link },
+      mimetype: 'video/mp4',
+      caption: `📹 *Título:* ${search.title}\n⏱️ *Duración:* ${search.timestamp}\n📦 *Tamaño:* ${info.size} MB\n🔗 *Enlace:* ${search.url}`
+    }, { quoted: m })
   } catch (e) {
     console.error(e)
-    m.reply('❌ Ocurrió un error al descargar o enviar el video.')
+    m.reply('❌ *Ocurrió un error al procesar el video.*')
   }
 }
 
-handler.command = /^(playvid|ytvideo|play4)$/i
+handler.command = /^play4$/i
 export default handler
+
+async function ytMp4(url) {
+  const axios = (await import('axios')).default
+  const { data } = await axios.get(`https://yt.btch.bz/download?URL=${encodeURIComponent(url)}&type=mp4&quality=360`)
+  const size = data.filesize / (1024 * 1024)
+  return {
+    dl_link: data.download,
+    size: size.toFixed(2),
+  }
+}
