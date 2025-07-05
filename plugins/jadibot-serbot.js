@@ -169,7 +169,7 @@ if (qr && mcode) {
 let secret = await sock.requestPairingCode((m.sender.split`@`[0]))
 secret = secret.match(/.{1,4}/g)?.join("-")
 
-let imgPath = 'https://files.catbox.moe/u42ymm.jpg';
+let imgPath = 'https://files.catbox.moe/35wxsf.jpg';
 
 let txtCode = await conn.sendMessage(m.chat, { 
     text: rtx2,
