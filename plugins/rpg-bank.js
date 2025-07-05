@@ -1,7 +1,7 @@
 import fetch from 'node-fetch'
 import db from '../lib/database.js'
 
-const img = 'https://files.catbox.moe/x81ait.jpg'
+const img = 'https://files.catbox.moe/sectzh.jpg'
 
 let handler = async (m, { conn, usedPrefix }) => {
   let who = m.mentionedJid[0] 

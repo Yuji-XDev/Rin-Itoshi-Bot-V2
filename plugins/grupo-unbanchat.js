@@ -6,16 +6,19 @@ return conn.reply(m.chat, `✧ ¡Este chat no está registrado!.`, m)
 if (command === 'bot') {
 if (args.length === 0) {
 const estado = chat.isBanned ? '✗ Desactivado' : '✓ Activado'
-const info = `⚡ *Un administrador puede activar o desactivar a rin itoshi utilizando:*
-
-\`╭━━━━━━━━━━━━━━━━━━━╮\`
-\`┃\` ⚙️ 𝗖𝗼𝗺𝗮𝗻𝗱𝗼𝘀 𝗗𝗶𝘀𝗽𝗼𝗻𝗶𝗯𝗹𝗲𝘀: ⚙️
-\`┣━━━━━━━━━━━━━━━━━━━┫\`
-\`┃\` 🪀 ${usedPrefix}𝗯𝗼𝘁 𝗼𝗻 – 𝒂𝒄𝒕𝒊𝒗𝒂𝒓
-\`┃\` 🪀 ${usedPrefix}𝗯𝗼𝘁 𝗼𝗳𝗳 – 𝒅𝒆𝒔𝒂𝒄𝒕𝒊𝒗𝒂𝒓
-\`┣━━━━━━━━━━━━━━━━━━━┫\`
-\`┃\` 🌴 𝗘𝘀𝘁𝗮𝗱𝗼 𝗔𝗰𝘁𝘂𝗮𝗹: ${estado}
-\`╰━━━━━━━━━━━━━━━━━━━╯\``
+const info = `╭━━━━━━━━━━━━━━━━━━━━━━━━━╮
+┃     ⚙️ 𝗣𝗔𝗡𝗘𝗟 𝗗𝗘 𝗖𝗢𝗡𝗧𝗥𝗢𝗟
+┃
+┃ 🧩 *Solo los administradores pueden ejecutar estos comandos:*
+┃
+┣━━✦ *Comandos Disponibles* ✦━━
+┃ 🟢 ${usedPrefix}bot on ➤ ᴀᴄᴛɪᴠᴀʀ
+┃ 🔴 ${usedPrefix}bot off ➤ ᴅᴇꜱᴀᴄᴛɪᴠᴀʀ
+┃
+┣━━✦ *Estado Actual* ✦━━
+┃ 📡 ${estado}
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━━━━╯`
 return conn.reply(m.chat, info, fkontak, rcanal);
   }
 if (args[0] === 'off') {
