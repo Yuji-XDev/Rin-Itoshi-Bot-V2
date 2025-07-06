@@ -34,7 +34,7 @@ let handler = async (m, { conn, usedPrefix }) => {
                `┃ 🎟️ 𝗧𝗼𝗸𝗲𝗻𝘀: *${user.joincount || 0}*\n` +
                `┃ ⚜️ 𝗣𝗿𝗲𝗺𝗶𝘂𝗺: *${premium}*\n` +
                `┃\n` +
-               `┃ ⏳ 𝗔𝘃𝗲𝗻𝘁𝘂𝗿𝗮: *${user.lastAdventure ? moment(user.lastAdventure).fromNow() : 'Nunca'}*\n` +
+               `┃ ⏳ 𝗨𝗹𝘁𝗶𝗺𝗮 𝗔𝘃𝗲𝗻𝘁𝘂𝗿𝗮: *${user.lastAdventure ? moment(user.lastAdventure).fromNow() : 'Nunca'}*\n` +
                `┃ 📆 𝗙𝗲𝗰𝗵𝗮: *${new Date().toLocaleString('id-ID')}*\n` +
                `╰━━━━━━━━━━━━⬣`;
 
