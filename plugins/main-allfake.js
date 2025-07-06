@@ -27,7 +27,7 @@ return res.data
 console.log(`Error : ${e}`)
 }}
   
-global.creador = 'wa.me/5212202410659'
+global.creador = 'wa.me/51969214380'
 global.ofcbot = `${conn.user.jid.split('@')[0]}`
 global.namechannel = '=͟͟͞𝐑𝐈𝐍 𝐈𝐓𝐎𝐒𝐇𝐈 𝐁𝐎𝐓 𝐕2 • 𝐂𝐡𝐚𝐧𝐧𝐞𝐥 ⌺'
 global.namechannel2 = '=͟͟͞𝐑𝐈𝐍 𝐈𝐓𝐎𝐒𝐇𝐈 𝐁𝐎𝐓 𝐕2 • 𝐂𝐡𝐚𝐧𝐧𝐞𝐥 ⌺'
