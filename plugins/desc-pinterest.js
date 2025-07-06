@@ -1,4 +1,3 @@
-
 import axios from "axios";
 import * as cheerio from "cheerio";
 
@@ -28,12 +27,11 @@ const pindl = {
                         commentCount: mediaData.commentCount,
                         likeCount: mediaData.interactionStatistic?.find(
                             (stat) =>
-                            stat.InteractionType["@type"] === "https://schema.org/LikeAction"
+                                stat.InteractionType["@type"] === "https://schema.org/LikeAction"
                         )?.InteractionCount,
                         watchCount: mediaData.interactionStatistic?.find(
                             (stat) =>
-                            stat.InteractionType["@type"] ===
-                            "https://schema.org/WatchAction"
+                                stat.InteractionType["@type"] === "https://schema.org/WatchAction"
                         )?.InteractionCount,
                         creator: mediaData.creator?.name,
                         creatorUrl: mediaData.creator?.url,
@@ -43,9 +41,7 @@ const pindl = {
             }
             return null;
         } catch (error) {
-            return {
-                error: "Error al obtener los datos del video"
-            };
+            return { error: "Error al obtener los datos del video" };
         }
     },
 
@@ -61,10 +57,7 @@ const pindl = {
                 if (
                     mediaData["@type"] === "SocialMediaPosting" &&
                     mediaData.image &&
-                    (mediaData.image.endsWith(".png") ||
-                        mediaData.image.endsWith(".jpg") ||
-                        mediaData.image.endsWith(".jpeg") ||
-                        mediaData.image.endsWith(".webp")) &&
+                    /\.(png|jpe?g|webp)$/i.test(mediaData.image) &&
                     !mediaData.image.endsWith(".gif")
                 ) {
                     return {
@@ -83,9 +76,7 @@ const pindl = {
             }
             return null;
         } catch (error) {
-            return {
-                error: "Error al obtener los datos de la imagen"
-            };
+            return { error: "Error al obtener los datos de la imagen" };
         }
     },
 
@@ -119,9 +110,7 @@ const pindl = {
             }
             return null;
         } catch (error) {
-            return {
-                error: "Error al obtener los datos del GIF"
-            };
+            return { error: "Error al obtener los datos del GIF" };
         }
     },
 
@@ -133,63 +122,73 @@ const pindl = {
         if (result) return result;
 
         result = await pindl.gif(urlPin);
-        return result || {
-            error: "No se encontró ningún medio"
-        };
+        return result || { error: "No se encontró ningún medio" };
     },
 };
 
+
+const getFileSize = async (url) => {
+    try {
+        const res = await axios.head(url);
+        return parseInt(res.headers["content-length"]) || 0;
+    } catch {
+        return 0;
+    }
+};
+
 const handler = async (m, { conn, text }) => {
-    if (!text) throw "¿Dónde está la URL?";
-    
-    await m.react('🕓');
-    
+    if (!text) throw "¿💥 Dónde está la URL?";
+    await m.react("🕓");
+
     try {
         const result = await pindl.download(text);
         if (result.error) throw result.error;
 
-        let caption = ``;
+        let caption = "";
+        const maxSize = 10 * 1024 * 1024; // 10 MB
 
         if (result.type === "video") {
             caption += `「✦」 *Información Video*\n\n> ✐ Título » ${result.name || "N/A"}\n> 🜸 Link » ${result.contentUrl}\n`;
-            await conn.sendMessage(m.chat, {
-                video: {
-                    url: result.contentUrl
-                },
-                caption
-            }, {
-                quoted: m
-            });
+
+            const size = await getFileSize(result.contentUrl);
+            if (size > maxSize) {
+                caption += `\n⚠️ El video es muy pesado para enviar. Usa el enlace.`;
+                await conn.sendMessage(m.chat, { text: caption }, { quoted: m });
+            } else {
+                await conn.sendMessage(m.chat, {
+                    video: { url: result.contentUrl },
+                    caption
+                }, { quoted: m });
+            }
+
         } else if (result.type === "image") {
             caption += `「✦」 *Información Imagen*\n\n> ✐ Título » ${result.headline || "N/A"}\n> 🜸 Link » ${result.image}`;
             await conn.sendMessage(m.chat, {
-                image: {
-                    url: result.image
-                },
+                image: { url: result.image },
                 caption
-            }, {
-                quoted: m
-            });
+            }, { quoted: m });
+
         } else if (result.type === "gif") {
             caption += `「✦」 *Información Gif*\n\n> ✐ Título » ${result.headline || "N/A"}\n> 🜸 Link » ${result.gif}\n`;
-            await conn.sendMessage(m.chat, {
-                video: {
-                    url: result.gif
-                },
-                caption
-            }, {
-                quoted: m
-            });
+
+            const size = await getFileSize(result.gif);
+            if (size > maxSize) {
+                caption += `\n⚠️ El GIF es muy pesado para enviar. Usa el enlace.`;
+                await conn.sendMessage(m.chat, { text: caption }, { quoted: m });
+            } else {
+                await conn.sendMessage(m.chat, {
+                    video: { url: result.gif },
+                    caption
+                }, { quoted: m });
+            }
         }
 
-        await m.react('✅');
+        await m.react("✅");
     } catch (error) {
-        await m.react('✖️');
+        await m.react("✖️");
         await conn.sendMessage(m.chat, {
             text: `Algo salió mal: ${error}`
-        }, {
-            quoted: m
-        });
+        }, { quoted: m });
     }
 };
 
