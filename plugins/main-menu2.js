@@ -143,7 +143,7 @@ let handler = async (m, { conn, args }) => {
             externalAdReply: {
                 title: "MENU DE AUDIOS",
                 body: "Comandos disponibles para reproducir audios",
-                thumbnailUrl: 'https://files.catbox.moe/7m1fbp.jpg',
+                thumbnailUrl: 'https://files.catbox.moe/qnvpyq.jpg',
                 sourceUrl: 'https://github.com/the-27/Rin-Itoshi-Bot-MD',
                 mediaType: 1,
                 showAdAttribution: true,

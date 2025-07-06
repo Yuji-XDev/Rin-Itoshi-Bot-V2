@@ -1,5 +1,5 @@
 let handler = async (m, { conn }) => {
-  let imgurl = 'https://files.catbox.moe/35wxsf.jpg';
+  let imgurl = 'https://files.catbox.moe/nmseef.png';
   const texto = `    [ꔊꔊꔊ[🍉] _*MENU - OWNER*_ [🍓]ꔊꔊꔊ]    
 💥 𝐂𝐨𝐦𝐚𝐧𝐝𝐨𝐬 𝐝𝐞 𝐦𝐨𝐝𝐞𝐫𝐚𝐜𝐢𝐨𝐧 𝐲 𝐜𝐨𝐧𝐭𝐫𝐨𝐥 𝐚𝐯𝐚𝐧𝐳𝐚𝐝𝐨 𝐩𝐚𝐫𝐚 𝐨𝐰𝐧𝐞𝐫𝐬. 🌼
 

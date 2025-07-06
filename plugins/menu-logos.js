@@ -67,7 +67,7 @@ const handler = async (m, { conn, usedPrefix }) => {
       externalAdReply: {
         title: "⚡ MENU LOGOS ❤️",
         body: dev,
-        thumbnailUrl: 'https://files.catbox.moe/7m1fbp.jpg',
+        thumbnailUrl: 'https://files.catbox.moe/nmseef.png',
         sourceUrl: 'https://github.com/the-27/Rin-Itoshi-Bot-MD',
         mediaType: 1,
         showAdAttribution: true,

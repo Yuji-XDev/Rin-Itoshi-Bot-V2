@@ -26,7 +26,7 @@ let tags = {
 'grupo': ' `CONFIGURACIÓN` ',
 'nable': ' `ON / OFF` ', 
 }
-let img = 'https://files.catbox.moe/35wxsf.jpg'
+let img = 'https://files.catbox.moe/nmseef.png'
 
   try {
           // DEFAULT MENU

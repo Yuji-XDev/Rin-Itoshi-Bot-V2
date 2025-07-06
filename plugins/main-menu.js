@@ -13,7 +13,13 @@ let handler = async (m, { conn, args }) => {
     let totalCommands = Object.values(global.plugins).filter((v) => v.help && v.tags).length;  
       
     let rinST = 'ۚ𑁯ׂ✦ ᳴ʚ ̶ ';
-    let imgUrl = 'https://files.catbox.moe/35wxsf.jpg';  
+    let images = [
+      'https://files.catbox.moe/nmseef.png',
+      'https://files.catbox.moe/qnvpyq.jpg',
+      'https://files.catbox.moe/w4hviq.png',
+      'https://files.catbox.moe/7osb4d.jpg'
+    ]
+    let imgUrl = images[Math.floor(Math.random() * images.length)]  
     
     let txt = `╭─❍ 『 𝙷𝙾𝙻𝙰 』 ❍─
 │ 𓆩💙𓆪 𝙷𝙤𝙡𝙖 @${userId.split('@')[0]}!

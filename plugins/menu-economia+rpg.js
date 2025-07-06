@@ -1,5 +1,5 @@
 let handler = async (m, { conn }) => {
-  let imgurl = 'https://files.catbox.moe/35wxsf.jpg';
+  let imgurl = 'https://files.catbox.moe/nmseef.png';
   const texto = `ʜᴏʟᴀ
     ╔═══════ • ° ❁⊕❁ ° • ═══════╗
         💰⃟⃢᭄͜═✩═[𝐌𝐄𝐍𝐔-𝐑𝐏𝐆]═✩═⃟⃢᭄͜🏆

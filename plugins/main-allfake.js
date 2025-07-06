@@ -29,10 +29,10 @@ console.log(`Error : ${e}`)
   
 global.creador = 'wa.me/51969214380'
 global.ofcbot = `${conn.user.jid.split('@')[0]}`
-global.namechannel = '=͟͟͞𝐋𝐢𝐠𝐡𝐭 𝐘𝐚𝐠𝐚𝐦𝐢 • 𝐂𝐡𝐚𝐧𝐧𝐞𝐥 ⌺'
-global.namechannel2 = '=͟͟͞𝐋𝐢𝐠𝐡𝐭 𝐘𝐚𝐠𝐚𝐦𝐢 • 𝐂𝐡𝐚𝐧𝐧𝐞𝐥 ⌺'
-global.namegrupo = '=͟͟͞𝐋𝐢𝐠𝐡𝐭 𝐘𝐚𝐠𝐚𝐦𝐢 • 𝒐𝒇𝒊𝒄𝒊𝒂𝒍 ⌺'
-global.namecomu = '=͟͟͞𝐋𝐢𝐠𝐡𝐭 𝐘𝐚𝐠𝐚𝐦𝐢 • 𝑪𝒐𝒎𝒖𝒏𝒊𝒕𝒚 ˟꘏꙳'
+global.namechannel = '=͟͟͞Sukuna bot • 𝐂𝐡𝐚𝐧𝐧𝐞𝐥 ⌺'
+global.namechannel2 = '=͟͟͞Sukuna bot • 𝐂𝐡𝐚𝐧𝐧𝐞𝐥 ⌺'
+global.namegrupo = '=͟͟͞Sukuna bot • 𝒐𝒇𝒊𝒄𝒊𝒂𝒍 ⌺'
+global.namecomu = '=͟͟͞Sukuna bot • 𝑪𝒐𝒎𝒖𝒏𝒊𝒕𝒚 ˟꘏꙳'
 global.listo = '*🌴 ＡＱＵＩ - ＴＩＥＮＥＳ ＭＥＮ*'
 global.fotoperfil = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https://files.catbox.moe/vm6opf.jpg')
 
@@ -98,11 +98,11 @@ global.fake = { contextInfo: { isForwarded: true, forwardedNewsletterMessageInfo
 }}, { quoted: m }
 
 global.icono = [
-'https://files.catbox.moe/n14r3u.png',
-'https://files.catbox.moe/m9qhia.jpg',
-'https://files.catbox.moe/hjyeok.png',
-'https://files.catbox.moe/zvoasx.png',
-'https://files.catbox.moe/zvoasx.png'
+'https://files.catbox.moe/nmseef.png',
+'https://files.catbox.moe/4oyfem.jpg',
+'https://files.catbox.moe/bs0ecf.png',
+'https://files.catbox.moe/jp0yqi.png',
+'https://files.catbox.moe/qnvpyq.jpg'
 ].getRandom()
 
 global.rcanal = { contextInfo: { isForwarded: true, forwardedNewsletterMessageInfo: { newsletterJid: channelRD.id, serverMessageId: 100, newsletterName: channelRD.name, }, externalAdReply: { showAdAttribution: true, title: packname, body: dev, mediaUrl: null, description: null, previewType: "PHOTO", thumbnailUrl: icono, sourceUrl: redes, mediaType: 1, renderLargerThumbnail: false }, }, }}
