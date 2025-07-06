@@ -40,31 +40,31 @@ global.prems = []
 global.libreria = 'Baileys'
 global.baileys = 'V 6.7.17' 
 global.vs = '2.2.0'
-global.nameqr = 'Itoshi V2'
-global.namebot = 'rin itoshi V2 🎄'
+global.nameqr = '𖤐 𝐒𝐮𝐤𝐮𝐧𝐚 𝐌𝐃 𖤐'
+global.namebot = '⸸𝕊𝖚𝖐𝖚𝖓𝖆 𝕭𝖔𝖙⸸🎄'
 global.sessions = 'Sessions'
 global.jadi = 'JadiBots' 
 global.blackJadibts = true
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.packname = '🎄  𝒓𝒊𝒏 𝒊𝒕𝒐𝒔𝒉𝒊 𝒃𝒐𝒕 𝑴𝑫  🎋'
-global.botname = '✦⃟⛧ _𝑨𝑹𝑰𝑵 𝑰𝑻𝑶𝑺𝑯𝑰⛧ 𝑩𝑶𝑻 𝑽²_ 🎄┋⃟✧'
-global.wm = '◟RIN ITOSHI Ｖ2◞'
-global.author = 'mᥲძᥱ ᑲᥡ : 🌈ᵀ͢ᴴᴱ𝄟⏤͟͟͞͞⃝Black'
+global.packname = '🎄  ⸸𝕊𝖚𝖐𝖚𝖓𝖆 𝕭𝖔𝖙 𝑴𝑫⸸  🎋'
+global.botname = '✦⃟⛧ _𝑺𝑼𝑲𝑼𝑵𝑨⛧ 𝑩𝑶𝑻_ 🎄┋⃟✧'
+global.wm = '◟𝐒𝐮𝐤𝐮𝐧𝐚 𝐁𝐨𝐭◞'
+global.author = 'mᥲძᥱ ᑲᥡ  🌈͢𝄟⏤͟͟͞͞⃝Black'
 global.dev = '୧ㅤミ★ 》 Tʜᴇ Bʟᴀᴄᴋ 𝘰𝘧𝘤《★彡 🎋'
-global.bot = '𝑹𝒊𝒏 𝑰𝒕𝒐𝒔𝒉𝒊'
-global.textbot = 'ℝ𝕀ℕ 𝕀𝕋𝕆ℙ𝕊ℍ𝕀 𝕍2 𝕏 𝔹𝕃𝔸ℂ𝕂'
+global.bot = '𝑺𝒖𝒌𝒖𝒏𝒂 𝑩𝒐𝒕'
+global.textbot = '𝚂𝚄𝙺𝚄𝙽𝙰 𝙱𝙾𝚃 𝕏 𝔹𝕃𝔸ℂ𝕂'
 global.etiqueta = '@ʙʟᴀᴄᴋ.ᴏғᴄ'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
 global.moneda = 'coins'
-global.welcom1 = '⚽ 𝐄ძі𝗍ᥲ ᥱᥣ ᥕᥱᥣᥴ᥆mᥱ ᥴ᥆ᥒ #sᥱ𝗍ᥕᥱᥣᥴ᥆mᥱ'
-global.welcom2 = '⚽ 𝐄ძі𝗍ᥲ ᥱᥣ ᥕᥱᥣᥴ᥆mᥱ ᥴ᥆ᥒ #sᥱ𝗍ᑲᥡᥱ'
-global.banner = 'https://files.catbox.moe/8u4f6p.png'
-global.avatar = 'https://files.catbox.moe/jiarb6.jpg'
-global.logo = 'https://files.catbox.moe/0iehy3.jpg'
+global.welcom1 = '💥 𝐄ძі𝗍ᥲ ᥱᥣ ᥕᥱᥣᥴ᥆mᥱ ᥴ᥆ᥒ #sᥱ𝗍ᥕᥱᥣᥴ᥆mᥱ'
+global.welcom2 = '💥 𝐄ძі𝗍ᥲ ᥱᥣ ᥕᥱᥣᥴ᥆mᥱ ᥴ᥆ᥒ #sᥱ𝗍ᑲᥡᥱ'
+global.banner = 'https://files.catbox.moe/r3jdyl.jpg'
+global.avatar = 'https://files.catbox.moe/kjh6ga.jpg'
+global.logo = 'https://files.catbox.moe/ha863t.jpg'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
