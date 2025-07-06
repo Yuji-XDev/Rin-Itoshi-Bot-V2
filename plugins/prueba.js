@@ -1,51 +1,39 @@
 import axios from 'axios';
 
-let handler = async (m, { conn, text, usedPrefix, command }) => {
-  if (!text) {
-    return m.reply(`❗ *Debes proporcionar un enlace de YouTube:*\n\n📌 Ejemplo: *${usedPrefix + command} https://www.youtube.com/watch?v=VU1-vzuJNIs*`);
-  }
+let handler = async (m, { conn, args, usedPrefix, command }) => {
+  const defaultLink = 'https://f-droid.org/id/packages/me.shrimadhavuk.numselapp';
+  const inputUrl = args[0] || defaultLink;
 
   try {
-    console.log('[URL proporcionada]:', text);
-    const api = `https://api.dorratz.com/v3/ytmp3?url=${encodeURIComponent(text)}`;
-    console.log('[Llamando API]:', api);
+    await m.react('⏳');
 
-    const res = await axios.get(api, {
-      headers: { 'Accept': 'application/json' }
-    });
+    const res = await axios.get(`https://api.dorratz.com/v3/fdroid-dl?url=${encodeURIComponent(inputUrl)}`);
+    const data = res.data;
 
-    console.log('[Respuesta API]:', res.data);
+    if (!data || !data.url) throw '❌ No se encontró el archivo APK.';
 
-    if (!res.data?.result?.url) {
-      throw new Error('No se pudo obtener el MP3.');
-    }
-
-    const { title, url, size, thumbnail } = res.data.result;
+    let texto = `
+╭━━━⬣ *📦 APP ENCONTRADA*
+┃ 🧩 *Nombre:* ${data.name || 'Desconocido'}
+┃ 📦 *Paquete:* ${data.package || 'N/A'}
+┃ 📌 *Versión:* ${data.version || 'N/A'}
+┃ 📥 *Tamaño:* ${data.size || 'N/A'}
+┃ 📝 *Descripción:* ${data.desc || 'Sin descripción'}
+╰━━━━━━━━━━━━⬣
+`.trim();
 
     await conn.sendMessage(m.chat, {
-      audio: { url },
-      mimetype: 'audio/mpeg',
-      fileName: `${title}.mp3`,
-      ptt: false,
-      contextInfo: {
-        externalAdReply: {
-          title: "Descarga completada 🎶",
-          body: title,
-          mediaType: 2,
-          thumbnailUrl: thumbnail || null,
-          sourceUrl: text
-        }
-      }
+      document: { url: data.url },
+      mimetype: 'application/vnd.android.package-archive',
+      fileName: `${data.name || 'App'} v${data.version || ''}.apk`,
+      caption: texto
     }, { quoted: m });
 
   } catch (e) {
-    console.error('[Error]:', e);
-    m.reply(`❌ Ocurrió un error al descargar el MP3.\n\n${e?.response?.data?.message || e.message}`);
+    console.error(e);
+    await m.reply('❌ Error al obtener la app. Asegúrate de que el enlace de F-Droid es válido.');
   }
 };
 
-handler.command = /^ytmp3|yta|ytmusica$/i;
-handler.help = ['ytmp3 <enlace>'];
-handler.tags = ['downloader'];
-
+handler.command = /^fdroid|apkf$/i;
 export default handler;
