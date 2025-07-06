@@ -1,11 +1,11 @@
 import fetch from 'node-fetch';
 
 let handler = async (m, { conn, text }) => {
-    if (!text) return conn.reply(m.chat, '*🎈 Ingresa un término de búsqueda.*', m, rcanal);
+    if (!text) return conn.reply(m.chat, '*✨ Ingresa un término de búsqueda.*', m, rcanal);
 
     await m.react('🕓');
     try {
-        const response = await fetch(`https://api.rynn-archive.biz.id/search/fdroid?q=${encodeURIComponent(text)}`);
+        const response = await fetch(`https://api.dorratz.com/v3/fdroid-search?query=${encodeURIComponent(text)}`);
         const contentType = response.headers.get('content-type');
 
         if (!contentType || !contentType.includes('application/json')) {
@@ -19,11 +19,10 @@ let handler = async (m, { conn, text }) => {
             throw new Error('No se encontraron resultados para tu búsqueda.');
         }
 
-        let txt = `*乂  S E A R C H  -  F D R O I D*\n\n`;
+        let txt = `*📦 RESULTADOS EN F-DROID:*\n\n`;
         for (const app of data.result) {
-            txt += `✦ *Nombre:* ${app.name}\n`;
-            txt += `📄 *Descripción:* ${app.description}\n`;
-            txt += `📜 *Licencia:* ${app.license}\n`;
+            txt += `🌐 *Nombre:* ${app.name}\n`;
+            txt += `📄 *Descripción:* ${app.description || 'Sin descripción'}\n`;
             txt += `🔗 *Enlace:* ${app.link}\n\n`;
         }
 
