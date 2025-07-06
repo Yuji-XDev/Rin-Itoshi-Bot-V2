@@ -1,39 +1,46 @@
 import axios from 'axios';
 
-let handler = async (m, { conn, text, args, usedPrefix, command }) => {
+let handler = async (m, { conn, text, usedPrefix, command }) => {
   if (!text) {
     return m.reply(`❗ *Debes proporcionar un enlace de YouTube:*\n\n📌 Ejemplo: *${usedPrefix + command} https://www.youtube.com/watch?v=VU1-vzuJNIs*`);
   }
 
   try {
+    console.log('[URL proporcionada]:', text);
     const api = `https://api.dorratz.com/v3/ytmp3?url=${encodeURIComponent(text)}`;
-    const res = await axios.get(api);
+    console.log('[Llamando API]:', api);
 
-    if (!res.data || !res.data.result || !res.data.result.url) {
+    const res = await axios.get(api, {
+      headers: { 'Accept': 'application/json' }
+    });
+
+    console.log('[Respuesta API]:', res.data);
+
+    if (!res.data?.result?.url) {
       throw new Error('No se pudo obtener el MP3.');
     }
 
-    const { title, url, size } = res.data.result;
+    const { title, url, size, thumbnail } = res.data.result;
 
     await conn.sendMessage(m.chat, {
-      audio: { url: url },
+      audio: { url },
       mimetype: 'audio/mpeg',
       fileName: `${title}.mp3`,
-      ptt: false, // true si quieres enviarlo como audio de voz
+      ptt: false,
       contextInfo: {
         externalAdReply: {
           title: "Descarga completada 🎶",
           body: title,
           mediaType: 2,
-          thumbnailUrl: res.data.result.thumbnail || null,
+          thumbnailUrl: thumbnail || null,
           sourceUrl: text
         }
       }
     }, { quoted: m });
 
   } catch (e) {
-    console.error(e);
-    m.reply(`❌ Ocurrió un error al descargar el MP3.\n\n${e.message}`);
+    console.error('[Error]:', e);
+    m.reply(`❌ Ocurrió un error al descargar el MP3.\n\n${e?.response?.data?.message || e.message}`);
   }
 };
 
