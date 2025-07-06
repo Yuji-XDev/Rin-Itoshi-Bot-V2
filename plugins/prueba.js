@@ -15,10 +15,10 @@ let handler = async (m, { conn, text, command, usedPrefix }) => {
 
     let texto = `📱 *Resultados de Play Store para:* _${text}_\n\n`;
     for (let app of results.slice(0, 5)) {
-      texto += `📌 *Nombre:* ${app.nombre}\n`;
-      texto += `🧑‍💻 *Desarrollador:* ${app.desarrollador}\n`;
-      texto += `⭐ *Rating:* ${app.Número_de_calificación} (${app.rating})\n`;
-      texto += `🔗 *Enlace:* ${app.enlace}\n\n`;
+      texto += `📌 *Nombre:* ${app.nombre || 'desconocido'}\n`;
+      texto += `🧑‍💻 *Desarrollador:* ${app.desarrollador || 'desconocido'}\n`;
+      texto += `⭐ *Rating:* ${app.Número_de_calificación || 'desconocido'} (${app.rating || 'desconocido'})\n`;
+      texto += `🔗 *Enlace:* ${app.enlace || 'desconocido'}\n\n`;
     }
 
     await conn.sendMessage(m.chat, {
