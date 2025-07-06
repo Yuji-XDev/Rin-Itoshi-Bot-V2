@@ -17,7 +17,7 @@ const handler = async (m, { isOwner, isAdmin, conn, text, participants, args, co
 
  
   let teks = [
-    `╭══〔 🦠 𝒓𝒊𝒏 𝒊𝒕𝒐𝒔𝒉𝒊 💫 〕══╮`,
+    `╭══〔 🦠 SUKUNA BOT 💫 〕══╮`,
     `│ 🥥 𝑀𝐸𝑁𝐶𝐼𝑂𝑁 𝐺𝐸𝑁𝐸𝑅𝐴𝐿 🥞`,
     `│ 🧃 *𝙼𝙸𝙴𝙼𝙱𝚁𝙾𝚂*: ${participants.length}`,
     `│ 🍁 *𝙶𝚁𝚄𝙿𝙾*: ${groupName}`,

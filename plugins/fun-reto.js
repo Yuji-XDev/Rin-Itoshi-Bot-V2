@@ -13,7 +13,7 @@ let handler = async (m, { conn }) => {
 
 *⚄ ${pickRandom(global.bucin)}*
 
-┗━━「  𝐋𝐈𝐆𝐇𝐓 - 𝐘𝐀𝐆𝐀𝐌𝐈 」━━┛`.trim()
+┗━━「  𝐒𝐔𝐊𝐔𝐍𝐀 𝐁𝐎𝐓 」━━┛`.trim()
 
   const fkontak = {
     key: {
@@ -34,7 +34,7 @@ let handler = async (m, { conn }) => {
     isForwarded: true,
     externalAdReply: {
       showAdAttribution: true,
-      title: "ʟɪɢʜᴛ ʏᴀɢᴀᴍɪ ʙᴏᴛ ᴍᴅ",
+      title: "𝐬𝐮𝐤𝐮𝐧𝐚 𝐛𝐨𝐭  𝐦𝐝",
       body: "🌴 sigue el canal para mas novedades.",
       mediaType: 1,
       previewType: "PHOTO",

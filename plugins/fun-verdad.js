@@ -11,14 +11,14 @@ let handler = async (m, { conn }) => {
 
 *⚄ ${pickRandom(global.verdad)}*
 
-┗━━「  𝐋𝐈𝐆𝐇𝐓 - 𝐘𝐀𝐆𝐀𝐌𝐈  」━━┛`.trim()
+┗━━「  𝐒𝐔𝐊𝐔𝐍𝐀 𝐁𝐎𝐓  」━━┛`.trim()
 
   const rcanal = {
     forwardingScore: 999,
     isForwarded: true,
     externalAdReply: {
       showAdAttribution: true,
-      title: "light Yagami",
+      title: "Sukuna bot",
       body: "🌴 sigue el canal para mas novedades.",
       mediaType: 1,
       previewType: "PHOTO",

@@ -41,7 +41,7 @@ let { say } = cfonts
 
 console.log(chalk.bold.redBright(`\nあ 💻 INICIANDO SISTEMA, ESPERE TANTITO.......\n`))
 
-say('RIN ITOSHI', {
+say('SUKUNA BOT', {
 font: 'block',
 align: 'center',
 colors: ['magentaBright']
@@ -206,7 +206,7 @@ if (opcion == '1' || methodCodeQR) {
 console.log(chalk.bold.yellow(`\n❐ ESCANEA EL CÓDIGO QR EXPIRA EN 45 SEGUNDOS`))}
 }
 if (connection == 'open') {
-console.log(chalk.bold.green('\n🎄 Rin Itoshi Conectado con éxito. 🎄'))
+console.log(chalk.bold.green('\n🎄 Sukuna Conectado con éxito. 🎄'))
 }
 let reason = new Boom(lastDisconnect?.error)?.output?.statusCode
 if (connection === 'close') {

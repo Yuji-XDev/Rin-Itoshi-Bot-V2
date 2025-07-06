@@ -10,7 +10,7 @@ let handler = async (m, { conn, participants }) => {
     let info = sys.split('\n').map(line => `┃ ${line}`).join('\n')
 
     let text = `
-╭─⭑⚽︎・*SUKUNA BOT MODE*・⚽︎⭑─╮
+╭─⭑✔️︎・*SUKUNA BOT MODE*・,🎄⭑─╮
 ┃ 🧬 *Sistema activo:*  
 ┃ ⚡ *Latencia:* ${latency} ms
 ┃ 🛠️ *Detalles técnicos:*
