@@ -32,35 +32,35 @@ const handler = async (m, { text, conn, args }) => {
 
     const res = await aio(args[0]);
 
-    if (!res || !res.url) {
+    if (!res || !Array.isArray(res.medias) || res.medias.length === 0) {
       await m.react(error);
       return conn.reply(m.chat, `😕 No se pudo obtener el video.`, m);
     }
 
+    // Elegimos el mejor enlace de video disponible
+    const video = res.medias.find(v => v.quality?.toLowerCase().includes('hd')) || res.medias[0];
+
+    if (!video || !video.url) {
+      await m.react(error);
+      return conn.reply(m.chat, `😕 No se encontró un video válido para descargar.`, m);
+    }
+
     const title = res.title || "Título no disponible";
-    const duration = res.duration || "Desconocida";
-    const published = res.published || "No especificada";
-    const likes = res.likes || res.reactions || "No disponible";
-    const comments = res.comments || "No disponible";
-    const shares = res.shares || "No disponible";
     const source = args[0];
 
     const caption = `
 🎬 *${title}*
-⏱️ *Duración:* ${duration}
-📅 *Publicado:* ${published}
-
-👍 *Me gusta:* ${likes}
-💬 *Comentarios:* ${comments}
-🔁 *Compartido:* ${shares}
+📥 *Calidad:* ${video.quality || 'Desconocida'}
 
 🌐 *Enlace:* ${source}
+
+*🌛 Disfruta El Video.*
 `.trim();
 
     await conn.sendMessage(
       m.chat,
       {
-        video: { url: res.url },
+        video: { url: video.url },
         caption,
         fileName: 'facebook.mp4',
         mimetype: 'video/mp4'
