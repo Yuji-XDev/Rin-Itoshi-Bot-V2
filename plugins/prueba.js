@@ -1,44 +1,44 @@
-import yts from 'yt-search'
+import axios from 'axios';
 
-const MAX_SIZE_MB = 100
-
-const handler = async (m, { conn, text, command }) => {
-  if (!text) return m.reply('🔍 *Por favor, ingresa el nombre o link del video.*')
-
-  await m.react('🔎')
+let handler = async (m, { conn, text, args, usedPrefix, command }) => {
+  if (!text) {
+    return m.reply(`❗ *Debes proporcionar un enlace de YouTube:*\n\n📌 Ejemplo: *${usedPrefix + command} https://www.youtube.com/watch?v=VU1-vzuJNIs*`);
+  }
 
   try {
-    const isLink = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\//i.test(text)
-    const search = isLink ? { url: text } : (await yts(text)).all[0]
+    const api = `https://api.dorratz.com/v3/ytmp3?url=${encodeURIComponent(text)}`;
+    const res = await axios.get(api);
 
-    if (!search) return m.reply('❌ *No se encontraron resultados.*')
-
-    const info = await ytMp4(search.url)
-
-    if (info.size > MAX_SIZE_MB) {
-      return m.reply(`❌ *El video es demasiado pesado (${info.size} MB). Máximo permitido: ${MAX_SIZE_MB} MB.*`)
+    if (!res.data || !res.data.result || !res.data.result.url) {
+      throw new Error('No se pudo obtener el MP3.');
     }
 
+    const { title, url, size } = res.data.result;
+
     await conn.sendMessage(m.chat, {
-      video: { url: info.dl_link },
-      mimetype: 'video/mp4',
-      caption: `📹 *Título:* ${search.title}\n⏱️ *Duración:* ${search.timestamp}\n📦 *Tamaño:* ${info.size} MB\n🔗 *Enlace:* ${search.url}`
-    }, { quoted: m })
+      audio: { url: url },
+      mimetype: 'audio/mpeg',
+      fileName: `${title}.mp3`,
+      ptt: false, // true si quieres enviarlo como audio de voz
+      contextInfo: {
+        externalAdReply: {
+          title: "Descarga completada 🎶",
+          body: title,
+          mediaType: 2,
+          thumbnailUrl: res.data.result.thumbnail || null,
+          sourceUrl: text
+        }
+      }
+    }, { quoted: m });
+
   } catch (e) {
-    console.error(e)
-    m.reply('❌ *Ocurrió un error al procesar el video.*')
+    console.error(e);
+    m.reply(`❌ Ocurrió un error al descargar el MP3.\n\n${e.message}`);
   }
-}
+};
 
-handler.command = /^play4$/i
-export default handler
+handler.command = /^ytmp3|yta|ytmusica$/i;
+handler.help = ['ytmp3 <enlace>'];
+handler.tags = ['downloader'];
 
-async function ytMp4(url) {
-  const axios = (await import('axios')).default
-  const { data } = await axios.get(`https://yt.btch.bz/download?URL=${encodeURIComponent(url)}&type=mp4&quality=360`)
-  const size = data.filesize / (1024 * 1024)
-  return {
-    dl_link: data.download,
-    size: size.toFixed(2),
-  }
-}
+export default handler;
