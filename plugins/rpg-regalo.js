@@ -11,7 +11,7 @@ const handler = async (m, { conn }) => {
 
     const user = global.db.data.users[m.sender];
     
-    conn.sendMessage(m.chat, {text: `☕ *@${m.sender.split('@')[0]} Rin Itoshi Te Ha Regalado:*\n> 💵 500 ${moneda}\n> 💶 1000 Experiencia\n> 🪙 20 Tokens`, mentions: [m.sender]}, {quoted: fkontak});
+    conn.sendMessage(m.chat, {text: `☕ *@${m.sender.split('@')[0]} light yagami Te Ha Regalado:*\n> 💵 500 ${moneda}\n> 💶 1000 Experiencia\n> 🪙 20 Tokens`, mentions: [m.sender]}, {quoted: fkontak});
 
     user.joincount += 20;
     user.coin += 500;
