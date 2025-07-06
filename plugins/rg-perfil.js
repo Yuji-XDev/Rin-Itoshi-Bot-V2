@@ -26,7 +26,7 @@ let handler = async (m, { conn, args }) => {
     let perfil = await conn.profilePictureUrl(userId, 'image').catch(_ => 'https://raw.githubusercontent.com/The-King-Destroy/Adiciones/main/Contenido/1745522645448.jpeg');
 
     let profileText = `╭─〔 ✦ 𝐄𝐗𝐏𝐄𝐃𝐈𝐄𝐍𝐓𝐄 𝐀𝐍Á𝐋𝐈𝐓𝐈𝐂𝐎 ✦ 〕─╮
-        ✧ 𝙍𝙄𝙉 𝙄𝙏𝙊𝙎𝙃𝙄 - 𝓑𝓵𝓾𝓮 𝓛𝓸𝓬𝓴 ✧
+        ✧ 𝙇𝙄𝙂𝙃𝙏 𝙔𝘼𝙂𝘼𝙈𝙄 - 𝖇𝖑𝖆𝖈𝖐 ✧
 ╰───────────────────────────╯
 
 🆔 𝕌𝕤𝕦𝕒𝕣𝕚𝕠: @${userId.split('@')[0]}

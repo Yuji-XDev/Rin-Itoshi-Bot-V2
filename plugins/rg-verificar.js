@@ -40,7 +40,7 @@ let handler = async function (m, { conn, text, usedPrefix, command }) {
 > 📝 ¿𝙌𝙪𝙞𝙚𝙧𝙚𝙨 𝙚𝙢𝙥𝙚𝙯𝙖𝙧 𝙙𝙚 𝙘𝙚𝙧𝙤?
 
 > 🗑️ Usa el comando especial para *eliminar tu registro* y volver a registrarte 🧙‍♂️\n> #unreg`,
-      footer: "ʀɪɴ ɪᴛᴏsʜɪ ʙᴏᴛ ᴠ²",
+      footer: "LIGHT YAGAMI MD",
       buttons: [{ buttonId: `${usedPrefix}unreg`, buttonText: { displayText: '🌿 unreg' }, type: 1 }],
       headerType: 1
     }, { quoted: m });
@@ -58,7 +58,7 @@ let handler = async function (m, { conn, text, usedPrefix, command }) {
 *${usedPrefix + command} ${name2}.18*
 
 🥀 Usa un punto (.) para separar tu nombre y tu edad.`,
-      footer: "ʀɪɴ ɪᴛᴏsʜɪ ʙᴏᴛ ᴠ2",
+      footer: "LIGHT YAGAMI MD",
       buttons: [{ buttonId: `#register ${name2}.18`, buttonText: { displayText: 'Verificacion Automatica ✔️' }, type: 1 }],
       headerType: 1
     }, { quoted: m });
@@ -105,7 +105,7 @@ let handler = async function (m, { conn, text, usedPrefix, command }) {
     contextInfo: {
       externalAdReply: {
         title: '୧⍤⃝⋆⌣⋆ 𝑼𝒔𝒖𝒂𝒓𝒊𝒐 𝑽𝒆𝒓𝒆𝒇𝒊𝒄𝒂𝒅𝒐 ❛░⃟ ⃟°˟',
-        body: '🐉 ʀɪɴ ɪᴛᴏsʜɪ ʙᴏᴛ ᴠ⅔ 👽👾',
+        body: '🐉 LIGHT YAGAMI BOT MD 👽👾',
         thumbnail: { url: pp },
         sourceUrl: channel,
         mediaType: 1,

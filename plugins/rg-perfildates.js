@@ -45,7 +45,7 @@ let handler = async (m, { conn, usedPrefix }) => {
   await conn.sendMessage(m.chat, {
     image: { url: img },
     caption: txt,
-    footer: "⭐ ʀɪɴ ɪᴛᴏsʜɪ ʙᴏᴛ ᴍᴅ ✨",
+    footer: "LIGHT YAGAMI",
     buttons: buttons,
     viewOnce: true,
     contextInfo: { forwardingScore: 999, isForwarded: true, fkontak }

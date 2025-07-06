@@ -11,14 +11,14 @@ let handler = async (m, { conn }) => {
 
 *⚄ ${pickRandom(global.verdad)}*
 
-┗━━「  𝐑 𝐈 𝐍 - 𝐈𝐓𝐎𝐒𝐇𝐈  」━━┛`.trim()
+┗━━「  𝐋𝐈𝐆𝐇𝐓 - 𝐘𝐀𝐆𝐀𝐌𝐈  」━━┛`.trim()
 
   const rcanal = {
     forwardingScore: 999,
     isForwarded: true,
     externalAdReply: {
       showAdAttribution: true,
-      title: "RIN ITOSHI BOT MD ",
+      title: "light Yagami",
       body: "🌴 sigue el canal para mas novedades.",
       mediaType: 1,
       previewType: "PHOTO",

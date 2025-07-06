@@ -3,7 +3,7 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
 
   if (['botreglas', 'reglasdelbot', 'reglasbot', 'reglas'].includes(command)) {
     texto = `
-╭══🎴『 𝙍𝙀𝙂𝙇𝘼𝙈𝙀𝙉 𝙄𝙏𝙊𝙎𝙃𝙄 』🎴══╮
+╭══🎴『 𝙍𝙀𝙂𝙇𝘼𝙈𝙀𝙉 𝐋𝐢𝐠𝐡𝐭 』🎴══╮
 ┃ ⚠️ *𝐂𝐨𝐝𝐢𝐠𝐨 𝐝𝐞 𝐨𝐧𝐨𝐫 – Black*
 ┃
 ┃ ✘ No llamar al bot innecesariamente.

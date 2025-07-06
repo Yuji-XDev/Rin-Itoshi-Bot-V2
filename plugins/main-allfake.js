@@ -29,15 +29,15 @@ console.log(`Error : ${e}`)
   
 global.creador = 'wa.me/51969214380'
 global.ofcbot = `${conn.user.jid.split('@')[0]}`
-global.namechannel = '=͟͟͞𝐑𝐈𝐍 𝐈𝐓𝐎𝐒𝐇𝐈 𝐁𝐎𝐓 𝐕2 • 𝐂𝐡𝐚𝐧𝐧𝐞𝐥 ⌺'
-global.namechannel2 = '=͟͟͞𝐑𝐈𝐍 𝐈𝐓𝐎𝐒𝐇𝐈 𝐁𝐎𝐓 𝐕2 • 𝐂𝐡𝐚𝐧𝐧𝐞𝐥 ⌺'
-global.namegrupo = '=͟͟͞𝐑𝐈𝐍 𝐈𝐓𝐎𝐒𝐇𝐈 𝐁𝐎𝐓 𝐕2 • 𝒐𝒇𝒊𝒄𝒊𝒂𝒍 ⌺'
-global.namecomu = '=͟͟͞𝐑𝐈𝐍 𝐈𝐓𝐎𝐒𝐇𝐈 𝐁𝐎𝐓 𝐕2 • 𝑪𝒐𝒎𝒖𝒏𝒊𝒕𝒚 ˟꘏꙳'
+global.namechannel = '=͟͟͞𝐋𝐢𝐠𝐡𝐭 𝐘𝐚𝐠𝐚𝐦𝐢 • 𝐂𝐡𝐚𝐧𝐧𝐞𝐥 ⌺'
+global.namechannel2 = '=͟͟͞𝐋𝐢𝐠𝐡𝐭 𝐘𝐚𝐠𝐚𝐦𝐢 • 𝐂𝐡𝐚𝐧𝐧𝐞𝐥 ⌺'
+global.namegrupo = '=͟͟͞𝐋𝐢𝐠𝐡𝐭 𝐘𝐚𝐠𝐚𝐦𝐢 • 𝒐𝒇𝒊𝒄𝒊𝒂𝒍 ⌺'
+global.namecomu = '=͟͟͞𝐋𝐢𝐠𝐡𝐭 𝐘𝐚𝐠𝐚𝐦𝐢 • 𝑪𝒐𝒎𝒖𝒏𝒊𝒕𝒚 ˟꘏꙳'
 global.listo = '*🌴 ＡＱＵＩ - ＴＩＥＮＥＳ ＭＥＮ*'
 global.fotoperfil = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https://files.catbox.moe/35wxsf.jpg')
 
 global.canalIdM = ["120363401008003732@newsletter", "120363401008003732@newsletter"]
-global.canalNombreM = ["  ꙰⃟☃️ ʀɪɴ ɪᴛᴏsʜɪ ʙᴏᴛ ᴠ² x ʙʟᴀᴄᴋ ★꙰⃟⸙", "🐉꙰⃟ 𖠺 𝐑𝐈𝐍 𝐈𝐓𝐎𝐒𝐇𝐈 𝐁𝐎𝐓 𝐕2 𖠺🌴⃟ᰳᰬᰶ"]
+global.canalNombreM = ["  ꙰⃟☃️ ʟɪɢʜᴛ ʏᴀɢᴀᴍɪ ʙᴏᴛ x ʙʟᴀᴄᴋ ★꙰⃟⸙", "🐉꙰⃟ 𖠺 𝐋𝐈𝐆𝐇𝐓 𝐘𝐀𝐆𝐀𝐌𝐈 - 𝐌𝐃 𖠺🌴⃟ᰳᰬᰶ"]
 global.channelRD = await getRandomChannel()
 
 global.d = new Date(new Date + 3600000)

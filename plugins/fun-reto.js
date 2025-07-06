@@ -13,7 +13,7 @@ let handler = async (m, { conn }) => {
 
 *⚄ ${pickRandom(global.bucin)}*
 
-┗━━「  𝐑 𝐈 𝐍 - 𝐈𝐓𝐎𝐒𝐇𝐈  」━━┛`.trim()
+┗━━「  𝐋𝐈𝐆𝐇𝐓 - 𝐘𝐀𝐆𝐀𝐌𝐈 」━━┛`.trim()
 
   const fkontak = {
     key: {
@@ -34,7 +34,7 @@ let handler = async (m, { conn }) => {
     isForwarded: true,
     externalAdReply: {
       showAdAttribution: true,
-      title: "RIN ITOSHI BOT MD ",
+      title: "ʟɪɢʜᴛ ʏᴀɢᴀᴍɪ ʙᴏᴛ ᴍᴅ",
       body: "🌴 sigue el canal para mas novedades.",
       mediaType: 1,
       previewType: "PHOTO",
