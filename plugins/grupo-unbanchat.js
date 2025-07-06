@@ -23,16 +23,16 @@ return conn.reply(m.chat, info, fkontak, rcanal);
   }
 if (args[0] === 'off') {
 if (chat.isBanned) {
-return conn.reply(m.chat, `⭕ *𝐑𝐈𝐍 𝐈𝐓𝐎𝐒𝐇𝐈 YA ESTABA DESACTIVADO!.*`, m, rcanal);
+return conn.reply(m.chat, `⭕ *SUKUNA YA ESTABA DESACTIVADO!.*`, m, rcanal);
 }
 chat.isBanned = true
-return conn.reply(m.chat, `🏔️ *𝐑𝐈𝐍 𝐈𝐓𝐎𝐒𝐇𝐈 HA SIDO DESACTIVADO EN ESTE CHAT!.*`, m, rcanal);
+return conn.reply(m.chat, `🏔️ *SUKUNA HA SIDO DESACTIVADO EN ESTE CHAT!.*`, m, rcanal);
 } else if (args[0] === 'on') {
 if (!chat.isBanned) {
-return conn.reply(m.chat, `⭕ *𝐑𝐈𝐍 𝐈𝐓𝐎𝐒𝐇𝐈 YA ESTABA ACTIVO!.*`, m, rcanal);
+return conn.reply(m.chat, `⭕ *SUKUNA YA ESTABA ACTIVO!.*`, m, rcanal);
 }
 chat.isBanned = false
-return conn.reply(m.chat, `✅ *𝐑𝐈𝐍 𝐈𝐓𝐎𝐒𝐇𝐈 HA SIDO ACTIVADO EN ESTE CHAT!.*`, m, rcanal);
+return conn.reply(m.chat, `✅ *SUKUNA HA SIDO ACTIVADO EN ESTE CHAT!.*`, m, rcanal);
 }}
 }
 

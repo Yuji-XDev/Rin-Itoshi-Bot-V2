@@ -128,7 +128,7 @@ export async function before(m, { conn }) {
 
     await conn.sendMessage(m.chat, {
       text: mensaje,
-      footer: '🧸 ʀɪɴ ɪᴛᴏsʜɪ ʙᴏᴛ 🧸',
+      footer: '🧸 SUKUNA BOT MD 🧸',
       buttons: [
         {
           buttonId: '.menu',

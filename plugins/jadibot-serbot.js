@@ -31,7 +31,7 @@ let crm4 = "IF9hdXRvcmVzcG9uZGVyLmpzIGluZm8tYm90Lmpz"
 let drm1 = ""
 let drm2 = ""
 let rtx = `╔══════════════════════════╗
-║ ✨💥  RIN ITOSHI -  B O T  🛶✨ 
+║ ✨💥  ＳＵＫＵＮＡ -  B O T  🛶✨ 
 ╠══════════════════════════╣
 ║ ⟿ 💛 Utilice otro celular para escanear 
 ║    este codigo 'QR' o escanea el codigo
@@ -50,7 +50,7 @@ let rtx = `╔══════════════════════
 ║     45 segundos
 ╚══════════════════════════╝`;
 let rtx2 = `╔══════════════════════════╗
-║ ✨💥  RIN ITOSHI -  B O T  🛶✨ 
+║ ✨💥  ＳＵＫＵＮＡ -  B O T  🛶✨ 
 ╠══════════════════════════╣
 ║ ⟿ 💛 Usa este codigo para convertirte
 ║     en Sub-Bot ☄️
@@ -169,7 +169,7 @@ if (qr && mcode) {
 let secret = await sock.requestPairingCode((m.sender.split`@`[0]))
 secret = secret.match(/.{1,4}/g)?.join("-")
 
-let imgPath = 'https://files.catbox.moe/35wxsf.jpg';
+let imgPath = 'https://files.catbox.moe/vm6opf.jpg';
 
 let txtCode = await conn.sendMessage(m.chat, { 
     text: rtx2,
@@ -179,7 +179,7 @@ let txtCode = await conn.sendMessage(m.chat, {
         forwardingScore: 999,
         externalAdReply: {
             title: "✧ ᴄᴏɴᴇxɪᴏɴ ᴅᴇ sᴜʙʙᴏᴛ ᴍᴏᴅᴇ: ᴄᴏᴅᴇꦿ✧",
-            body: "🌴 𝗥𝗜𝗡 𝗜𝗧𝗢𝗦𝗛𝗜 𝘽𝙊𝙏 𝗩² 💥",
+            body: "🌴 ＳＵＫＵＮＡ ＢＯＴ ＭＤ 💥",
             thumbnailUrl: imgPath,
             sourceUrl: 'https://github.com/the-27',
             mediaType: 1,

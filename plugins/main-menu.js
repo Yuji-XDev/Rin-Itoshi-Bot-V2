@@ -622,7 +622,7 @@ let handler = async (m, { conn, args }) => {
             isForwarded: true,  
             forwardedNewsletterMessageInfo: {  
                 newsletterJid: '120363401008003732@newsletter',  
-                newsletterName: '⚡ 𝙇𝙄𝙂𝙃𝙏 𝙔𝘼𝙂𝘼𝙈𝙄 𝘽𝙊𝙏 𝙈𝘿 | 𝘾𝙃𝘼𝙉𝙉𝙀𝙇 ⭐',  
+                newsletterName: '⚡ SUKUNA BOT MD | 𝘾𝙃𝘼𝙉𝙉𝙀𝙇 ⭐',  
                 serverMessageId: -1,  
             },  
             forwardingScore: 999,  

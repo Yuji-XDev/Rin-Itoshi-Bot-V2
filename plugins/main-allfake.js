@@ -34,10 +34,10 @@ global.namechannel2 = '=͟͟͞𝐋𝐢𝐠𝐡𝐭 𝐘𝐚𝐠𝐚𝐦𝐢 • 
 global.namegrupo = '=͟͟͞𝐋𝐢𝐠𝐡𝐭 𝐘𝐚𝐠𝐚𝐦𝐢 • 𝒐𝒇𝒊𝒄𝒊𝒂𝒍 ⌺'
 global.namecomu = '=͟͟͞𝐋𝐢𝐠𝐡𝐭 𝐘𝐚𝐠𝐚𝐦𝐢 • 𝑪𝒐𝒎𝒖𝒏𝒊𝒕𝒚 ˟꘏꙳'
 global.listo = '*🌴 ＡＱＵＩ - ＴＩＥＮＥＳ ＭＥＮ*'
-global.fotoperfil = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https://files.catbox.moe/35wxsf.jpg')
+global.fotoperfil = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https://files.catbox.moe/vm6opf.jpg')
 
 global.canalIdM = ["120363401008003732@newsletter", "120363401008003732@newsletter"]
-global.canalNombreM = ["  ꙰⃟☃️ ʟɪɢʜᴛ ʏᴀɢᴀᴍɪ ʙᴏᴛ x ʙʟᴀᴄᴋ ★꙰⃟⸙", "🐉꙰⃟ 𖠺 𝐋𝐈𝐆𝐇𝐓 𝐘𝐀𝐆𝐀𝐌𝐈 - 𝐌𝐃 𖠺🌴⃟ᰳᰬᰶ"]
+global.canalNombreM = ["  ꙰⃟🎄  ⸸𝕊𝖚𝖐𝖚𝖓𝖆 𝕭𝖔𝖙 𝑴𝑫⸸  🎋★꙰⃟⸙", "🐉꙰⃟ 𖠺 SUKUNA BOT - 𝐌𝐃 𖠺🌴⃟ᰳᰬᰶ"]
 global.channelRD = await getRandomChannel()
 
 global.d = new Date(new Date + 3600000)
