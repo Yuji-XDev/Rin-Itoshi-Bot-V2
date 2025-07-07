@@ -11,18 +11,18 @@ const handler = async (m, { isOwner, isAdmin, conn, text, participants, args, co
     throw false;
   }
 
-  const pesan = args.length ? args.join(' ') : '¡Sean bienvenidos, 𝗗𝗘𝗦𝗣𝗜𝗘𝗥𝗧𝗘𝗡 𝗣𝗟𝗔𝗡𝗧𝗔𝗦 🌱!';
+  const pesan = args.length ? args.join(' ') : '𝙈𝙄𝙍𝘼𝘿, 𝙄𝙉𝙎𝙀𝘾𝙏𝙊𝙎 𝙃𝙊𝙔 𝙇𝘼 𝘾𝘼𝙇𝙈𝘼 𝙃𝘼 𝙈𝙐𝙀𝙍𝙏𝙊 𝙎𝙐𝙎 𝙍𝙀𝙂𝙇𝘼𝙎 𝙔 𝙊𝙍𝘿𝙀𝙉 𝙈𝙀 𝘿𝘼𝙉 𝙍𝙄𝙎𝘼 𝗗𝗘𝗦𝗣𝗜𝗘𝗥𝗧𝗘𝗡 𝗣𝗟𝗔𝗡𝗧𝗔𝗦 𝙃𝙊𝙔 𝙀𝙎 𝙀𝙇 𝘿𝙄́𝘼 𝘿𝙀 𝙇𝘼 𝙋𝙐𝙍𝙂𝘼...';
   const mj = `°◦⃝📑 *𝙼𝙴𝙽𝚂𝙰𝙹𝙴:*\n│ ${pesan}`;
   const groupName = await conn.getName(m.chat);
 
  
   let teks = [
-    `╭══〔 🦠 SUKUNA BOT 💫 〕══╮`,
-    `│ 🥥 𝑀𝐸𝑁𝐶𝐼𝑂𝑁 𝐺𝐸𝑁𝐸𝑅𝐴𝐿 🥞`,
-    `│ 🧃 *𝙼𝙸𝙴𝙼𝙱𝚁𝙾𝚂*: ${participants.length}`,
-    `│ 🍁 *𝙶𝚁𝚄𝙿𝙾*: ${groupName}`,
-    `├─➤ ${mj}`,
-    `❖––––––––––––––––––✦`
+  `╭─────〔 🔱 𝙎𝙐𝙆𝙐𝙉𝘼 𝘽𝙊𝙏 ⚡ 〕─────╮`,
+  `│ 🩸 𝙈𝙀𝙉𝘾𝙄𝙊𝙉 𝘿𝙀𝙈𝙊𝙉í𝘼𝘾𝘼`,
+  `│ 🕷️ 𝙈𝙄𝙀𝙈𝘽𝙍𝙊𝙎: *${participants.length}*`,
+  `│ 🕸️ 𝙂𝙍𝙐𝙋𝙊: *${groupName}*`,
+  `├⫸ 👁️‍🗨️ ${mj}`,
+  `╰─➤`
   ];
 
   for (const mem of participants) {
@@ -47,7 +47,7 @@ const handler = async (m, { isOwner, isAdmin, conn, text, participants, args, co
         sourceUrl: 'https://whatsapp.com/channel/0029VbAtbPA84OmJSLiHis2U',
       }
     }
-  }, { quoted: m });
+  }, { quoted: fkontak });
 };
 
 handler.help = ['todos *<mensaje opcional>*'];
