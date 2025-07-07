@@ -1,15 +1,24 @@
 import axios from 'axios';
-import fetch from 'node-fetch'; // IMPORTANTE: ¡Esto era lo que faltaba!
+import fetch from 'node-fetch';
+
+const isValidYouTubeUrl = (url) => {
+  const ytRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)[\w\-]{11}/;
+  return ytRegex.test(url);
+};
 
 const handler = async (m, { conn, text, command, usedPrefix }) => {
-  if (!text) {
-    return conn.reply(m.chat, `❗ *Debes proporcionar un enlace de YouTube:*\n\n📌 *Ejemplo:* ${usedPrefix + command} https://www.youtube.com/watch?v=abc123`, m);
+  if (!text || !isValidYouTubeUrl(text)) {
+    return conn.reply(
+      m.chat,
+      `❗ *Debes proporcionar un enlace válido de YouTube:*\n\n📌 *Ejemplo:* ${usedPrefix + command} https://www.youtube.com/watch?v=abc123`,
+      m
+    );
   }
 
   try {
-    const res = await axios.get(`https://api.vreden.my.id/api/ytmp3?url=${url}`);
-
+    const res = await axios.get(`https://api.vreden.my.id/api/ytmp3?url=${encodeURIComponent(text)}`);
     const result = res.data?.result;
+
     if (!result || !result.url) {
       return conn.reply(m.chat, '❌ No se pudo obtener el audio. La API respondió incorrectamente.', m);
     }
@@ -19,13 +28,13 @@ const handler = async (m, { conn, text, command, usedPrefix }) => {
     const audioUrl = result.url;
     const thumb = result.thumb;
 
-    // Imagen con detalles
+    // Enviar imagen con información
     await conn.sendMessage(m.chat, {
       image: { url: thumb },
       caption: `╭━━〔 🎧 𝗬𝗢𝗨𝗧𝗨𝗕𝗘 - 𝗠𝗣𝟯 〕━━⬣\n┃🎵 *Título:* ${title}\n┃⏱️ *Duración:* ${duration}\n╰━━━━━━━━━━━━⬣`,
     }, { quoted: m });
 
-    // Audio con tarjeta enriquecida
+    // Enviar audio
     await conn.sendMessage(m.chat, {
       audio: { url: audioUrl },
       fileName: `${title}.mp3`,
