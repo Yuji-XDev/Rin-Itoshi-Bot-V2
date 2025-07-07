@@ -1,10 +1,10 @@
 const handler = async (m, { conn, usedPrefix, command, isOwner, isAdmin, isBotAdmin, isPremium, isGroup, chat, args }) => {
-    // Asegurar que exista la base de datos del grupo
+  
     global.db.data.chats[m.chat] = global.db.data.chats[m.chat] || {};
     const chatData = global.db.data.chats[m.chat];
     chatData.restringidos = chatData.restringidos || [];
 
-    // ✅ Comando .res <comando>
+  
     if (command === 'res') {
         if (!isGroup) return m.reply('⚠️ Este comando solo se puede usar en grupos.');
         if (!(isAdmin || isOwner)) return m.reply('🚫 Solo los admins o el dueño del bot pueden usar este comando.');
@@ -15,7 +15,6 @@ const handler = async (m, { conn, usedPrefix, command, isOwner, isAdmin, isBotAd
         return m.reply(`✅ El comando *${comando}* ha sido restringido para los usuarios del grupo.`);
     }
 
-    // ✅ Comando .liberar <comando>
     if (command === 'liberar') {
         if (!isGroup) return m.reply('⚠️ Este comando solo se puede usar en grupos.');
         if (!(isAdmin || isOwner)) return m.reply('🚫 Solo los admins o el dueño del bot pueden usar este comando.');
@@ -26,13 +25,13 @@ const handler = async (m, { conn, usedPrefix, command, isOwner, isAdmin, isBotAd
         return m.reply(`✅ El comando *${comando}* ha sido liberado para todos.`);
     }
 
-    // ⚠️ Middleware: bloquear solo comandos restringidos
+    
     if (isGroup && chatData.restringidos?.includes(command) && !isOwner) {
-        // El comando está restringido y el usuario no es owner → ignorar
+        
         return false;
     }
 
-    // Validaciones normales (opcional)
+   
     const plugin = global.plugins?.[command];
     if (!plugin) return true;
     if (plugin.rowner && !isOwner) return m.reply(global.dfail('rowner', m, conn, usedPrefix));
@@ -50,8 +49,7 @@ handler.before = async (m, context) => {
 };
 
 handler.help = ['res <comando>', 'liberar <comando>'];
-handler.tags = ['group', 'config'];
-handler.command = /^(res|liberar)$/i;
-handler.group = true;
+handler.tags = ['group'];
+handler.command = ['res', 'liberar'];
 
 export default handler;
