@@ -1,53 +1,58 @@
-import { igdl } from 'ruhend-scraper'
+import { igdl } from 'ruhend-scraper';
 
 const handler = async (m, { text, conn, args }) => {
-  if (!args[0]) {
-    return conn.reply(m.chat, `*🥀 Por favor, ingresa un enlace de Facebook.*`, m, rcanal);
-  }
+  const url = args[0];
+  if (!url) return conn.reply(m.chat, `*🥀 Ingresa un enlace válido de Facebook.*`, m);
 
-  let res;
+  await m.react('🕒');
+
+  let videoData;
   try {
-    await m.react(rwait);
-    res = await igdl(args[0]);
+    const res = await igdl(url);
+    const result = res.data;
+
+    if (!result || result.length === 0) {
+      await m.react('❌');
+      return conn.reply(m.chat, `🚫 No se encontraron resultados para ese enlace.`, m);
+    }
+
+    videoData = result.find(i => i.resolution === "720p (HD)") || result.find(i => i.resolution === "360p (SD)");
+
+    if (!videoData) {
+      await m.react('⚠️');
+      return conn.reply(m.chat, `📉 No se encontró una calidad adecuada (720p o 360p).`, m);
+    }
   } catch (e) {
-    return conn.reply(m.chat, `${msm} Error al obtener datos. Verifica el enlace.`, m)
+    console.error('[ruhend-scraper] Error:', e.message);
+    await m.react('❌');
+    return conn.reply(m.chat, `❌ Error al obtener el video. Asegúrate de que el enlace sea válido y público.`, m);
   }
 
-  let result = res.data;
-  if (!result || result.length === 0) {
-    return conn.reply(m.chat, `${emoji2} No se encontraron resultados.`, m)
-  }
-
-  let data;
   try {
-    data = result.find(i => i.resolution === "720p (HD)") || result.find(i => i.resolution === "360p (SD)");
-  } catch (e) {
-    return conn.reply(m.chat, `${msm} Error al procesar los datos.`, m)
-  }
-
-  if (!data) {
-    return conn.reply(m.chat, `${emoji2} No se encontró una resolución adecuada.`, m)
-  }
-
-  let video = data.url;
-  try {
-    await conn.sendMessage(m.chat, { video: { url: video }, caption: `\`\`\`◜Facebook - Download◞\`\`\`\n\n> 🏞️ *Calidad:* ${data.resolution}
+    await conn.sendMessage(m.chat, {
+      video: { url: videoData.url },
+      caption: `\`\`\`◜Facebook - Download◞\`\`\`\n\n> 🏞️ *Calidad:* ${data.resolution}
 > ☄️ *Enlace:* ${args[0]}
 
 ⟢🌲 Aquí tienes: 🌪️
-⟢🏞️ ¡Disfruta!`, fileName: 'fb.mp4', mimetype: 'video/mp4' }, { quoted: fkontak })
-    await m.react(done);
-  } catch (e) {
-    return conn.reply(m.chat, `*${msm} Error al enviar el video.*`, m)
-    await m.react(error);
-  }
-}
+⟢🏞️ ¡Disfruta!`,
+      fileName: 'facebook_video.mp4',
+      mimetype: 'video/mp4'
+    }, { quoted: m });
 
-handler.help = ['facebook', 'fb']
-handler.tags = ['descargas']
-handler.command = ['facebook', 'fb']
+    await m.react('✅');
+  } catch (e) {
+    console.error('[sendMessage] Error:', e.message);
+    await m.react('❌');
+    return conn.reply(m.chat, `👻 Error al enviar el video. Intenta con otro enlace.`, m);
+  }
+};
+
+handler.help = ['facebook', 'fb'];
+handler.tags = ['descargas'];
+handler.command = ['facebook', 'fb'];
 handler.group = true;
-handler.register = true;
+//handler.register = true;
 handler.coin = 2;
 
-export default handler
+export default handler;
