@@ -8,12 +8,12 @@ const handler = async (m, { conn, usedPrefix }) => {
    
     const titulo = '💠 𝐌𝐄𝐍𝐔́ 𝐋𝐈𝐒𝐓𝐀 💠';
     const texto = `
-╭╼━〔👤 𝐃𝐀𝐓𝐎𝐒 𝐃𝐄𝐋 𝐔𝐒𝐔𝐀𝐑𝐈𝐎〕━╾╮
+  〔👤 𝐃𝐀𝐓𝐎𝐒 𝐃𝐄𝐋 𝐔𝐒𝐔𝐀𝐑𝐈𝐎〕
 ┃ 🪪 𝗡𝗼𝗺𝗯𝗿𝗲: *${conn.getName(m.sender)}*
 ┃ 🧬 𝗥𝗮𝗻𝗴𝗼: *${global.db.data.users[m.sender]?.role || 'Sin rango'}*
 ┃ 🧭 𝗡𝗶𝘃𝗲𝗹: *${global.db.data.users[m.sender]?.level || 0}*
 ┃ 📊 𝗘𝘅𝗽: *${global.db.data.users[m.sender]?.exp || 0}*
-╰━━━━━━━━━━━━━━━━━━━━━━╯
+╰━━━━━━━━━━━━━━━━━━━━╯
 
 ⌬ 𝐌𝐄𝐍𝐔́ 𝐃𝐄 𝐂𝐀𝐓𝐄𝐆𝐎𝐑𝐈𝐀𝐒 ⌬
 
@@ -62,7 +62,7 @@ const handler = async (m, { conn, usedPrefix }) => {
     await conn.sendMessage(m.chat, {
       image: media.imageMessage,
       caption: titulo + '\n\n' + texto.trim(),
-      footer: '⏤͟͞ू⃪ 𝑹𝑰𝑵 𝑰𝑻𝑶𝑺𝑯𝑰 - 𝑩𝑶𝑻 • Powered by black',
+      footer: '⏤͟͞ू⃪ SUKUNA - 𝑩𝑶𝑻 • Powered by black',
       buttons: [
         ...buttons,
         {

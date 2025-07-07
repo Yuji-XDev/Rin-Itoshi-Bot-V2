@@ -1,4 +1,4 @@
-/*import fetch from "node-fetch"
+import fetch from "node-fetch"
 import yts from 'yt-search'
 import axios from "axios"
 const youtubeRegexID = /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([a-zA-Z0-9_-]{11})/
@@ -30,17 +30,15 @@ url = url || 'no encontrado'
 author = author || 'no encontrado'
     const vistas = formatViews(views)
     const canal = author.name ? author.name : 'Desconocido'
-    const infoMessage = `╭─〕「⚡  *RIN ITOSHI V2☃️*  ⭐」
-├̟̇˚₊🌴 𝑻𝒊𝒕𝒖𝒍𝒐: ${title || 'Desconocido'}
-├̟̇˚₊🥥 𝑪𝒂𝒏𝒂𝒍: ${canal}
-├̟̇˚₊⚡ 𝑽𝒊𝒔𝒕𝒂𝒔: ${vistas || 'Desconocido'}
-├̟̇˚₊🌲 𝑫𝒖𝒓𝒂𝒄𝒊𝒐𝒏: ${timestamp || 'Desconocido'}
-├̟̇˚₊🥞 𝑷𝒖𝒃𝒍𝒊𝒄𝒂𝒅𝒐: ${ago || 'Desconocido'}
-├̟̇˚₊💖 𝑳𝒊𝒏𝒌: ${url}
-╰─〕𝙀𝙣𝙫𝙞𝙖𝙣𝙙𝙤 ▰▰▱▱ 
-╰─────────────────────⬣
-    
-    `
+    const infoMessage = `╭─〔 🔱 *SUKUNA BOT MD* 🔮 〕─╮
+│ 🍃 𝑻𝒊𝒕𝒖𝒍𝒐: ${title || 'Desconocido'}
+│ 🥥 𝑪𝒂𝒏𝒂𝒍: ${canal}
+│ ⚡ 𝑽𝒊𝒔𝒕𝒂𝒔: ${vistas || 'Desconocido'}
+│ 🌿 𝑫𝒖𝒓𝒂𝒄𝒊𝒐𝒏: ${timestamp || 'Desconocido'}
+│ 🕰️ 𝑷𝒖𝒃𝒍𝒊𝒄𝒂𝒅𝒐: ${ago || 'Desconocido'}
+│ 💫 𝑳𝒊𝒏𝒌: ${url}
+╰─▣ 𝑬𝒏𝒗𝒊𝒂𝒏𝒅𝒐 ▰▰▱▱ 
+╰─────────────── ⭑`
     const thumb = (await conn.getFile(thumbnail))?.data
     const JT = {
       contextInfo: {

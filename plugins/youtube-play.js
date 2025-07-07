@@ -53,7 +53,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
   }
 };
 
-handler.command = ['play'];
+handler.command = ['play4'];
 handler.tags = ['descargas'];
 handler.limit = 6;
 
