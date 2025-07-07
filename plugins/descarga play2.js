@@ -30,7 +30,8 @@ url = url || 'no encontrado'
 author = author || 'no encontrado'
     const vistas = formatViews(views)
     const canal = author.name ? author.name : 'Desconocido'
-    const infoMessage = `「✦」Descargando *<${title || 'Desconocido'}>*\n\n> ✧ Canal » *${canal}*\n> ✰ Vistas » *${vistas || 'Desconocido'}*\n> ⴵ Duración » *${timestamp || 'Desconocido'}*\n> ✐ Publicado » *${ago || 'Desconocido'}*\n> 🜸 Link » ${url}`
+    const infoMessage = `╭─〔 🔱 *SUKUNA BOT MD* 🔮 〕─╮\n*│ ⛩️ Titulo:* ${title || 'Desconocido'}\n*│ 🥀 Canal:* ${canal}\n*│ ☄️ Vistas:* ${vistas || 'Desconocido'}\n*│ 🎈 Duracion:* ${timestamp || 'Desconocido'}\n*│ 🌐 Publicado:* ${ago || 'Desconocido'}\n*│ 🎍 Link:* ${url}\n*╰─▣ 𝑬𝒏𝒗𝒊𝒂𝒏𝒅𝒐 ▰▰▱▱ ,\n*╰─────────────── ⭑,`
+
     const thumb = (await conn.getFile(thumbnail))?.data
     const JT = {
       contextInfo: {
@@ -74,7 +75,7 @@ author = author || 'no encontrado'
 }
 handler.command = handler.help = ['play', 'play2']
 handler.tags = ['descargas']
-handler.group = true
+//handler.group = true
 
 export default handler
 
