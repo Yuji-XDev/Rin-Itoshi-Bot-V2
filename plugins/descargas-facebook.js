@@ -1,57 +1,47 @@
-// codigo creado por Black.OFC 😀
+ import { igdl } from 'ruhend-scraper';
 
-import axios from 'axios';
-
-const handler = async (m, { conn, text, command, usedPrefix }) => {
-  if (!text) {
-    return conn.reply(m.chat, `💖 *Debes ingresar el enlace de un video de Facebook:*\n\n📌 *Ejemplo:* ${usedPrefix + command} https://www.facebook.com/share/v/12DoEUCoFji/`, m, rcanal);
+const handler = async (m, { text, conn, args, usedPrefix, command }) => {
+  if (!args[0]) {
+    return conn.reply(m.chat, `*${xdownload} Por favor, ingresa un link de Facebook.*`, fkontak, m);
   }
 
- 
-  await conn.sendMessage(m.chat, { react: { text: '⏳', key: m.key } });
-
+  await m.react('🕒');
+  let res;
   try {
-    
-    const dorratz = await axios.get(`https://api.dorratz.com/fbvideo?url=${encodeURIComponent(text)}`);
-    const { title, video, thumbnail } = dorratz.data;
+    res = await igdl(args[0]);
+  } catch (error) {
+    return conn.reply(m.chat, '*❌ Error al obtener el video, verifique que el enlace sea correcto*', m);
+  }
 
-    await conn.sendMessage(m.chat, {
-      video: { url: video.hd || video.sd },
-      caption: `🎬 *${title || 'Video de Facebook'}*`,
-      jpegThumbnail: await (await axios.get(thumbnail, { responseType: 'arraybuffer' })).data
-    }, { quoted: m });
+  let result = res.data;
+  if (!result || result.length === 0) {
+    return conn.reply(m.chat, '*⚠️ No se encontraron resultados.*', m);
+  }
 
-    
-    return conn.sendMessage(m.chat, { react: { text: '✅', key: m.key } });
+  let data;
+  try {
+    data = result.find(i => i.resolution === "720p (HD)") || result.find(i => i.resolution === "360p (SD)");
+  } catch (error) {
+    return conn.reply(m.chat, '*❌ Error al enviar el video de Facebook*', m);
+  }
 
-  } catch (e1) {
-    console.log('[Dorratz Error]', e1.message);
+  if (!data) {
+    return conn.reply(m.chat, '*⚠️ No se encontró una resolución adecuada.*', m);
+  }
 
-    try {
-      
-      const res = await axios.get(`https://api.dorratz.com/fbvideo?url=${encodeURIComponent(text)}`);
-      const { url, resolution, thumbnail } = res.data[0];
-
-      await conn.sendMessage(m.chat, {
-        video: { url },
-        caption: `🎬 *Video descargado en calidad ${resolution}*`,
-        jpegThumbnail: await (await axios.get(thumbnail, { responseType: 'arraybuffer' })).data
-      }, { quoted: m });
-
- 
-      return conn.sendMessage(m.chat, { react: { text: '✅', key: m.key } });
-
-    } catch (e2) {
-      console.log('[RapidCDN Error]', e2.message);
-
-      await conn.sendMessage(m.chat, { react: { text: '❌', key: m.key } });
-      return conn.reply(m.chat, '❌ No se pudo descargar el video de Facebook con ninguna de las APIs disponibles.', m);
-    }
+  await m.react('✅');
+  let video = data.url;
+  
+  try {
+    await conn.sendMessage(m.chat, { video: { url: video }, caption: '\`\`\`◜Facebook - Download◞\`\`\`\n\n> © Powered by Shadow Ultra\n> Video downloaded successfully', fileName: 'fb.mp4', mimetype: 'video/mp4' }, { quoted: fkontak });
+  } catch (error) {
+    return conn.reply(m.chat, '*⚠️ La URL está corrupta, intenta con otra URL.*', m);
+  await m.react('❌');
   }
 };
 
-handler.help = ["facebook"];
-handler.command = ["fb", "facebook"];
-handler.tags = ["download"];
+handler.help = ['facebook'];
+handler.tags = ['descargas']
+handler.command = ['facebook', 'fb'];
 
-export default handler;
+export default handler;                                                                                                                                                                                                                              
