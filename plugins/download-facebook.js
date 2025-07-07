@@ -39,7 +39,7 @@ const handler = async (m, { text, conn, args, usedPrefix, command }) => {
 ⟢🌲 Aquí tienes: 🌪️
 ⟢🏞️ ¡Disfruta!`, fileName: 'fb.mp4', mimetype: 'video/mp4' }, { quoted: fkontak });
   } catch (error) {
-    return conn.reply(m.chat, '*⚠️ La URL está corrupta, intenta con otra URL.*', m);
+    return conn.reply(m.chat, '*👻 La URL está corrupta, intenta con otra URL.*', m);
   await m.react('❌');
   }
 };
