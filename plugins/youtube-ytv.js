@@ -43,11 +43,11 @@ import fetch from 'node-fetch';
 
 let handler = async (m, { conn, args, text, command }) => {
   if (!text) {
-    return m.reply('⚠️ *Por favor, ingresa una URL válida de YouTube.*');
+    return m.reply('🎄 *Por favor, ingresa una URL válida de YouTube.*');
   }
 
   if (!/^https?:\/\/(www\.)?(youtube\.com|youtu\.be)\//i.test(text)) {
-    return m.reply('⚠️ *El enlace proporcionado no parece ser de YouTube.*');
+    return m.reply('🌛 *El enlace proporcionado no parece ser de YouTube.*');
   }
 
   m.react('⏳');
@@ -63,17 +63,15 @@ let handler = async (m, { conn, args, text, command }) => {
     await conn.sendMessage(m.chat, {
       video: { url: json.data.url },
       mimetype: 'video/mp4',
-      caption: `╭━━🎬 *YOUTUBE VIDEO DOWNLOADER* ━━⬣
-┃📌 *Título:* ${json.data.title || 'No disponible'}
-┃📺 *Canal:* ${json.data.channel || 'No disponible'}
-┃📅 *Publicado:* ${json.data.published || 'No disponible'}
-┃⏱️ *Duración:* ${json.data.duration || 'No disponible'}
-┃📥 *Calidad:* 480p
-┃🔗 *Enlace:* ${text}
+      caption: `╭━🎬 *YOUTUBE VIDEO DOWNLOADER* ━⬣
+┃🌴 *Título:* ${json.data.title || 'No disponible'}
+┃🌪️ *Publicado:* ${json.data.published || 'No disponible'}
+┃🌲 *Duración:* ${json.data.duration || 'No disponible'}
+┃🏞️ *Calidad:* 480p
 ╰━━━━━━━━━━━━━━━━━━━━⬣
 
 ✅ *Descarga completa con éxito.*  
-🔥 _By Sukuna Bot MD_ 🔥`,
+⛩️ _By Sukuna Bot MD_ ⛩️`,
     }, { quoted: m });
 
     m.react('✅');
