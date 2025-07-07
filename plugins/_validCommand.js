@@ -132,7 +132,7 @@ export async function before(m, { conn }) {
       buttons: [
         {
           buttonId: '.menu',
-          buttonText: { displayText: '📜 Ver Menú 📜' },
+          buttonText: { displayText: '📜 VER MENU 📜' },
           type: 1
         }
       ],
