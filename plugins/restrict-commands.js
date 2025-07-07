@@ -6,7 +6,6 @@ const handler = async (m, { conn, usedPrefix, command, isOwner, isAdmin, isBotAd
 
   
     if (command === 'res') {
-        if (!isGroup) return m.reply('⚠️ Este comando solo se puede usar en grupos.');
         if (!(isAdmin || isOwner)) return m.reply('🚫 Solo los admins o el dueño del bot pueden usar este comando.');
         const comando = args[0]?.toLowerCase();
         if (!comando) return m.reply(`❗Ejemplo de uso:\n${usedPrefix}res play`);
@@ -16,7 +15,6 @@ const handler = async (m, { conn, usedPrefix, command, isOwner, isAdmin, isBotAd
     }
 
     if (command === 'liberar') {
-        if (!isGroup) return m.reply('⚠️ Este comando solo se puede usar en grupos.');
         if (!(isAdmin || isOwner)) return m.reply('🚫 Solo los admins o el dueño del bot pueden usar este comando.');
         const comando = args[0]?.toLowerCase();
         if (!comando) return m.reply(`❗Ejemplo de uso:\n${usedPrefix}liberar play`);
@@ -51,5 +49,6 @@ handler.before = async (m, context) => {
 handler.help = ['res <comando>', 'liberar <comando>'];
 handler.tags = ['group'];
 handler.command = ['res', 'liberar'];
+handler.group = true;
 
 export default handler;
