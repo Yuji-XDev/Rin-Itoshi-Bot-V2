@@ -33,7 +33,7 @@ const handler = async (m, { conn }) => {
     }
 
     if (!m.quoted || m.quoted.sender !== conn.user.jid) {
-        return conn.reply(m.chat, '《✧》Debes citar un personaje válido para reclamar.', m);
+        return conn.reply(m.chat, '🌲 Debes citar un personaje válido para reclamar.', m);
     }
 
     try {

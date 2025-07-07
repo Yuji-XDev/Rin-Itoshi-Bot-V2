@@ -1,4 +1,4 @@
-import cp, { exec as _exec } from 'child_process';
+/*import cp, { exec as _exec } from 'child_process';
 import { promisify } from 'util';
 const exec = promisify(_exec);
 
@@ -26,3 +26,4 @@ handler.command = /^(.*)$/s;
 handler.rowner = true;
 
 export default handler;
+*/
