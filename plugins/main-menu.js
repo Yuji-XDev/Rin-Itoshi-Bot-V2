@@ -86,6 +86,7 @@ let handler = async (m, { conn, args }) => {
     ֪╔═══════════════════╗
 ╭╼.  🧃 ═✩═[𝐌𝐄𝐍𝐔𝐒-𝐁𝐎𝐓]═✩═ 💛
 ┆֪࣪  ╚═══════════════════╝
+┆ ${rinST} .menulist
 ┆ ${rinST} .dev - *Menu owner*
 ┆ ${rinST} .menuse - *Menu search*
 ┆ ${rinST} .menudl - *Menu descargas*
