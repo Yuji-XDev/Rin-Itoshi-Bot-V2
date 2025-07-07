@@ -4,12 +4,12 @@ const handler = async (m, { conn, usedPrefix, command, isOwner, isAdmin, isBotAd
     const chatData = global.db.data.chats[m.chat];
     chatData.restringidos = chatData.restringidos || [];
 
-    // ✅ Comando .restringir <comando>
-    if (command === 'restringir') {
+    // ✅ Comando .res <comando>
+    if (command === 'res') {
         if (!isGroup) return m.reply('⚠️ Este comando solo se puede usar en grupos.');
         if (!(isAdmin || isOwner)) return m.reply('🚫 Solo los admins o el dueño del bot pueden usar este comando.');
         const comando = args[0]?.toLowerCase();
-        if (!comando) return m.reply(`❗Ejemplo de uso:\n${usedPrefix}restringir play`);
+        if (!comando) return m.reply(`❗Ejemplo de uso:\n${usedPrefix}res play`);
         if (chatData.restringidos.includes(comando)) return m.reply(`⛔ El comando *${comando}* ya está restringido.`);
         chatData.restringidos.push(comando);
         return m.reply(`✅ El comando *${comando}* ha sido restringido para los usuarios del grupo.`);
@@ -49,9 +49,9 @@ handler.before = async (m, context) => {
     await handler(m, context);
 };
 
-handler.help = ['restringir <comando>', 'liberar <comando>'];
+handler.help = ['res <comando>', 'liberar <comando>'];
 handler.tags = ['group', 'config'];
-handler.command = /^(restringir|liberar)$/i;
+handler.command = /^(res|liberar)$/i;
 handler.group = true;
 
 export default handler;
