@@ -11,8 +11,8 @@ const handler = async (m, { conn, text, command, usedPrefix }) => {
 
     const { audio, titulo, canal, artista, descripcion, views, fecha, creador } = res.data;
 
-   /* if (!audio || audio === 'Vuelve a Intentarlo') {
-      return conn.reply(m.chat, '❌ No se pudo descargar el audio. Intenta con otro nombre o más tarde.', m);*/
+    if (!audio || audio === 'Vuelve a Intentarlo') {
+      return conn.reply(m.chat, '❌ No se pudo descargar el audio. Intenta con otro nombre o más tarde.', m);
     }
 
     const info = `
