@@ -62,62 +62,53 @@ import fetch from 'node-fetch'
 const handler = async (m, { text, conn, args, usedPrefix, command }) => {
   if (!args[0]) {
     await m.react(error)
-    return conn.reply(m.chat, '🏞️ Ingresa Un Link De Facebook.', m, rcanal)
+    return conn.reply(m.chat, '🏞️ Ingresa un enlace de Facebook válido.', m)
   }
 
-  let res
   try {
     await m.react(rwait)
-    conn.reply(m.chat, `🌴 *Descargando su video de Facebook...*`, m)
-    res = await igdl(args[0])
-  } catch (e) {
-    await m.react(error)
-    return conn.reply(m.chat, '❌ Error al obtener los datos. Verifica el enlace.', m, fake)
-  }
+    await conn.reply(m.chat, '🌴 *Descargando video de Facebook...*', m)
 
-  let result = res.data
-  if (!result || result.length === 0) {
-    await m.react(error)
-    return conn.reply(m.chat, '❌ No se encontraron resultados para ese enlace.', m, fake)
-  }
+    const res = await igdl(args[0])
+    const result = res?.data
 
-  let data
-  try {
-    data = result.find(i => i.resolution === "720p (HD)") || result.find(i => i.resolution === "360p (SD)")
-  } catch (e) {
-    await m.react(error)
-    return conn.reply(m.chat, '❌ Error al procesar los datos del video.', m, rcanal)
-  }
+    if (!result || result.length === 0) {
+      await m.react(error)
+      return conn.reply(m.chat, '❌ No se encontraron resultados para ese enlace.', m)
+    }
 
-  if (!data) {
-    await m.react(error)
-    return conn.reply(m.chat, '❌ No se encontró una resolución adecuada.', m, rcanal)
-  }
+    const data = result.find(i => i.resolution === "720p (HD)") || result.find(i => i.resolution === "360p (SD)")
+    if (!data || !data.url) {
+      await m.react(error)
+      return conn.reply(m.chat, '❌ No se encontró un video con resolución adecuada.', m)
+    }
 
-  let video = data.url
-  try {
-    const response = await fetch(video)
+    const response = await fetch(data.url)
+    if (!response.ok) throw new Error('No se pudo descargar el video.')
+
     const buffer = await response.buffer()
     const fileSize = Buffer.byteLength(buffer)
-
     const isLarge = fileSize > 30 * 1024 * 1024 // 30 MB
 
+    const caption = `\`\`\`◜ Facebook Download ◞\`\`\`\n\n🏞️ *Calidad:* ${data.resolution}\n🌐 *Enlace:* ${args[0]}\n${isLarge ? '📄 *El video pesa más de 30 MB, se envía como documento.*' : '🎥 *Video ligero, enviado normalmente.*'}\n\n✅ *Descarga exitosa.*`
+
     const mensaje = {
-      caption: `\`\`\`◜Facebook - Download◞\`\`\`\n\n> 🏞️ *Calidad:* ${data.resolution}\n> ☄️ *Enlace:* ${args[0]}\n\n⟢🌲 Aquí tienes: 🌪️\n⟢🏞️ ¡Disfruta!` + textbot,
+      caption,
       fileName: 'facebook.mp4',
       mimetype: 'video/mp4'
     }
 
     if (isLarge) {
-      await conn.sendMessage(m.chat, { document: buffer, ...mensaje }, { quoted: fkontak })
+      await conn.sendMessage(m.chat, { document: buffer, ...mensaje }, { quoted: m })
     } else {
-      await conn.sendMessage(m.chat, { video: buffer, ...mensaje }, { quoted: fkontak })
+      await conn.sendMessage(m.chat, { video: buffer, ...mensaje }, { quoted: m })
     }
 
     await m.react(done)
   } catch (e) {
+    console.error(e)
     await m.react(error)
-    return conn.reply(m.chat, '❌ Error al enviar el video. Intenta nuevamente.', m, rcanal)
+    return conn.reply(m.chat, '❌ Error al descargar o enviar el video. Verifica el enlace o intenta más tarde.', m)
   }
 }
 
