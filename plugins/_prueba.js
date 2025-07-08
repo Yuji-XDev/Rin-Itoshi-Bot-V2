@@ -1,55 +1,57 @@
-import { ytmp3, ytmp4 } from '../lib/y2mate.js';
+import { mp3, mp4 } from '../lib/y2mate.js';
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
-  if (!args[0]) return m.reply(`📥 *Uso correcto:* ${usedPrefix + command} <url de YouTube>\n\n📌 *Ejemplo:* ${usedPrefix + command} https://youtu.be/VIDEO_ID`);
-
-  // Validar URL de YouTube
-  if (!/(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+/i.test(args[0])) {
-    return m.reply('❌ *Enlace de YouTube no válido.*');
+  if (!args[0]) {
+    return m.reply(`📥 *Uso correcto:*\n${usedPrefix + command} <enlace de YouTube>\n\n📌 *Ejemplo:*\n${usedPrefix + command} https://youtu.be/VIDEO_ID`);
   }
 
-  await m.react('⏳');
+  // Validar enlace de YouTube
+  if (!/(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+/i.test(args[0])) {
+    return m.reply('❌ *Enlace inválido de YouTube.*');
+  }
+
+  await m.react('🕒');
 
   try {
-    const type = /mp3|audio/i.test(command) ? 'audio' : 'video';
-    const result = type === 'audio' ? await ytmp3(args[0]) : await ytmp4(args[0]);
+    const isAudio = command.includes('mp3');
+    const info = isAudio ? await mp3(args[0]) : await mp4(args[0]);
 
-    if (!result || !result.link) throw new Error('No se pudo obtener el enlace de descarga.');
+    if (!info || !info.link) throw new Error('No se pudo generar el enlace de descarga.');
 
-    const caption = `🎬 *DESCARGA YOUTUBE*\n\n` +
-                    `🔤 *Título:* ${result.title}\n` +
-                    `📦 *Tamaño:* ${result.size}\n` +
-                    `💡 *Calidad:* ${result.quality || 'N/A'}\n` +
-                    `🎧 *Tipo:* ${type === 'audio' ? 'MP3 (audio)' : 'MP4 (video)'}\n` +
-                    `🔗 *Enlace:* ${args[0]}`;
+    let caption = `🎧 *DESCARGA YOUTUBE*\n\n`;
+    caption += `📌 *Título:* ${info.title}\n`;
+    caption += `📁 *Tamaño:* ${info.size}\n`;
+    caption += `🎚️ *Calidad:* ${info.quality || 'Desconocida'}\n`;
+    caption += `🎞️ *Tipo:* ${isAudio ? 'Audio (MP3)' : 'Video (MP4)'}\n`;
+    caption += `🔗 *Enlace:* ${args[0]}`;
 
-    if (type === 'audio') {
+    if (isAudio) {
       await conn.sendMessage(m.chat, {
-        audio: { url: result.link },
+        audio: { url: info.link },
         mimetype: 'audio/mpeg',
-        fileName: `${result.title}.mp3`,
+        fileName: `${info.title}.mp3`,
         caption
       }, { quoted: m });
     } else {
       await conn.sendMessage(m.chat, {
-        video: { url: result.link },
+        video: { url: info.link },
         mimetype: 'video/mp4',
-        fileName: `${result.title}.mp4`,
+        fileName: `${info.title}.mp4`,
         caption
       }, { quoted: m });
     }
 
     await m.react('✅');
-  } catch (e) {
-    console.error(e);
+  } catch (err) {
+    console.error(err);
     await m.react('❌');
-    m.reply(`❌ *Error:* ${e.message}`);
+    m.reply(`❌ *Error:* ${err.message}`);
   }
 };
 
-handler.help = ['ytmp3', 'ytmp4', 'youtubedl'];
+handler.help = ['mp3', 'mp4'];
 handler.tags = ['downloader'];
-handler.command = /^(ytmp3|ytmp4|youtubedl)$/i;
+handler.command = /^(mp3|mp4)$/i;
 handler.limit = true;
 
 export default handler;
