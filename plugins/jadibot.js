@@ -122,12 +122,12 @@ export default handler;*/
 import ws from 'ws';
 
 let handler = async (m, { conn }) => {
-  // Filtrar solo conexiones activas
+
   const connsActivas = global.conns.filter(conn =>
     conn.user && conn.ws.socket && conn.ws.socket.readyState !== ws.CLOSED
   );
 
-  // Eliminar duplicados por JID
+
   const vistos = new Set();
   const subbotsUnicos = connsActivas.filter(conn => {
     const jid = conn.user?.jid || '';
@@ -185,7 +185,7 @@ ${lista}
         showAdAttribution: false
       }
     },
-    text: `Hola ${textoSubbots}`
+    text: `${textoSubbots}`
   }, { quoted: fkontak });
 };
 
