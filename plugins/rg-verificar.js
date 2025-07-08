@@ -7,6 +7,7 @@ import moment from 'moment-timezone'
 
 let Reg = /\|?(.*)([.|] *?)([0-9]*)$/i
 
+
 let handler = async function (m, { conn, text, usedPrefix, command }) {
   let who = m.mentionedJid?.[0] || (m.fromMe ? conn.user.jid : m.sender)
   let mentionedJid = [who]
@@ -61,30 +62,31 @@ let handler = async function (m, { conn, text, usedPrefix, command }) {
     }, { quoted: m })
   }
 
-  let [_, name, splitter, age] = text.match(Reg)
-  if (!name) return m.reply(`『✦』El nombre no puede estar vacío.`)
-  if (!age) return m.reply(`『✦』La edad no puede estar vacía.`)
-  if (name.length >= 100) return m.reply(`『✦』El nombre es demasiado largo.`)
-  age = parseInt(age)
-  if (age > 1000) return m.reply(`『✦』Wow el abuelo quiere jugar al bot.`)
-  if (age < 5) return m.reply(`『✦』hay un abuelo bebé jsjsj.`)	
+  let [_, namex, splitter, agex] = text.match(Reg)
+  if (!namex) return m.reply(`『✦』El nombre no puede estar vacío.`)
+  if (!agex) return m.reply(`『✦』La edad no puede estar vacía.`)
+  if (namex.length >= 100) return m.reply(`『✦』El nombre es demasiado largo.`)
+  let edad = parseInt(agex)
+  if (isNaN(edad)) return m.reply(`『✦』Edad no válida.`)
+  if (edad > 1000) return m.reply(`『✦』Wow el abuelo quiere jugar al bot.`)
+  if (edad < 5) return m.reply(`『✦』hay un abuelo bebé jsjsj.`)
 
-  user.name = name + '✓'
-  user.age = age
+  user.name = namex + '✓'
+  user.age = edad
   user.descripcion = bio
   user.regTime = +new Date()
   user.registered = true
-  user.coin += 40
-  user.exp += 300
-  user.joincount += 20
+  user.coin = (user.coin || 0) + 40
+  user.exp = (user.exp || 0) + 300
+  user.joincount = (user.joincount || 0) + 20
 
   let sn = createHash('md5').update(m.sender).digest('hex').slice(0, 20)
 
   let regbot = `╭── 𖥔 ❍ 𝑽𝑬𝑹𝑰𝑭𝑰𝑪𝑨𝑪𝑰𝑶́𝑵 ❍ 𖥔 ──╮
 ┊🎉 ¡𝙍𝙚𝙜𝙞𝙨𝙩𝙧𝙤 𝙘𝙤𝙢𝙥𝙡𝙚𝙩𝙖𝙙𝙤! 🎉
 ┊
-┊📛 Nombre: *${name}*
-┊🎂 Edad: *${age} años*
+┊📛 Nombre: *${namex}*
+┊🎂 Edad: *${edad} años*
 ┊   
 ┊   🎁 Recompensas:
 ┊💥 Coins: +40
@@ -93,7 +95,7 @@ let handler = async function (m, { conn, text, usedPrefix, command }) {
 ╰──────────────────────╯
 > ⛩️ ${dev}`
 
-  await m.react('🌪️')
+  await m.react('🌲')
 
   await conn.sendMessage(m.chat, {
     text: regbot,
