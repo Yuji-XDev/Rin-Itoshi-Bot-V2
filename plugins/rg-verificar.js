@@ -37,7 +37,7 @@ let handler = async function (m, { conn, text, usedPrefix, command }) {
 🚫 Ya estás registrado...
 ¿Quieres reiniciar tu progreso?
   
-📎 Usa *#unreg* para borrar tu registro y volver a empezar.
+⛩️ Usa *#unreg* para borrar tu registro y volver a empezar.
 ╰───────────────────╯`,
       footer: "𝑺𝑼𝑲𝑼𝑵𝑨 𝑩𝑶𝑻 𝑴𝑫",
       buttons: [{ buttonId: `${usedPrefix}unreg`, buttonText: { displayText: '🗑 Eliminar Registro' }, type: 1 }],
@@ -47,26 +47,27 @@ let handler = async function (m, { conn, text, usedPrefix, command }) {
   if (!Reg.test(text)) {
     return conn.sendMessage(m.chat, {
       text: `╭─『 ❌ 𝙀𝙍𝙍𝙊𝙍 𝘿𝙀 𝙁𝙊𝙍𝙈𝘼𝙏𝙊 ❌ 』─╮  
-✘ Debes escribirlo así:
+☄️ Debes escribirlo así:
 *${usedPrefix + command} Nombre.Edad*
 
-🧠 Ejemplo válido:
+💥 Ejemplo válido:
 *${usedPrefix + command} ${name2}.18*
 
 ✔ Usa un punto (.) para separar nombre y edad.
-╰────────────────────────────╯`,
+╰──────────────────────────╯`,
       footer: "𝑺𝑼𝑲𝑼𝑵𝑨 𝑩𝑶𝑻 𝑴𝑫",
       buttons: [{ buttonId: `#register ${name2}.18`, buttonText: { displayText: 'Verificación Automática 🔐' }, type: 1 }],
       headerType: 1
     }, { quoted: m })
   }
 
-  if (!name) return m.reply('⚠️ 𝙀𝙡 𝙣𝙤𝙢𝙗𝙧𝙚 𝙣𝙤 𝙥𝙪𝙚𝙙𝙚 𝙚𝙨𝙩𝙖𝙧 𝙫𝙖𝙘𝙞𝙤.')
-  if (!age) return m.reply('⚠️ 𝙇𝙖 𝙚𝙙𝙖𝙙 𝙣𝙤 𝙥𝙪𝙚𝙙𝙚 𝙚𝙨𝙩𝙖𝙧 𝙫𝙖𝙘𝙞𝙖.')
-  if (name.length >= 100) return m.reply('⚠️ El nombre es demasiado largo.')
-  
+  let [_, name, splitter, age] = text.match(Reg)
+  if (!name) return m.reply(`『✦』El nombre no puede estar vacío.`)
+  if (!age) return m.reply(`『✦』La edad no puede estar vacía.`)
+  if (name.length >= 100) return m.reply(`『✦』El nombre es demasiado largo.`)
   age = parseInt(age)
-  if (age > 1000 || age < 5) return m.reply('⚠️ *Edad inválida*. Debe estar entre 5 y 1000.')
+  if (age > 1000) return m.reply(`『✦』Wow el abuelo quiere jugar al bot.`)
+  if (age < 5) return m.reply(`『✦』hay un abuelo bebé jsjsj.`)	
 
   user.name = name + '✓'
   user.age = age
@@ -79,16 +80,18 @@ let handler = async function (m, { conn, text, usedPrefix, command }) {
 
   let sn = createHash('md5').update(m.sender).digest('hex').slice(0, 20)
 
-  let regbot = `╭── 𖥔 ❍ 𝑽𝑬𝑹𝑰𝑭𝑰𝑪𝑨𝑪𝑰𝑶́𝑵 ❍ 𖥔 ──╮\n`
-  regbot = `┊🎉 ¡𝙍𝙚𝙜𝙞𝙨𝙩𝙧𝙤 𝙘𝙤𝙢𝙥𝙡𝙚𝙩𝙖𝙙𝙤! 🎉\n\n┊`
-  regbot = `┊📛 Nombre: *${name}*\n`
-  regbot = `┊🎂 Edad: *${age} años*\n\n┊`  
-  regbot = `┊   🎁 Recompensas:\n`
-  regbot = `┊💥 Coins: +40\n`
-  regbot = `┊✨ Exp: +300\n`
-  regbot = `┊🪙 Tokens: +20\n\n┊`
-  regbot = `┊📘 Usa *#perfil* para ver tus logros.\n`
-  regbot = `╰──────────────────────╯\n`
+  let regbot = `╭── 𖥔 ❍ 𝑽𝑬𝑹𝑰𝑭𝑰𝑪𝑨𝑪𝑰𝑶́𝑵 ❍ 𖥔 ──╮
+┊🎉 ¡𝙍𝙚𝙜𝙞𝙨𝙩𝙧𝙤 𝙘𝙤𝙢𝙥𝙡𝙚𝙩𝙖𝙙𝙤! 🎉
+┊
+┊📛 Nombre: *${name}*
+┊🎂 Edad: *${age} años*
+┊   
+┊   🎁 Recompensas:
+┊💥 Coins: +40
+┊✨ Exp: +300
+┊🪙 Tokens: +20
+╰──────────────────────╯
+> ⛩️ ${dev}`
 
   await m.react('🌪️')
 
