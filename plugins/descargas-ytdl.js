@@ -80,9 +80,9 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
     const thumb = (await conn.getFile(thumbnail))?.data;
     
     const sukunaurl = 'https://files.catbox.moe/kjh6ga.jpg';
-    const infoMessage = `➤ ▢ *𝚃𝙸𝚃𝚄𝙻𝙾:* ${title}\n➤ ▢ *𝚅𝙸𝚂𝚃𝙰𝚂:* ${formatViews(views)}\n➤ ▢ *𝙴𝙽𝙻𝙰𝙲𝙴:* ${url}\n> 🎧 𝑬𝒔𝒕𝒐𝒚 𝒑𝒓𝒐𝒄𝒆𝒔𝒂𝒏𝒅𝒐 𝒕𝒖 𝒅𝒆𝒔𝒄𝒂𝒓𝒈𝒂...\n> 🕰️ 𝑳𝒂 𝒑𝒂𝒄𝒊𝒆𝒏𝒄𝒊𝒂 𝒕𝒂𝒎𝒃𝒊𝒆́𝒏 𝒆𝒔 𝒑𝒂𝒓𝒕𝒆 𝒅𝒆𝒍 𝒋𝒖𝒆𝒈𝒐.`;
+    const infoMessage = `➤ ▢ *𝚃𝙸𝚃𝚄𝙻𝙾:*\n> ${title}\n➤ ▢ *𝚅𝙸𝚂𝚃𝙰𝚂:* ${formatViews(views)}\n➤ ▢ *𝙴𝙽𝙻𝙰𝙲𝙴:*\n> ${url}\n> 🎧 𝑬𝒔𝒕𝒐𝒚 𝒑𝒓𝒐𝒄𝒆𝒔𝒂𝒏𝒅𝒐 𝒕𝒖 𝒅𝒆𝒔𝒄𝒂𝒓𝒈𝒂....`;
 
-    await conn.sendFile(m.chat, sukunaurl, 'sukuna.jpg', infoMessage, m);
+    await conn.sendFile(m.chat, sukunaurl, 'sukuna.jpg', infoMessage, m, rcanal);
 
     if (command === 'ytmp3') {
       const api = await ddownr.download(url, 'mp3');
@@ -95,7 +95,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
         contextInfo: {
           externalAdReply: {
             title: title,
-            body: videoInfo.author.name || 'YouTube',
+            body: 'YouTube - MP3',
             mediaUrl: url,
             sourceUrl: url,
             thumbnail: thumb,
