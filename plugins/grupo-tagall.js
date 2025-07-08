@@ -11,7 +11,7 @@ const handler = async (m, { isOwner, isAdmin, conn, text, participants, args, co
     throw false;
   }
 
-  const pesan = args.length ? args.join(' ') : '𝙈𝙄𝙍𝘼𝘿, 𝙄𝙉𝙎𝙀𝘾𝙏𝙊𝙎 𝙃𝙊𝙔 𝙇𝘼 𝘾𝘼𝙇𝙈𝘼 𝙃𝘼 𝙈𝙐𝙀𝙍𝙏𝙊 𝙎𝙐𝙎 𝙍𝙀𝙂𝙇𝘼𝙎 𝙔 𝙊𝙍𝘿𝙀𝙉 𝙈𝙀 𝘿𝘼𝙉 𝙍𝙄𝙎𝘼 𝗗𝗘𝗦𝗣𝗜𝗘𝗥𝗧𝗘𝗡 𝗣𝗟𝗔𝗡𝗧𝗔𝗦 𝙃𝙊𝙔 𝙀𝙎 𝙀𝙇 𝘿𝙄́𝘼 𝘿𝙀 𝙇𝘼 𝙋𝙐𝙍𝙂𝘼...';
+  const pesan = args.length ? args.join(' ') : 'Pu***';
   const mj = `°◦⃝📑 *𝙼𝙴𝙽𝚂𝙰𝙹𝙴:*\n│ ${pesan}`;
   const groupName = await conn.getName(m.chat);
 
