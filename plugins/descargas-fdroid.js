@@ -44,7 +44,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
   }
 };
 
-handler.help = ['apkf'];
+handler.help = ['apkf', 'fdroid'];
 handler.tags = ['descargas'];
-handler.command = ['apkf'];
+handler.command = ['apkf', 'fdroid'];
 export default handler;
