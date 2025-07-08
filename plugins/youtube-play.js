@@ -45,7 +45,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
         viewOnce: true,
         headerType: 4,
       },
-      { quoted: m, rcanal }
+      { quoted: m }
     );
 
     await m.react('✅');
@@ -57,6 +57,6 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
 
 handler.command = ['play', 'play2'];
 handler.tags = ['descargas'];
-handler.limit = 6;
+//handler.limit = 6;
 
 export default handler;
