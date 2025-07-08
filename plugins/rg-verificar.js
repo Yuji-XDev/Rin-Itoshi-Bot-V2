@@ -113,17 +113,17 @@ let handler = async function (m, { conn, text, usedPrefix, command }) {
   }, { quoted: m })
 
   let chtxt = `╭─⊷ 𝙉𝙐𝙀𝙑𝙊 𝙈𝙄𝙀𝙈𝘽𝙍𝙊 ⊶─╮
-👤 Usuario: *${m.pushName || 'Anónimo'}*
+⛩️ Usuario: *${m.pushName || 'Anónimo'}*
 📛 Alias: *${user.name}*
-🎂 Edad: *${user.age} años*
+🏞️ Edad: *${user.age} años*
 📆 Registro: *${moment.tz('America/Bogota').format('DD/MM/YY')}*
 🔖 Descripción: *${user.descripcion}*
 🧬 ID Único: *${sn}*
 
-📢 ¡Ahora forma parte del archivo sagrado!
+🏞️ ¡Ahora forma parte del archivo sagrado!
 ╰──────────────────────╯`
 
-  let channelID = '120363420237437654@g.us'
+  let channelID = '120363420237437654@g.us' // puede cambiar por un ID de su canal
   await conn.sendMessage(channelID, {
     text: chtxt,
     contextInfo: {
