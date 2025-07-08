@@ -144,7 +144,8 @@ let handler = async (m, { conn, args }) => {
     ֪╔═══════════════════╗
 ╭╼.  🧃 ═✩═[ 𝐃𝐄𝐒𝐂𝐀𝐑𝐆𝐀𝐒 ]═✩═  💛
 ┆֪࣪  ╚═══════════════════╝
-┆ ${rinST} .anirinSTl
+┆ ${rinST} .fb2
+┆ ${rinST} .fdroid *<url>*
 ┆ ${rinST} .fb
 ┆ ${rinST} .sound
 ┆ ${rinST} .gitclone *<url git>*
