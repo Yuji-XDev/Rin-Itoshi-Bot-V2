@@ -48,9 +48,9 @@ const handler = async (m, { conn, args, usedPrefix, command }) => {
     }];
 
     const listMessage = {
-      text: `┃➤ 🎬 *Facebook Video Detectado*`,
+      text: `┃➤ 🎬 *Facebook Video Detectado*\n╰━━━━━━━━━━━━━━━━━╯`,
       footer: `Selecciona una resolución para descargar el video.`,
-      title: `╭━━━〔 SUKUNA MD 〕━━━╮🎞️\n┃➤ Resultado Encontrado\n╰━━━━━━━━━━━━━━━━━╯`,
+      title: `╭━━━〔 SUKUNA MD 〕━━━╮\n┃➤🎞️ Resultado Encontrado\n┃`,
       buttonText: "📥 Descargar resolución",
       sections: listSections,
       jpegThumbnail: await (await fetch(thumbnail)).buffer()
