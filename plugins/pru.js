@@ -38,7 +38,7 @@ const handler = async (m, { conn, args, usedPrefix, command }) => {
 
 // Handler para descargar el video directamente desde la URL
 handler.before = async (m, { conn, args, command }) => {
-  if (command === 'fb' && args[0]?.startsWith('https://') && args[0].includes('token=')) {
+  if (command === 'yfb' && args[0]?.startsWith('https://') && args[0].includes('token=')) {
     try {
       await conn.sendMessage(m.chat, { video: { url: args[0] }, caption: '✅ Video descargado exitosamente.' }, { quoted: m });
       return !0;
