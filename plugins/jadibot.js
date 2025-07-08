@@ -121,9 +121,20 @@ export default handler;*/
 
 import ws from 'ws';
 
-let handler = async (m, { conn: _envio }) => {
-  const users = [...new Set([...global.conns.filter((conn) =>
-    conn.user && conn.ws.socket && conn.ws.socket.readyState !== ws.CLOSED)])];
+let handler = async (m, { conn }) => {
+  // Filtrar solo conexiones activas
+  const connsActivas = global.conns.filter(conn =>
+    conn.user && conn.ws.socket && conn.ws.socket.readyState !== ws.CLOSED
+  );
+
+  // Eliminar duplicados por JID
+  const vistos = new Set();
+  const subbotsUnicos = connsActivas.filter(conn => {
+    const jid = conn.user?.jid || '';
+    if (vistos.has(jid)) return false;
+    vistos.add(jid);
+    return true;
+  });
 
   function convertirMsADiasHorasMinutosSegundos(ms) {
     let segundos = Math.floor(ms / 1000);
@@ -134,7 +145,7 @@ let handler = async (m, { conn: _envio }) => {
     minutos %= 60;
     horas %= 24;
 
-    let resultado = "";
+    let resultado = '';
     if (dias) resultado += `${dias}D, `;
     if (horas) resultado += `${horas}H, `;
     if (minutos) resultado += `${minutos}M, `;
@@ -142,8 +153,9 @@ let handler = async (m, { conn: _envio }) => {
     return resultado.trim();
   }
 
-  const totalSubs = users.length;
-  const lista = users.map((bot, i) => {
+  const totalSubs = subbotsUnicos.length;
+
+  const lista = subbotsUnicos.map((bot, i) => {
     return `╭─ ⌜ 🧩 𝑩𝑶𝑻 #${i + 1} ⌟ ─╮
 ┃ 🧸 𝙉𝙤𝙢𝙗𝙧𝙚: ${bot.user?.name || '𝑺𝒖𝒃 𝑩𝒐𝒕'}
 ┃ 📲 𝙉𝙪́𝙢𝙚𝙧𝙤: wa.me/${(bot.user?.jid || '').replace(/[^0-9]/g, '')}
@@ -151,8 +163,8 @@ let handler = async (m, { conn: _envio }) => {
 ╰──────────────────╯`;
   }).join('\n\n');
 
-  const textoFinal = totalSubs === 0
-    ? '🍃 𝙉𝙤 𝙝𝙖𝙮 𝙎𝙪𝙗-𝘽𝙤𝙩𝙨 𝙖𝙘𝙩𝙞𝙫𝙤𝙨 𝙥𝙤𝙧 𝙖𝙝𝙤𝙧𝙖. 🌙'
+  const textoSubbots = totalSubs === 0
+    ? '😓 𝙉𝙤 𝙝𝙖𝙮 𝙎𝙪𝙗-𝘽𝙤𝙩𝙨 𝙖𝙘𝙩𝙞𝙫𝙤𝙨 𝙥𝙤𝙧 𝙖𝙝𝙤𝙧𝙖. 🌙'
     : `╭─ ❍ ⛩️ 𝑺𝒖𝒌𝒖𝒏𝒂 - 𝑱𝒂𝒅𝒊𝑩𝒐𝒕𝒔 ❍ ─╮
 ┃ ✨ 𝙏𝙤𝙩𝙖𝙡 𝙖𝙘𝙩𝙞𝙫𝙤𝙨: 『 ${totalSubs} 』
 ╰─────────────────────────╯
@@ -161,15 +173,24 @@ ${lista}
 
 🖋️ 𝙎𝙞𝙨𝙩𝙚𝙢𝙖 𝙙𝙚 𝙅𝙖𝙙𝙞𝙗𝙤𝙩𝙨 - 𝐬𝐮𝐤𝐮𝐧𝐚 ⚡`;
 
-  await _envio.sendMessage(m.chat, {
-    image: { url: 'https://files.catbox.moe/vm6opf.jpg' },
-    caption: textoFinal,
-    mentions: _envio.parseMention(textoFinal)
-  }, { quoted: m });
+  await conn.sendMessage(m.chat, {
+    contextInfo: {
+      externalAdReply: {
+        title: "𝑺𝒖𝒃 𝑩𝒐𝒕𝒔 𝑶𝒏𝒍𝒊𝒏𝒆",
+        body: "Sukuna Bot MD",
+        thumbnailUrl: "https://files.catbox.moe/vm6opf.jpg",
+        sourceUrl: redes,
+        mediaType: 1,
+        renderLargerThumbnail: true,
+        showAdAttribution: false
+      }
+    },
+    text: `Hola ${textoSubbots}`
+  }, { quoted: fkontak });
 };
 
 handler.command = ['sockets', 'bots', 'socket'];
-handler.tags = ['serbot'];
+handler.tags = ['jadibot'];
 handler.help = ['sockets'];
 
 export default handler;

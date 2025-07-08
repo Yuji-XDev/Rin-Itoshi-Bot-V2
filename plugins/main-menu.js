@@ -12,7 +12,7 @@ let handler = async (m, { conn, args }) => {
     let totalreg = Object.keys(global.db.data.users).length;  
     let totalCommands = Object.values(global.plugins).filter((v) => v.help && v.tags).length;  
       
-    let sukuna = 'ۚ𑁯ׂ✦ ᳴ʚ ̶ ';
+    let sukuna = 'ۚ么͟͞✦ ᳴ʚ ̶';
     let images = [
       'https://files.catbox.moe/nmseef.png',
       'https://files.catbox.moe/qnvpyq.jpg',
