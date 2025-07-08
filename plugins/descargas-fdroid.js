@@ -1,3 +1,5 @@
+// codigo creado por Black.OFC 
+
 import axios from 'axios';
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
@@ -20,12 +22,11 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     let versionName = data.version || '1.0';
     let fileName = `${packageName}_v${versionName}.apk`;
 
-    let texto = `
-╭━━━⬣ *📦 APP ENCONTRADA*
-┃ 📌 *Versión:* ${data.version || 'N/A'}
-┃ 📅 *Agregada:* ${data.addedOn || 'N/A'}
-┃ 📥 *Tamaño:* ${data.apkSize || 'N/A'}
-┃ 📱 *Requiere:* ${data.requirement || 'N/A'}
+    let texto = `╭━━━⬣ *📦 APP ENCONTRADA*
+┃ 📌 *Versión:* ${data.version || 'desconocido'}
+┃ 📅 *Agregada:* ${data.addedOn || 'desconocido'}
+┃ 📥 *Tamaño:* ${data.apkSize || '1 GB'}
+┃ 📱 *Requiere:* ${data.requirement || 'desconocido'}
 ┃ 🔐 *Permisos:* ${data.permissions || 'Ninguno'}
 ╰━━━━━━━━━━━━⬣
 `.trim();
@@ -35,7 +36,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
       mimetype: 'application/vnd.android.package-archive',
       fileName,
       caption: texto
-    }, { quoted: m });
+    }, { quoted: fkontak });
 
   } catch (e) {
     console.error(e);

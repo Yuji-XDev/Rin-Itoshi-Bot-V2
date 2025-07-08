@@ -80,9 +80,9 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
     const thumb = (await conn.getFile(thumbnail))?.data;
     
     const sukunaurl = 'https://files.catbox.moe/kjh6ga.jpg';
-    const infoMessage = `➤ ▢ *𝚃𝙸𝚃𝚄𝙻𝙾:*\n> ${title}\n➤ ▢ *𝚅𝙸𝚂𝚃𝙰𝚂:* ${formatViews(views)}\n➤ ▢ *𝙴𝙽𝙻𝙰𝙲𝙴:*\n> ${url}\n> 🎧 𝑬𝒔𝒕𝒐𝒚 𝒑𝒓𝒐𝒄𝒆𝒔𝒂𝒏𝒅𝒐 𝒕𝒖 𝒅𝒆𝒔𝒄𝒂𝒓𝒈𝒂....`;
+    const infoMessage = `➤ ▢ *𝚃𝙸𝚃𝚄𝙻𝙾:*\n> ${title}\n➤ ▢ *𝚅𝙸𝚂𝚃𝙰𝚂:*\n> ${formatViews(views)}\n➤ ▢ *𝙴𝙽𝙻𝙰𝙲𝙴:*\n> ${url}\n> 🎧 𝑬𝒔𝒕𝒐𝒚 𝒑𝒓𝒐𝒄𝒆𝒔𝒂𝒏𝒅𝒐 𝒕𝒖 𝒅𝒆𝒔𝒄𝒂𝒓𝒈𝒂....`;
 
-    await conn.sendFile(m.chat, sukunaurl, 'sukuna.jpg', infoMessage, m, rcanal);
+    await conn.sendFile(m.chat, sukunaurl, 'sukuna.jpg', infoMessage, m);
 
     if (command === 'ytmp3') {
       const api = await ddownr.download(url, 'mp3');
