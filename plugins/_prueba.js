@@ -1,57 +1,46 @@
-import { mp3, mp4 } from '../lib/y2mate.js';
+import fetch from 'node-fetch';
 
-let handler = async (m, { conn, args, usedPrefix, command }) => {
-  if (!args[0]) {
-    return m.reply(`📥 *Uso correcto:*\n${usedPrefix + command} <enlace de YouTube>\n\n📌 *Ejemplo:*\n${usedPrefix + command} https://youtu.be/VIDEO_ID`);
+let handler = async (m, { conn, usedPrefix, command }) => {
+  let q = m.quoted ? m.quoted : m;
+  let mime = (q.msg || q).mimetype || '';
+
+  if (!/image\/(jpe?g|png)/.test(mime)) {
+    return m.reply(`📸 *Envía una imagen o responde a una con el comando* *${usedPrefix + command}*`);
   }
 
-  // Validar enlace de YouTube
-  if (!/(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+/i.test(args[0])) {
-    return m.reply('❌ *Enlace inválido de YouTube.*');
+  // Descargar la imagen
+  let img = await q.download();
+  
+  // Convertir imagen a base64
+  let imgBase64 = img.toString('base64');
+
+  // Usamos una API gratuita (demo de HuggingFace o alternativa)
+  let apiUrl = `https://api-inference.huggingface.co/models/caidas/swin2sr-classical-sr-x2-64`; // También puedes usar RealESRGAN
+  
+  let response = await fetch(apiUrl, {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer hf_your_token_aquí', // opcional si es pública
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      inputs: {
+        image: `data:image/jpeg;base64,${imgBase64}`
+      }
+    })
+  });
+
+  if (!response.ok) {
+    return m.reply(`❌ Error al mejorar la imagen. Intenta de nuevo más tarde.`);
   }
 
-  await m.react('🕒');
+  let result = await response.blob ? response.blob() : await response.buffer();
 
-  try {
-    const isAudio = command.includes('mp3');
-    const info = isAudio ? await mp3(args[0]) : await mp4(args[0]);
-
-    if (!info || !info.link) throw new Error('No se pudo generar el enlace de descarga.');
-
-    let caption = `🎧 *DESCARGA YOUTUBE*\n\n`;
-    caption += `📌 *Título:* ${info.title}\n`;
-    caption += `📁 *Tamaño:* ${info.size}\n`;
-    caption += `🎚️ *Calidad:* ${info.quality || 'Desconocida'}\n`;
-    caption += `🎞️ *Tipo:* ${isAudio ? 'Audio (MP3)' : 'Video (MP4)'}\n`;
-    caption += `🔗 *Enlace:* ${args[0]}`;
-
-    if (isAudio) {
-      await conn.sendMessage(m.chat, {
-        audio: { url: info.link },
-        mimetype: 'audio/mpeg',
-        fileName: `${info.title}.mp3`,
-        caption
-      }, { quoted: m });
-    } else {
-      await conn.sendMessage(m.chat, {
-        video: { url: info.link },
-        mimetype: 'video/mp4',
-        fileName: `${info.title}.mp4`,
-        caption
-      }, { quoted: m });
-    }
-
-    await m.react('✅');
-  } catch (err) {
-    console.error(err);
-    await m.react('❌');
-    m.reply(`❌ *Error:* ${err.message}`);
-  }
+  await conn.sendFile(m.chat, result, 'hd-image.jpg', `🖼️ Aquí tienes tu imagen en HD`, m);
 };
 
-handler.help = ['mp3', 'mp4'];
-handler.tags = ['downloader'];
-handler.command = /^(mp3|mp4)$/i;
-handler.limit = true;
+handler.help = ['hd2'];
+handler.tags = ['tools', 'ai'];
+handler.command = ['hd2'];
 
 export default handler;
