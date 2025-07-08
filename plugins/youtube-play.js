@@ -2,7 +2,7 @@ import yts from 'yt-search';
 
 const handler = async (m, { conn, text, usedPrefix, command }) => {
   if (!text) {
-    return conn.reply(m.chat, `❗ Ingresa un título para buscar en YouTube.`, m);
+    return conn.reply(m.chat, `*❗ Ingresa un título para buscar en YouTube.*`, m, rcanal);
   }
 
   try {
@@ -45,7 +45,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
         viewOnce: true,
         headerType: 4,
       },
-      { quoted: m }
+      { quoted: m, rcanal }
     );
 
     await m.react('✅');

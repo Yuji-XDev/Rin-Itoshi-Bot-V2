@@ -118,6 +118,7 @@ handler.command = ['deletesesion', 'deletebot', 'deletesession', 'deletesesaion'
 
 export default handler;*/
 
+// codigo creado por Black.OFC 😺
 
 import ws from 'ws';
 
