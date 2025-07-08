@@ -162,7 +162,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
 handler.help = ['ytmp3', 'ytmp4'];
 handler.tags = ['descargas'];
 handler.command = ['ytmp3', 'ytmp4'];
-handler.group = true;
+//handler.group = true;
 export default handler;
 
 function formatViews(views) {
