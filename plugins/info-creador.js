@@ -57,26 +57,77 @@ handler.command = ['owner', 'creator', 'creador', 'dueño'];
 
 export default handler;*/
 
-const handler = async (m, { conn, usedPrefix, command }) => {
+// Código creado por Deylin
+// https://github.com/Deylin-eliac 
+// codigo creado para https://github.com/Deylin-eliac/Pikachu-bot 
+// No quites créditos
+
+import PhoneNumber from 'awesome-phonenumber';
+
+let handler = async (m, { conn }) => {
+  m.react('🧃');
+  
+const imageUrl = 'https://raw.githubusercontent.com/Deylin-Eliac/Pikachu-Bot/main/src/IMG-20250613-WA0194.jpg'
+  const numCreador = '50433191934';
+  const ownerJid = numCreador + '@s.whatsapp.net';
+  const name = await conn.getName(ownerJid) || 'Deylin';
+  const about = (await conn.fetchStatus(ownerJid).catch(() => {}))?.status || `Hola, mucho gusto. Soy Deylin.`;
+  const empresa = 'Deylin - Servicios Tecnológicos';
+
   const vcard = `
 BEGIN:VCARD
 VERSION:3.0
-N:Black.OFC;;;
-FN:Black.OFC
-TEL;type=CELL;type=VOICE;waid=51969214380:+51 969 214 380
-END:VCARD
-  `.trim();
+N:;${name};;;
+FN:${name}
+ORG:${empresa};
+TITLE:CEO & Fundador
+TEL;waid=${numCreador}:${new PhoneNumber('+' + numCreador).getNumber('international')}
+EMAIL:correo@empresa.com
+URL:https://www.tuempresa.com
+NOTE:${about}
+ADR:;;Dirección de tu empresa;;;;
+X-ABADR:ES
+X-ABLabel:Dirección Web
+X-ABLabel:Correo Electrónico
+X-ABLabel:Teléfono de contacto
+X-WA-BIZ-NAME:${name}
+X-WA-BIZ-DESCRIPTION:${about}
+END:VCARD`.trim();
 
-  await conn.sendMessage(m.chat, {
-    contacts: {
-      displayName: "Black.OFC",
-      contacts: [{ vcard }]
-    }
-  }, { quoted: m });
-};
 
-handler.command = ['creador', 'owner', 'black'];
-handler.tags = ['info'];
-handler.help = ['creador'];
+  await conn.sendMessage(
+    m.chat,
+    {
+      contacts: {
+        displayName: name,
+        contacts: [{ vcard }]
+      },
+      contextInfo: {
+        mentionedJid: [m.sender],
+        isForwarded: true,
+        forwardingScore: 999,
+        forwardedNewsletterMessageInfo: {
+          newsletterJid: channelRD.id,
+          newsletterName: channelRD.name,
+          serverMessageId: -1,
+        },
+        externalAdReply: {
+          title: textbot,
+          body: dev,
+          thumbnailUrl: imageUrl,
+          sourceUrl: redes,
+          mediaType: 1,
+          showAdAttribution: true,
+          renderLargerThumbnail: true,
+        },
+      }
+    },
+    { quoted: m }
+  );
+}
+
+handler.help = ['owner'];
+handler.tags = ['main'];
+handler.command = ['owner', 'creator', 'creador', 'dueño'];
 
 export default handler;
