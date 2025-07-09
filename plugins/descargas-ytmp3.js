@@ -1,10 +1,10 @@
-// codigo creado por Black.ofc
-// no robes creaditos, XD
+// codigo creado por Black.ofc 💥
+// no robes creaditos
 
 import fetch from 'node-fetch';
 
 const handler = async (m, { conn, text, usedPrefix, command }) => {
-  if (!text) return m.reply(`*⛩️ Ingresa un link de un video de YouTube.*`);
+  if (!text) return m.reply(`*⛩️ Ingresa un link de YouTube.*`);
 
   try {
 
