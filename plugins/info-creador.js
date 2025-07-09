@@ -1,4 +1,4 @@
-let handler = async (m, { conn }) => {
+/*let handler = async (m, { conn }) => {
   const creatorNumber = '51969214380';
   const creatorName = '⚡ THE BLACK 🍁';
   const github = 'https://github.com/the-27';
@@ -54,5 +54,29 @@ END:VCARD`.trim();
 handler.help = ['creador', 'owner'];
 handler.tags = ['info'];
 handler.command = ['owner', 'creator', 'creador', 'dueño'];
+
+export default handler;*/
+
+const handler = async (m, { conn, usedPrefix, command }) => {
+  const vcard = `
+BEGIN:VCARD
+VERSION:3.0
+N:Black.OFC;;;
+FN:Black.OFC
+TEL;type=CELL;type=VOICE;waid=51969214380:+51 969 214 380
+END:VCARD
+  `.trim();
+
+  await conn.sendMessage(m.chat, {
+    contacts: {
+      displayName: "Black.OFC",
+      contacts: [{ vcard }]
+    }
+  }, { quoted: m });
+};
+
+handler.command = ['creador', 'owner', 'black'];
+handler.tags = ['info'];
+handler.help = ['creador'];
 
 export default handler;
