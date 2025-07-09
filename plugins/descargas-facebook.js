@@ -1,4 +1,4 @@
-/*import { igdl } from 'ruhend-scraper';
+import { igdl } from 'ruhend-scraper';
 
 const handler = async (m, { text, conn, args, usedPrefix, command }) => {
   if (!args[0]) {
@@ -53,68 +53,4 @@ handler.help = ['facebook'];
 handler.tags = ['descargas'];
 handler.command = ['facebook', 'fb'];
 
-export default handler;*/
-
-
-import { igdl } from 'ruhend-scraper'
-import fetch from 'node-fetch'
-
-const handler = async (m, { text, conn, args, usedPrefix, command }) => {
-  if (!args[0]) {
-    await m.react(error)
-    return conn.reply(m.chat, '🏞️ Ingresa un enlace de Facebook válido.', m)
-  }
-
-  try {
-    await m.react(rwait)
-    await conn.reply(m.chat, '🌴 *Descargando video de Facebook...*', m)
-
-    const res = await igdl(args[0])
-    const result = res?.data
-
-    if (!result || result.length === 0) {
-      await m.react(error)
-      return conn.reply(m.chat, '❌ No se encontraron resultados para ese enlace.', m)
-    }
-
-    const data = result.find(i => i.resolution === "720p (HD)") || result.find(i => i.resolution === "360p (SD)")
-    if (!data || !data.url) {
-      await m.react(error)
-      return conn.reply(m.chat, '❌ No se encontró un video con resolución adecuada.', m)
-    }
-
-    const response = await fetch(data.url)
-    if (!response.ok) throw new Error('No se pudo descargar el video.')
-
-    const buffer = await response.buffer()
-    const fileSize = Buffer.byteLength(buffer)
-    const isLarge = fileSize > 30 * 1024 * 1024 // 30 MB
-
-    const caption = `\`\`\`◜ Facebook Download ◞\`\`\`\n\n🏞️ *Calidad:* ${data.resolution}\n🌐 *Enlace:* ${args[0]}\n${isLarge ? '📄 *El video pesa más de 30 MB, se envía como documento.*' : '🎥 *Video ligero, enviado normalmente.*'}\n\n✅ *Descarga exitosa.*`
-
-    const mensaje = {
-      caption,
-      fileName: 'facebook.mp4',
-      mimetype: 'video/mp4'
-    }
-
-    if (isLarge) {
-      await conn.sendMessage(m.chat, { document: buffer, ...mensaje }, { quoted: m })
-    } else {
-      await conn.sendMessage(m.chat, { video: buffer, ...mensaje }, { quoted: m })
-    }
-
-    await m.react(done)
-  } catch (e) {
-    console.error(e)
-    await m.react(error)
-    return conn.reply(m.chat, '❌ Error al descargar o enviar el video. Verifica el enlace o intenta más tarde.', m)
-  }
-}
-
-handler.help = ['facebook', 'fb']
-handler.tags = ['descargas']
-handler.command = ['facebook', 'fb']
-handler.register = true
-
-export default handler
+export default handler;
