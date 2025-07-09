@@ -1,27 +1,41 @@
 import fetch from 'node-fetch';
+import fs from 'fs';
+import path from 'path';
 
-const handler = async (m, { text, conn, args, usedPrefix, command }) => {
-  const url = args[0];
-  if (!url || !url.includes('youtube.com') && !url.includes('youtu.be')) {
-    return m.reply(`❌ Ingresa un enlace de YouTube válido.\n\nEjemplo: ${usedPrefix + command} https://youtu.be/dQw4w9WgXcQ`);
-  }
+const handler = async (m, { conn, text }) => {
+  if (!text) return m.reply('📌 Ingresa el enlace del TikTok\n\nEjemplo:\n#tiktok https://www.tiktok.com/@user/video/123456');
 
   try {
-    const apiUrl = `https://api.koboo.my.id/api/download/youtube?url=${encodeURIComponent(url)}&format=480`;
-    const res = await fetch(apiUrl);
+    const api = `https://api.koboo.my.id/api/download/v3/tiktok?url=${encodeURIComponent(text)}`;
+    const res = await fetch(api);
     const json = await res.json();
 
-    if (json.status !== 200 || !json.result || json.result.status === false) {
-      return m.reply(`⚠️ Error al procesar el video:\n${json.result?.error || 'Error desconocido.'}`);
+    if (!json || !json.data || !json.data.url) {
+      return m.reply('❌ No se pudo obtener el video. Asegúrate de que el enlace sea válido.');
     }
 
-    const result = json.result;
-    await conn.sendFile(m.chat, result.url, 'video.mp4', `🎬 *Título:* ${result.title || 'Desconocido'}\n📥 *Tamaño:* ${result.size || 'N/A'}`, m);
+    const videoUrl = json.data.url;
+    const videoRes = await fetch(videoUrl);
+    const buffer = await videoRes.buffer();
+
+    // Si pesa más de 30 MB, enviar como documento
+    const isBig = buffer.length > 30 * 1024 * 1024;
+    const fileName = 'tiktok.mp4';
+
+    await conn.sendFile(
+      m.chat,
+      buffer,
+      fileName,
+      `✅ Aquí tienes tu video de TikTok\n🔗 ${text}`,
+      m,
+      false,
+      { asDocument: isBig }
+    );
   } catch (e) {
     console.error(e);
-    m.reply('❌ Ocurrió un error al descargar el video.');
+    m.reply('⚠️ Error al procesar el video.');
   }
 };
 
-handler.command = /^yt480|youtube480$/i;
+handler.command = /^tiktokv$/i;
 export default handler;
