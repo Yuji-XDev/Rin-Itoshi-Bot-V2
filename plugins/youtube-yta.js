@@ -24,7 +24,7 @@ const handler = async (m, { conn, text, args, usedPrefix, command }) => {
       contextInfo: {
         externalAdReply: {
           title: title,
-          body: channel,
+          body: '☄️ DESCARGAS - PLAY ⛩️',
           thumbnailUrl: cover,
           sourceUrl: url,
           mediaType: 1,
