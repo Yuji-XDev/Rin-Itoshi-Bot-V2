@@ -160,6 +160,7 @@ let handler = async (m, { conn, args }) => {
 > ⫸ .play2
 > ⫸ .ytmp3doc
 > ⫸ .ytmp4doc
+> ⫸ .iaimg *<texto>*
 > ⫸ .yta
 > ⫸ .ytv
 > ⫸ .mp3

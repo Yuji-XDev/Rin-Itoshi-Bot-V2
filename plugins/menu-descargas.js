@@ -43,6 +43,7 @@ let handler = async (m, { conn }) => {
 ❥ 🎃 _.capcut *<url>*_
 ❥ 🎃 _.terabox_
 ❥ 🎃 _.yta_
+❥ 🎃 _.iaimg *texto*_
 ❥ 🎃 _.ytv_
 ❥ 🎃 _.sound_
 ❥ 🎃 _.play3_

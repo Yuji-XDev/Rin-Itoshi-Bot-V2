@@ -1,3 +1,4 @@
+// by black
 import fetch from 'node-fetch';
 
 const handler = async (m, { conn, args, usedPrefix, command }) => {
@@ -29,8 +30,8 @@ const handler = async (m, { conn, args, usedPrefix, command }) => {
   }
 };
 
-handler.command = ['iaimg', 'imagenia', 'imgai'];
+handler.command = ['iaimg'];
 handler.help = ['iaimg <texto>'];
-handler.tags = ['ai', 'image'];
+handler.tags = ['tools'];
 
 export default handler;
