@@ -1,57 +1,27 @@
 import fetch from 'node-fetch';
-import { downloadContentFromMessage } from '@whiskeysockets/baileys';
-import fs from 'fs';
-import path from 'path';
 
-const handler = async (m, { conn }) => {
-  if (!m.quoted || !/image/.test(m.quoted.mimetype)) {
-    return m.reply('📸 *Responde a una imagen para mejorarla en HD*');
+const handler = async (m, { text, conn, args, usedPrefix, command }) => {
+  const url = args[0];
+  if (!url || !url.includes('youtube.com') && !url.includes('youtu.be')) {
+    return m.reply(`❌ Ingresa un enlace de YouTube válido.\n\nEjemplo: ${usedPrefix + command} https://youtu.be/dQw4w9WgXcQ`);
   }
 
   try {
-    const media = await downloadContentFromMessage(m.quoted, 'image');
-    const tempFile = `./tmp/${Date.now()}.jpg`;
+    const apiUrl = `https://api.koboo.my.id/api/download/youtube?url=${encodeURIComponent(url)}&format=480`;
+    const res = await fetch(apiUrl);
+    const json = await res.json();
 
-    const buffer = await streamToBuffer(media);
-    fs.writeFileSync(tempFile, buffer);
-
-    // Sube la imagen a un host temporal (como catbox)
-    const form = new FormData();
-    form.append('fileToUpload', fs.createReadStream(tempFile), 'image.jpg');
-
-    const uploadRes = await fetch('https://catbox.moe/user/api.php', {
-      method: 'POST',
-      body: form,
-    });
-
-    const imageUrl = await uploadRes.text();
-    if (!imageUrl.startsWith('https://')) throw new Error('No se pudo subir la imagen.');
-
-    const apiUrl = `https://api.stellarwa.xyz/tools/upscale?url=${encodeURIComponent(imageUrl)}`;
-    const upscaleRes = await fetch(apiUrl);
-    const json = await upscaleRes.json();
-
-    if (!json.status || !json.result) {
-      throw new Error("❌ No se pudo mejorar la imagen.");
+    if (json.status !== 200 || !json.result || json.result.status === false) {
+      return m.reply(`⚠️ Error al procesar el video:\n${json.result?.error || 'Error desconocido.'}`);
     }
 
-    await conn.sendFile(m.chat, json.result, 'hd.jpg', '✨ Imagen mejorada en HD por *Sukuna Bot MD*', m);
-    fs.unlinkSync(tempFile); // borrar archivo temporal
+    const result = json.result;
+    await conn.sendFile(m.chat, result.url, 'video.mp4', `🎬 *Título:* ${result.title || 'Desconocido'}\n📥 *Tamaño:* ${result.size || 'N/A'}`, m);
   } catch (e) {
     console.error(e);
-    m.reply('❌ Error al mejorar la imagen. Intenta nuevamente.');
+    m.reply('❌ Ocurrió un error al descargar el video.');
   }
 };
 
-handler.command = ['hd3', 'upscale'];
+handler.command = /^yt480|youtube480$/i;
 export default handler;
-
-// Función auxiliar
-function streamToBuffer(stream) {
-  return new Promise((resolve, reject) => {
-    const chunks = [];
-    stream.on('data', chunk => chunks.push(chunk));
-    stream.on('end', () => resolve(Buffer.concat(chunks)));
-    stream.on('error', reject);
-  });
-}
