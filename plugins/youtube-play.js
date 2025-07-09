@@ -39,7 +39,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
         caption: body,
         footer: '💛 ᴱˡⁱᵍᵉ ᵘⁿᵃ ᵒᵖᶜⁱᵒⁿ ᵖᵃʳᵃ ᵈᵉˢᶜᵃʳᵍᵃʳ 🎄  \n╰───► ᴬᵘᵈⁱᵒ 🎧 | ➍𝟠𝟢ᵖ ➍𝟠𝟢ᵖ ᵛⁱᵈᵉᵒ 🎥',
         buttons: [
-          { buttonId: `${usedPrefix}yta ${url}`, buttonText: { displayText: '🎧 𓆩 𝗔𝗨𝗗𝗜𝗢 · 𝗠𝗣𝟯 𓆪' }, type: 1 },
+         // { buttonId: `${usedPrefix}ytmp3 ${url}`, buttonText: { displayText: '🎧 𓆩 𝗔𝗨𝗗𝗜𝗢 · 𝗠𝗣𝟯 𓆪' }, type: 1 },
           { buttonId: `${usedPrefix}ytv ${url}`, buttonText: { displayText: '📽️ 𓆩 𝗩𝗜𝗗𝗘𝗢 · 𝗠𝗣𝟰 𓆪' }, type: 1 },
         ],
         viewOnce: true,
@@ -55,7 +55,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
   }
 };
 
-handler.command = ['play', 'play2'];
+handler.command = ['play2'];
 handler.tags = ['descargas'];
 //handler.limit = 6;
 
