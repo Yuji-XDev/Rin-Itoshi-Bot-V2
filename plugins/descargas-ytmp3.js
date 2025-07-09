@@ -60,6 +60,6 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
 
 handler.help = ['ytmp3'].map(v => v + ' <nombre o link>');
 handler.tags = ['downloader'];
-handler.command = ['ytmp3', 'audio'];
+handler.command = ['ytmp3', 'yta'];
 
 export default handler;
