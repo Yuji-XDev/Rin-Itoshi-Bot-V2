@@ -1,89 +1,65 @@
-import yts from 'yt-search'
-import fetch from 'node-fetch'
+// codigo creado por Black.ofc
+// no robes creaditos, XD
 
-const handler = async (m, { conn, command, text, usedPrefix }) => {
-  if (!text) {
-    return m.reply(`❗ *Ingresa un título de YouTube:*\n\n🎄 *Ejemplo:* ${usedPrefix + command} Stay Justin Bieber`)
-  }
+import fetch from 'node-fetch';
 
-  await m.react('⏳')
+const handler = async (m, { conn, text, usedPrefix, command }) => {
+  if (!text) return m.reply(`*⛩️ Ingresa un link de un video de YouTube.*`);
 
   try {
-    const search = await yts(text)
-    if (!search.videos || !search.videos.length) {
-      await m.react('❌')
-      return m.reply('*✖️ No se encontraron resultados.*')
+
+    await conn.sendMessage(m.chat, { react: { text: '⏱️', key: m.key }});
+
+    const api = `https://api.nekorinn.my.id/downloader/ytplay?q=${encodeURIComponent(text)}`;
+    const res = await fetch(api);
+    const json = await res.json();
+
+    if (!json.status || !json.result || !json.result.downloadUrl) {
+      return m.reply('❌ No se pudo obtener el audio. Intenta con otro título o revisa la API.');
     }
 
-    const vid = search.videos[0]
-    const { title, thumbnail, timestamp, views, ago, url, author } = vid
+    const { title, channel, duration, cover } = json.result.metadata;
+    const downloadUrl = json.result.downloadUrl;
+    const sourceUrl = json.result.metadata.url || text;
 
-    
+    let thumb;
+    try {
+      const thumbRes = await conn.getFile(cover);
+      thumb = thumbRes?.data;
+    } catch {
+      thumb = null;
+    }
+
     await conn.sendMessage(m.chat, {
-      image: { url: thumbnail },
-      caption: `╭━━━⊷ *Descarga en proceso...*
-┃📥 *Título:* ${title}
-┃🕒 *Duración:* ${timestamp}
-┃👤 *Autor:* ${author.name}
-╰━━━━━⬣`
-    }, { quoted: m })
-
-    const headers = {
-      "accept": "*/*",
-      "accept-language": "es-ES,es;q=0.9",
-      "Referer": "https://id.ytmp3.mobi/",
-      "Referrer-Policy": "strict-origin-when-cross-origin"
-    }
-
-    const initFetch = await fetch(`https://d.ymcdn.org/api/v1/init?p=y&23=1llum1n471&_=${Math.random()}`, { headers })
-    const init = await initFetch.json()
-
-    const id = url.match(/(?:youtu\.be\/|youtube\.com\/(?:.*v=|.*\/|.*embed\/))([^&?/]+)/)?.[1]
-    if (!id) throw new Error('No se encontró el ID del video.')
-
-    const convertURL = `${init.convertURL}&v=${id}&f=mp4&_=${Math.random()}`
-    const convertRes = await fetch(convertURL, { headers })
-    const convert = await convertRes.json()
-
-    let info = {}
-    for (let i = 0; i < 3; i++) {
-      const progress = await fetch(convert.progressURL, { headers })
-      info = await progress.json()
-      if (info.progress === 3) break
-    }
-
-    if (!convert.downloadURL) throw new Error('❌ No se pudo obtener el enlace de descarga.')
-
-    // Enviar el audio con portada y diseño bonito
-    await conn.sendMessage(m.chat, {
-      audio: { url: convert.downloadURL },
-      mimetype: 'audio/mp4',
+      audio: { url: downloadUrl },
+      mimetype: 'audio/mpeg',
       ptt: false,
-      fileName: `${title}.mp3`,
       contextInfo: {
         externalAdReply: {
           title: title,
-          body: `🎤 ${author.name}`,
-          thumbnailUrl: thumbnail,
-          sourceUrl: url,
-          mediaType: 2,
-          showAdAttribution: true,
+          body: `YOUTUBE • MP3`,
+          mediaUrl: sourceUrl,
+          sourceUrl: sourceUrl,
+          thumbnail: thumb,
+          mediaType: 1,
           renderLargerThumbnail: true
         }
       }
-    }, { quoted: m })
+    }, { quoted: m });
 
-    await m.react('✅')
+
+    await conn.sendMessage(m.chat, { react: { text: '✔️', key: m.key }});
 
   } catch (e) {
-    console.error(e)
-    await m.react('❌')
-    m.reply('⛔ *Ocurrió un error al procesar tu solicitud.*\n\nIntenta con otro título.')
+    console.error(e);
+    m.reply('⚠️ Ocurrió un error al procesar el audio. Intenta de nuevo.');
+
+    await conn.sendMessage(m.chat, { react: { text: '❌', key: m.key }});
   }
-}
+};
 
-handler.help = ['audio *<nombre o link>*']
-handler.tags = ['downloader']
-handler.command = ['audio']
+handler.help = ['ytmp3'].map(v => v + ' <nombre o link>');
+handler.tags = ['downloader'];
+handler.command = ['ytmp3', 'audio'];
 
-export default handler
+export default handler;
