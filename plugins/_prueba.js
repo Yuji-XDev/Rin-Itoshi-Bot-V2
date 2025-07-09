@@ -23,24 +23,26 @@ let handler = async (m, { conn, text, args }) => {
   await conn.sendFile(m.chat, izumi.image, 'thumbnail.jpg', txt, m)
 
   try {
-    const apiUrl = `https://api.dorrat.net/ytmp3?url=${encodeURIComponent(izumi.url)}`
-    const res = await fetch(apiUrl)
-    const json = await res.json()
+    // PRIMER INTENTO: Vihangayt
+    const api1 = await fetch(`https://vihangayt.me/download/ytmp3?url=${encodeURIComponent(izumi.url)}`)
+    const json1 = await api1.json()
 
-    if (!json.status) throw new Error('No se pudo obtener el audio.')
+    if (json1.status && json1.url) {
+      await sendAudio(conn, m, izumi.title, json1.url)
+      return
+    }
 
-    const { title, audio } = json.result
+    // SEGUNDO INTENTO: Bochilteam
+    const api2 = await fetch(`https://api.bochilteam.com/api/convert?URL=${encodeURIComponent(izumi.url)}&filter=audio`)
+    const json2 = await api2.json()
 
-    await conn.sendMessage(
-      m.chat,
-      {
-        audio: { url: audio },
-        mimetype: 'audio/mpeg',
-        fileName: `${title}.mp3`,
-        ptt: false
-      },
-      { quoted: m }
-    )
+    if (json2?.audio?.url) {
+      await sendAudio(conn, m, izumi.title, json2.audio.url)
+      return
+    }
+
+    throw new Error('Ninguna API respondió correctamente.')
+
   } catch (error) {
     console.error(error)
     m.reply(`❌ 𝗘𝗿𝗿𝗼𝗿 𝗮𝗹 𝗱𝗲𝘀𝗰𝗮𝗿𝗴𝗮𝗿 𝗲𝗹 𝗮𝘂𝗱𝗶𝗼.\n*Detalles:* ${error.message}`)
@@ -52,7 +54,22 @@ handler.help = ['play5']
 handler.tags = ['dl']
 export default handler
 
+// 🔊 Función para enviar el audio
+async function sendAudio(conn, m, title, url) {
+  await conn.sendMessage(
+    m.chat,
+    {
+      audio: { url },
+      mimetype: 'audio/mpeg',
+      fileName: `${title}.mp3`,
+      ptt: false
+    },
+    { quoted: m }
+  )
+}
+
+// 🔍 Función de búsqueda
 async function search(query, options = {}) {
-  let search = await yts.search({ query, hl: "es", gl: "ES", ...options })
-  return search.videos
+  const results = await yts.search({ query, hl: 'es', gl: 'ES', ...options })
+  return results.videos
 }
