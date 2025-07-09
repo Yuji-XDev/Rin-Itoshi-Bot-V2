@@ -23,13 +23,15 @@ let handler = async (m, { conn, usedPrefix }) => {
 ┃👤 Usuario: *${name}*
 ┃💰 Dinero: *${user.coin} ${moneda}*
 ┃🏦 Banco: *${user.bank} ${moneda}*
+┃
 ┃🌟 Experiencia: *${user.exp}*
 ┃📈 Nivel: *${user.level}*
 ┃⚜️ Rango: *${user.role}*
+┃
 ┃📅 Fecha: *${new Date().toLocaleString('id-ID')}*
 ┗━━━━━━━━━━━━━━━━━━✦
-💡 *Para proteger tu dinero, deposítalo en el banco.*
-🔒 Usa: *${usedPrefix}deposit*`
+> 💡 *Para proteger tu dinero, deposítalo en el banco.*
+> 🔒 Usa: *${usedPrefix}deposit*`
 
   await conn.sendFile(m.chat, img, 'bank.jpg', txt, fkontak, null, { mentions: [who] })
 }
