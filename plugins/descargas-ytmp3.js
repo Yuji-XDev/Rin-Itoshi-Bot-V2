@@ -45,7 +45,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
           renderLargerThumbnail: true
         }
       }
-    }, { quoted: m });
+    }, { quoted: fkontak });
 
 
     await conn.sendMessage(m.chat, { react: { text: '✔️', key: m.key }});
