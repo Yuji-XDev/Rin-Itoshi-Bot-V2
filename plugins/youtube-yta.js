@@ -27,7 +27,7 @@ let handler = async (m, { conn, args, command, usedPrefix}) => {
       caption: `➤ 🌴 *𝚃𝙸𝚃𝚄𝙻𝙾:* ${title}
 ➤ 🌲 *𝙰𝚁𝚃𝙸𝚂𝚃𝙰:* ${artist}
 ➤ ⏱️ *𝙳𝚄𝚁𝙰𝙲𝙸𝙾𝙽:* ${duration}
-➤ 🌪️ *𝚂𝙿𝙾𝚃𝙸𝙵𝚈* ${url}
+
 > 🎧 𝑬𝒔𝒕𝒐𝒚 𝒑𝒓𝒐𝒄𝒆𝒔𝒂𝒏𝒅𝒐 𝒕𝒖 𝒅𝒆𝒔𝒄𝒂𝒓𝒈𝒂....`
 }, { quoted: m});
 
