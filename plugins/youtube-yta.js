@@ -15,7 +15,7 @@ let handler = async (m, { conn, args, command, usedPrefix}) => {
 
     if (!json.status ||!json.result?.downloadUrl) {
       return m.reply(
-        `❌ *No se encontró resultado para:* ${text}`
+        `😨 *No se encontró resultado para:* ${text}`
 );
 }
 
