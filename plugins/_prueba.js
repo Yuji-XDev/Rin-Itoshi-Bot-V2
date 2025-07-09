@@ -1,75 +1,45 @@
-import fetch from 'node-fetch'
+import { ytmp3 } from 'y2mate-dl'
 import yts from 'yt-search'
+import fetch from 'node-fetch'
 
 let handler = async (m, { conn, text, args }) => {
-  if (!text) {
-    return m.reply(`╭━━〔 *❗ 𝗜𝗻𝗴𝗿𝗲𝘀𝗮 𝘂𝗻 𝘁𝗶𝘁𝘂𝗹𝗼* 〕━━⬣
-┃✧ *Ejemplo:* .play5 La Diabla
-╰━━━━━━━━━━━━━━━━━━━━⬣`)
-  }
+  if (!text) return m.reply('❌ Ingresa un título o link de YouTube.')
 
-  let ytres = await search(args.join(" "))
-  if (!ytres.length) return m.reply("❌ No se encontraron resultados para tu búsqueda.")
+  let ytres = await search(args.join(' '))
+  if (!ytres.length) return m.reply('❌ No se encontraron resultados.')
 
   let izumi = ytres[0]
-  let txt = `╭━━〔 *𝐒𝐔𝐊𝐔𝐍𝐀 𝐌𝐃* 〕━━⬣
-┃🌴 *Título:* ${izumi.title}
-┃⏱️ *Duración:* ${izumi.timestamp}
-┃📅 *Publicado:* ${izumi.ago}
-┃🎄 *Canal:* ${izumi.author.name || 'Desconocido'}
-┃🌪️ *Url:* ${izumi.url}
-╰━━━━━━━━━━━━━━━━━━━━⬣`
+  let txt = `🎵 *${izumi.title}*\n⏱️ ${izumi.timestamp} • ${izumi.author.name}`
 
-  await conn.sendFile(m.chat, izumi.image, 'thumbnail.jpg', txt, m)
+  await conn.sendFile(m.chat, izumi.image, 'thumb.jpg', txt, m)
 
   try {
-    // PRIMER INTENTO: Vihangayt
-    const api1 = await fetch(`https://vihangayt.me/download/ytmp3?url=${encodeURIComponent(izumi.url)}`)
-    const json1 = await api1.json()
+    const res = await ytmp3(izumi.url)
+    if (!res.status || !res.mp3) throw new Error('No se pudo generar audio.')
 
-    if (json1.status && json1.url) {
-      await sendAudio(conn, m, izumi.title, json1.url)
-      return
-    }
-
-    // SEGUNDO INTENTO: Bochilteam
-    const api2 = await fetch(`https://api.bochilteam.com/api/convert?URL=${encodeURIComponent(izumi.url)}&filter=audio`)
-    const json2 = await api2.json()
-
-    if (json2?.audio?.url) {
-      await sendAudio(conn, m, izumi.title, json2.audio.url)
-      return
-    }
-
-    throw new Error('Ninguna API respondió correctamente.')
-
-  } catch (error) {
-    console.error(error)
-    m.reply(`❌ 𝗘𝗿𝗿𝗼𝗿 𝗮𝗹 𝗱𝗲𝘀𝗰𝗮𝗿𝗴𝗮𝗿 𝗲𝗹 𝗮𝘂𝗱𝗶𝗼.\n*Detalles:* ${error.message}`)
+    await conn.sendMessage(
+      m.chat,
+      {
+        audio: { url: res.mp3 },
+        mimetype: 'audio/mpeg',
+        fileName: `${res.title}.mp3`,
+        ptt: false
+      },
+      { quoted: m }
+    )
+  } catch (e) {
+    console.error(e)
+    m.reply(`❌ Error al descargar el audio.\n${e.message}`)
   }
 }
 
 handler.command = ['play5']
-handler.help = ['play5']
 handler.tags = ['dl']
+handler.help = ['play5']
+
 export default handler
 
-// 🔊 Función para enviar el audio
-async function sendAudio(conn, m, title, url) {
-  await conn.sendMessage(
-    m.chat,
-    {
-      audio: { url },
-      mimetype: 'audio/mpeg',
-      fileName: `${title}.mp3`,
-      ptt: false
-    },
-    { quoted: m }
-  )
-}
-
-// 🔍 Función de búsqueda
-async function search(query, options = {}) {
-  const results = await yts.search({ query, hl: 'es', gl: 'ES', ...options })
-  return results.videos
+async function search(query) {
+  const r = await yts.search({ query, hl: 'es', gl: 'ES' })
+  return r.videos
 }
