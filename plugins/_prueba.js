@@ -1,45 +1,36 @@
-import { ytmp3 } from 'y2mate-dl'
-import yts from 'yt-search'
-import fetch from 'node-fetch'
+import fetch from 'node-fetch';
 
-let handler = async (m, { conn, text, args }) => {
-  if (!text) return m.reply('❌ Ingresa un título o link de YouTube.')
+const handler = async (m, { conn, args, usedPrefix, command }) => {
+  if (!args[0]) {
+    return m.reply(`🎄 *Ejemplo de uso:*\n${usedPrefix + command} gato gris`);
+  }
 
-  let ytres = await search(args.join(' '))
-  if (!ytres.length) return m.reply('❌ No se encontraron resultados.')
-
-  let izumi = ytres[0]
-  let txt = `🎵 *${izumi.title}*\n⏱️ ${izumi.timestamp} • ${izumi.author.name}`
-
-  await conn.sendFile(m.chat, izumi.image, 'thumb.jpg', txt, m)
+  const prompt = encodeURIComponent(args.join(" "));
+  const url = `https://api.dorratz.com/v3/ai-image?prompt=${prompt}&ratio=9:19`;
 
   try {
-    const res = await ytmp3(izumi.url)
-    if (!res.status || !res.mp3) throw new Error('No se pudo generar audio.')
+    const res = await fetch(url);
+    const json = await res.json();
 
-    await conn.sendMessage(
-      m.chat,
-      {
-        audio: { url: res.mp3 },
-        mimetype: 'audio/mpeg',
-        fileName: `${res.title}.mp3`,
-        ptt: false
-      },
-      { quoted: m }
-    )
+    if (!json.data || !json.data.image_link) {
+      throw '❌ No se pudo generar la imagen.';
+    }
+
+    const img = json.data.image_link;
+
+    await conn.sendMessage(m.chat, {
+      image: { url: img },
+      caption: `🏞️ Imagen generada con IA\n🌪️ *Prompt:* ${args.join(" ")}`
+    }, { quoted: m });
+
   } catch (e) {
-    console.error(e)
-    m.reply(`❌ Error al descargar el audio.\n${e.message}`)
+    console.error(e);
+    m.reply('⚠️ Error al generar la imagen. Intenta con otro prompt.');
   }
-}
+};
 
-handler.command = ['play5']
-handler.tags = ['dl']
-handler.help = ['play5']
+handler.command = ['iaimg', 'imagenia', 'imgai'];
+handler.help = ['iaimg <texto>'];
+handler.tags = ['ai', 'image'];
 
-export default handler
-
-async function search(query) {
-  const r = await yts.search({ query, hl: 'es', gl: 'ES' })
-  return r.videos
-}
+export default handler;
