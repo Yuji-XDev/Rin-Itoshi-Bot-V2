@@ -1,15 +1,15 @@
 import fetch from 'node-fetch';
 
-let handler = async (m, { conn, command, usedPrefix }) => {
+const handler = async (m, { conn, command, usedPrefix }) => {
   let index = 0;
 
-  // Detectar si el comando es cosplaytele_next_X
-  const match = command.match(/^cosplaytele(?:_next_(\d+))?$/i);
+  // Verifica si el mensaje contiene cosplaypage_X
+  const match = m.text?.match(/cosplaypage_(\d+)/i);
   if (match && match[1]) {
     index = parseInt(match[1]);
   }
 
-  // Obtener resultados desde la API
+  // Llama a la API
   const res = await fetch('https://api.nekorinn.my.id/search/cosplaytele?q=720p');
   const json = await res.json();
 
@@ -25,7 +25,7 @@ let handler = async (m, { conn, command, usedPrefix }) => {
     footer: 'CosplayTele - by @nekorinnn',
     buttons: [
       {
-        buttonId: `${usedPrefix}cosplaytele_next_${index + 1}`,
+        buttonId: `${usedPrefix}cosplaypage_${index + 1}`,
         buttonText: { displayText: '➡️ Siguiente' },
         type: 1
       }
@@ -33,9 +33,10 @@ let handler = async (m, { conn, command, usedPrefix }) => {
     headerType: 4
   };
 
-  conn.sendMessage(m.chat, message, { quoted: m });
+  await conn.sendMessage(m.chat, message, { quoted: m });
 };
 
-handler.command = /^cosplaytele(?:_next_\d+)?$/i;
+// Comando principal
+handler.command = ['cosplay'];
 
 export default handler;
