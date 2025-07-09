@@ -1,21 +1,15 @@
-// 🥮 - _*Plugin Play (texto)*_
-// 🥮 - _*Descarga Musicas de YT por Texto*_
-// 🥮 - _*Codigo Realizado por Bajo!Bots
-
 import fetch from 'node-fetch'
 import yts from 'yt-search'
 
 let handler = async (m, { conn, text, args }) => {
   if (!text) {
     return m.reply(`╭━━〔 *❗ 𝗜𝗻𝗴𝗿𝗲𝘀𝗮 𝘂𝗻 𝘁𝗶𝘁𝘂𝗹𝗼* 〕━━⬣
-┃✧ *Ejemplo:* .play La Diabla
+┃✧ *Ejemplo:* .play5 La Diabla
 ╰━━━━━━━━━━━━━━━━━━━━⬣`)
   }
 
   let ytres = await search(args.join(" "))
-  if (!ytres.length) {
-    return m.reply("❌ No se encontraron resultados para tu búsqueda.")
-  }
+  if (!ytres.length) return m.reply("❌ No se encontraron resultados para tu búsqueda.")
 
   let izumi = ytres[0]
   let txt = `╭━━〔 *𝐒𝐔𝐊𝐔𝐍𝐀 𝐌𝐃* 〕━━⬣
@@ -29,19 +23,18 @@ let handler = async (m, { conn, text, args }) => {
   await conn.sendFile(m.chat, izumi.image, 'thumbnail.jpg', txt, m)
 
   try {
-    const apiUrl = `https://cloudkutube.eu/api/yta?url=${encodeURIComponent(izumi.url)}`
-    const response = await fetch(apiUrl)
-    const data = await response.json()
+    const apiUrl = `https://api.dorrat.net/ytmp3?url=${encodeURIComponent(izumi.url)}`
+    const res = await fetch(apiUrl)
+    const json = await res.json()
 
-    if (data.status !== 'success') throw new Error('Fallo al obtener el audio.')
+    if (!json.status) throw new Error('No se pudo obtener el audio.')
 
-    const title = data.result.title
-    const download = data.result.url
+    const { title, audio } = json.result
 
     await conn.sendMessage(
       m.chat,
       {
-        audio: { url: download },
+        audio: { url: audio },
         mimetype: 'audio/mpeg',
         fileName: `${title}.mp3`,
         ptt: false
