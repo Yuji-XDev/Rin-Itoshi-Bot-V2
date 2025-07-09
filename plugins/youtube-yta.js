@@ -31,29 +31,13 @@ let handler = async (m, { conn, args, command, usedPrefix}) => {
 > 🎧 𝑬𝒔𝒕𝒐𝒚 𝒑𝒓𝒐𝒄𝒆𝒔𝒂𝒏𝒅𝒐 𝒕𝒖 𝒅𝒆𝒔𝒄𝒂𝒓𝒈𝒂....`
 }, { quoted: m});
 
-      await conn.sendMessage(m.chat, {
-        audio: { url: audio },
-        mimetype: "audio/mpeg",
-        ptt: false,
-        contextInfo: {
-          externalAdReply: {
-            title: title,
-            body: 'YouTube - MP3',
-            mediaUrl: url,
-            sourceUrl: url,
-            thumbnail: cover,
-            mediaType: 1,
-            renderLargerThumbnail: true
-          }
-        }
-      }, { quoted: m });
-      
-    /*await conn.sendMessage(m.chat, {
+  
+    await conn.sendMessage(m.chat, {
       audio: { url: audio},
       mimetype: 'audio/mp4',
       ptt: false,
       fileName: `${title}.mp3`
-}, { quoted: fkontak});*/
+}, { quoted: fkontak});
 
     await m.react('✅');
 
