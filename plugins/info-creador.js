@@ -5,10 +5,10 @@
 import PhoneNumber from 'awesome-phonenumber';
 
 let handler = async (m, { conn }) => {
-  m.react('🧃');
+  m.react('⛩️');
   
 const imageUrl = 'https://files.catbox.moe/y43t02.jpg'
-  const numCreador = '51 988 013 368';
+  const numCreador = '51988013368';
   const ownerJid = numCreador + '@s.whatsapp.net';
   const name = await conn.getName(ownerJid) || 'Black';
   const about = (await conn.fetchStatus(ownerJid).catch(() => {}))?.status || `⛩️ BLACK.OFC 👻`;
