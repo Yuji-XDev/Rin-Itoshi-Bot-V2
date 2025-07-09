@@ -18,12 +18,12 @@ let handler = async (m, { conn, text, args }) => {
   }
 
   let izumi = ytres[0]
-  let txt = `╭━━〔 *🔍 𝗥𝗲𝘀𝘂𝗹𝘁𝗮𝗱𝗼 𝗘𝗻𝗰𝗼𝗻𝘁𝗿𝗮𝗱𝗼* 〕━━⬣
-┃🎧 *Título:* ${izumi.title}
+  let txt = `╭━━〔 *𝐒𝐔𝐊𝐔𝐍𝐀 𝐌𝐃* 〕━━⬣
+┃🌴 *Título:* ${izumi.title}
 ┃⏱️ *Duración:* ${izumi.timestamp}
 ┃📅 *Publicado:* ${izumi.ago}
-┃📺 *Canal:* ${izumi.author.name || 'Desconocido'}
-┃🔗 *Url:* ${izumi.url}
+┃🎄 *Canal:* ${izumi.author.name || 'Desconocido'}
+┃🌪️ *Url:* ${izumi.url}
 ╰━━━━━━━━━━━━━━━━━━━━⬣`
 
   await conn.sendFile(m.chat, izumi.image, 'thumbnail.jpg', txt, m)
