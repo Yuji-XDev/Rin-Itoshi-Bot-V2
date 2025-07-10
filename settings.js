@@ -49,11 +49,11 @@ global.blackJadibts = true
 global.packname = '🎄  ⸸𝕊𝖚𝖐𝖚𝖓𝖆 𝕭𝖔𝖙 𝑴𝑫⸸  🎋'
 global.botname = '✦⃟⛧ _𝑺𝑼𝑲𝑼𝑵𝑨⛧ 𝑩𝑶𝑻_ 🎄┋⃟✧'
 global.wm = '◟𝐒𝐮𝐤𝐮𝐧𝐚 𝐁𝐨𝐭◞'
-global.author = 'mᥲძᥱ ᑲᥡ  🌈͢𝄟⏤͟͟͞͞⃝Black'
-global.dev = '୧ㅤミ★ 》 Tʜᴇ Bʟᴀᴄᴋ 𝘰𝘧𝘤《★彡 🎋'
+global.author = 'mᥲძᥱ ᑲᥡ  🌈͢𝄟⏤͟͟͞͞⃝Sʜsᴅᴏᴡ`ᴄᴏʀᴇ'
+global.dev = '୧ㅤミ★ 》 Tʜᴇ sʜᴀᴅᴏᴡ`ᴄᴏʀᴇ 𝘰𝘧𝘤《★彡 🎋'
 global.bot = '𝑺𝒖𝒌𝒖𝒏𝒂 𝑩𝒐𝒕'
-global.textbot = '𝚂𝚄𝙺𝚄𝙽𝙰 𝙱𝙾𝚃 𝕏 𝔹𝕃𝔸ℂ𝕂'
-global.etiqueta = '@ʙʟᴀᴄᴋ.ᴏғᴄ'
+global.textbot = '𝚂𝚄𝙺𝚄𝙽𝙰 𝙱𝙾𝚃 𝕏 𝕊ℍ𝔸𝔻𝕆𝕎•ℂ𝕆ℝ𝔼'
+global.etiqueta = '@sʜᴀᴅᴏᴡ°ᴄᴏʀᴇ'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
