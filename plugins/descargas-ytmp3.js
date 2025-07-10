@@ -4,7 +4,7 @@
 import fetch from 'node-fetch';
 
 const handler = async (m, { conn, text, usedPrefix, command }) => {
-  if (!text) return m.reply(`*⛩️ Ingresa un link de YouTube.*`);
+  if (!text) return m.reply(`*⛩️ Ingresa un link de YouTube 🌲*`);
 
   try {
 
