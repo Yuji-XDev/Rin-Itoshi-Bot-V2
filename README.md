@@ -61,7 +61,7 @@ termux-setup-storage
 ```
 
 ```bash
-git clone https://github.com/the-27/Rin-Itoshi-Bot-V2 && cd Rin-Itoshi-Bot-V2
+git clone https://github.com/Yuji-XDev/Rin-Itoshi-Bot-V2 && cd Rin-Itoshi-Bot-V2
 ```
 
 ```bash
@@ -136,7 +136,7 @@ apt update && apt upgrade
 ```
 
 ```bash
-git clone https://github.com/the-27/Rin-Itoshi-Bot-V2 && cd Rin-Itoshi-Bot-V2
+git clone https://github.com/Yuji-XDev/Rin-Itoshi-Bot-V2 && cd Rin-Itoshi-Bot-V2
 ```
 
 ```bash
@@ -167,7 +167,7 @@ npm start
 <div align="center">
   <h1 align="center">EDITOR Y PROPIETARIO DEL BOT</h1>
 
-<a href="https://github.com/the-27"><img src="https://github.com/the-27.png" width="300" height="300" alt="the-27"/></a>
+<a href="https://github.com/Yuji-XDev"><img src="https://github.com/Yuji-XDev.png" width="300" height="300" alt="Yuji-XDev"/></a>
 
 `RIN ITOSHI BOT X BY BLACK `
   ### `Black.OFC`
