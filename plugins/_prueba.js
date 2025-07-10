@@ -1,9 +1,16 @@
 import fetch from 'node-fetch';
 
 const handler = async (m, { conn, args, command }) => {
-  if (!args[0]) return m.reply('*📥 Ingresa el enlace de un video de YouTube.*');
-
   const videoUrl = args[0];
+
+  if (!videoUrl) return m.reply('*📥 Ingresa el enlace de un video de YouTube.*');
+
+  // Validación de enlace de YouTube
+  const ytRegex = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)[\w\-]{11}/;
+  if (!ytRegex.test(videoUrl)) {
+    return m.reply('❌ *Enlace no válido.* Asegúrate de ingresar un enlace de YouTube correcto.');
+  }
+
   const quality = '480p'; // Puedes cambiar a 360p, 720p, etc.
   const apiKey = 'russellxz';
 
@@ -23,7 +30,6 @@ const handler = async (m, { conn, args, command }) => {
     const download = result.url;
 
     await conn.sendFile(m.chat, thumb, 'thumb.jpg', `📹 *${title}*\n📦 Tamaño: ${size}\n\n⬇️ Enviando video...`, m);
-
     await conn.sendFile(m.chat, download, `${title}.mp4`, null, m);
 
   } catch (e) {
