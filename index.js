@@ -47,7 +47,7 @@ align: 'center',
 colors: ['magentaBright']
 })
 
-say(`Developed By • BLACK`, {
+say(`Developed By • SHADOW'core`, {
 font: 'console',
 align: 'center',
 colors: ['blueBright']
