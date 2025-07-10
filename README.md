@@ -11,16 +11,16 @@
 
 ---
 
-## 🧩 ғᴜɴᴄɪᴏɴᴇs ᴅᴇ ʀɪɴ ɪᴛᴏsʜɪ
+## 🧩 ғᴜɴᴄɪᴏɴᴇs ᴅᴇ sᴜᴋᴜɴᴀ ʙᴏᴛ ᴍᴅ
 
 <details>
- <summary><b> ☄️ INFO - BOT</b></summary>
+ <summary><b> ☄️ INFO - BOT 👀</b></summary>
 
 * Este proyecto **no está afiliado de ninguna manera** con `WhatsApp`, `Inc. WhatsApp` es una marca registrada de `WhatsApp LLC`, y este bot es un **desarrollo independiente** que **no tiene ninguna relación oficial con la compañía**.
 </details>
 
 <details>
- <summary><b> 🎄 FUNCIONES</b></summary>
+ <summary><b> 🎄 FUNCIONES ⛩️</b></summary>
 
 > ᴮᵒᵗ ᵉⁿ ᵈᵉˢᵃʳʳᵒˡˡᵒ ˢⁱ ᵖʳᵉˢᵉⁿᵗᵃ ᵃˡᵍᵘⁿᵃ ᶠᵃˡˡᵃ ʳᵉᵖᵒʳᵗᵃʳ ᵃˡ ᶜʳᵉᵃᵈᵒʳ ᵖᵃʳᵃ ᵈᵃʳˡᵉ ᵘⁿᵃ ˢᵒˡᵘᶜⁱᵒⁿ ᵒᵖᵗⁱᵐᵃ
 
