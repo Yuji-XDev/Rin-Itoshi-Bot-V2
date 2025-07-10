@@ -4,13 +4,13 @@
 import fetch from 'node-fetch';
 
 const handler = async (m, { conn, text, usedPrefix, command }) => {
-  if (!text) return m.reply(`*⛩️ Ingresa un link de YouTube 🌲*`);
+  if (!text) return m.reply(`*⛩️ Ingresa un link de YouTub'e 🌲*`);
 
   try {
 
     await conn.sendMessage(m.chat, { react: { text: '⏱️', key: m.key }});
 
-    const api = `https://api.nekorinn.my.id/downloader/ytplay?q=${encodeURIComponent(text)}`;
+    const api = `https://api.nekorinn.my.id/downloader/ytplay-savetube?q=${encodeURIComponent(text)}`;
     const res = await fetch(api);
     const json = await res.json();
 
