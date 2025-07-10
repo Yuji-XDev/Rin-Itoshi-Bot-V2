@@ -21,7 +21,6 @@ const handler = async (m, {conn, usedPrefix, command}) => {
 };
 handler.help = ["remini", "hd2", "enhance"];
 handler.tags = ["ai", "tools"];
-handler.group = true;
 handler.register = true
 handler.command = ["remini", "hd2", "enhance"];
 export default handler;
