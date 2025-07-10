@@ -1,11 +1,11 @@
-<h1 align="center"> ⚽ RIN ITOSHI BOT V²</h1>
+<h1 align="center"> ⛩️ sᴜᴋᴜɴᴀ ʙᴏᴛ ᴍᴅ ⛩️</h1>
 <p align="center">
   <img src="https://files.catbox.moe/7d1l2i.jpg" width="300">
 </p>
 
 <p align="center">
   <a href="https://wa.me/51969214380">
-    <img title="Autor" src="https://img.shields.io/badge/THE-BLACK OFC-black?style=for-the-badge&logo=whatsapp">
+    <img title="Autor" src="https://img.shields.io/badge/sʜᴀᴅᴏᴡ:ᴄᴏʀᴇ sʜᴀᴅᴏᴡ'ᴄᴏʀᴇ?style=for-the-badge&logo=whatsapp">
   </a>
 </p>
 
@@ -169,5 +169,5 @@ npm start
 
 <a href="https://github.com/Yuji-XDev"><img src="https://github.com/Yuji-XDev.png" width="300" height="300" alt="Yuji-XDev"/></a>
 
-`RIN ITOSHI BOT X BY BLACK `
-  ### `Black.OFC`
+`𝑺𝑼𝑲𝑼𝑵𝑨 𝑩𝑶𝑻 𝑿 𝑩𝒀 𝑺𝑯𝑨𝑫𝑶𝑾:𝑪𝑶𝑹𝑬`
+  ### `𝑺𝑯𝑨𝑫𝑶𝑾'𝑪𝑶𝑹𝑬 • 𝑶𝑭𝑪`
