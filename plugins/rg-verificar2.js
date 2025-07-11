@@ -1,4 +1,4 @@
-/*import db from '../lib/database.js'
+import db from '../lib/database.js'
 import fs from 'fs'
 import PhoneNumber from 'awesome-phonenumber'
 import { createHash } from 'crypto'  
@@ -71,9 +71,9 @@ handler.help = ['reg']
 handler.tags = ['rg']
 handler.command = ['verify', 'verificar', 'reg', 'register', 'registrar'] 
 
-export default handler*/
+export default handler
 
-
+/*
 import db from '../lib/database.js'
 import fs from 'fs'
 import PhoneNumber from 'awesome-phonenumber'
@@ -137,5 +137,5 @@ handler.help = ['reg']
 handler.tags = ['rg']
 handler.command = ['verify', 'verificar', 'reg', 'register', 'registrar'] 
 
-export default handler
+export default handler*/
 
