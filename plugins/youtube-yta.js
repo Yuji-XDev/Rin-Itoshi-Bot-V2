@@ -12,7 +12,7 @@ const handler = async (m, { conn, text, args, usedPrefix, command }) => {
     const json = await res.json();
 
     if (!json.status || !json.result || !json.result.downloadUrl) {
-      return m.reply('❌ No se pudo obtener el video. Intenta con otro título o revisa la API.');
+      return m.reply('*❌ No se pudo obtener el audio. Intenta con otro título.*');
     }
 
     const { title, channel, duration, cover, url } = json.result.metadata;
