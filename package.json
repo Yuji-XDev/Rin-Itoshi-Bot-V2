@@ -1,5 +1,5 @@
 {
-"name": "RIN ITOSHI-V2 X BLACK-OFC",
+"name": "RIN ITOSHI-V2 X SHADOW•CORE",
 "version": "2.2.0",
 "description": "WhatsApp Bot Multi Device",
 "main": "index.js",
@@ -18,16 +18,16 @@
 "eslint": "eslint .",
 "eslintfix": "eslint --fix ."
 },
-"homepage": "https://github.com/Rin-Itoshi-Bot-V2",
+"homepage": "https://github.com/Yuji-XDev/Rin-Itoshi-Bot-V2",
 "author": {
 "name": "the-27"
 },
 "repository": {
 "type": "git",
-"url": "git+https://github.com/Rin-Itoshi-Bot-V2.git"
+"url": "git+https://github.com/Yuji-XDev/Rin-Itoshi-Bot-V2.git"
 },
 "bugs": {
-"url": "https://github.com/Rin-Itoshi-Bot-V2/issues"
+"url": "https://github.com/Yuji-XDev/Rin-Itoshi-Bot-V2/issues"
 },
 "license": "MIT-License",
 "dependencies": {
