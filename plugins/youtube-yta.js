@@ -37,7 +37,7 @@ const handler = async (m, { conn, text, args, usedPrefix, command }) => {
 
   } catch (e) {
     console.error(e);
-    m.reply('⚠️ Ocurrió un error al procesar el video.');
+    m.reply('*⚠️ Ocurrió un error al procesar el video*.');
   }
 };
 
